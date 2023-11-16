@@ -27,7 +27,7 @@ export const registerCommands = (cli: commander.Command) => {
   const widgetBuildCommand = widgetCommand.command("build");
 
   widgetBuildCommand
-    .option("-e, --entrypoint <path>", "Путь до entrypoint")
+    .option("-e, --entry <path>", "Путь до entrypoint")
     .description("Запускает сборку проекта")
     .action((options: BuildOptions) => runBuild(options));
 
@@ -35,7 +35,7 @@ export const registerCommands = (cli: commander.Command) => {
 
   widgetStartCommand
     .description("Запускает проект в dev режиме")
-    .option("-e, --entrypoint <path>", "Путь до entrypoint")
+    .option("-e, --entry <path>", "Путь до entrypoint")
     .option(
       "-p, --port <port>",
       "Порт на котором будет доступен виджет",
