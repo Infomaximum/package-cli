@@ -46,5 +46,17 @@
     "prettier": "^3.1.0",
     "typescript": "^5.2.2",
     "rimraf": "^5.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Infomaximum/package-cli.git"
+  },
+  "keywords": [
+    "widgets cli",
+    "widgets builder",
+    "cli"
+  ],
+  "bugs": {
+    "url": "https://github.com/Infomaximum/package-cli/issues"
   }
 }
