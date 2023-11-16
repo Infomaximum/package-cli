@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "module": "CommonJS",
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "exactOptionalPropertyTypes": false,
+    "declaration": false,
+    "downlevelIteration": true,
+    "lib": ["ESNext"]
+  },
+  "include": ["lib", "bin"]
+}

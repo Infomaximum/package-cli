@@ -1,0 +1,50 @@
+{
+  "name": "@infomaximum/package-cli",
+  "version": "1.0.0",
+  "main": "dist/bin/cli.js",
+  "license": "Apache-2.0",
+  "bin": {
+    "im-package-cli": "dist/bin/cli.js"
+  },
+  "files": [
+    "dist/",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "dev": "tsc",
+    "dev:w": "yarn dev -w",
+    "build": "rimraf dist && yarn dev",
+    "release": "tsc --noEmit && standard-version && yarn build",
+    "lint": "tsc --noEmit",
+    "prettier": "prettier --find-config-path --write 'lib/**/*'"
+  },
+  "dependencies": {
+    "@infomaximum/json-modify-webpack-plugin": "^1.0.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^20.9.0",
+    "@types/zip-webpack-plugin": "^3.0.6",
+    "babel-loader": "^9.1.3",
+    "commander": "^11.1.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "postcss-loader": "^7.3.3",
+    "react-refresh": "^0.14.0",
+    "standard-version": "^9.5.0",
+    "style-loader": "^3.3.3",
+    "terser-webpack-plugin": "^5.3.9",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "webpack": "^5.89.0",
+    "webpack-merge": "^5.10.0",
+    "zip-webpack-plugin": "^4.0.1",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2",
+    "rimraf": "^5.0.5"
+  }
+}
