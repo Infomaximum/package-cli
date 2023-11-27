@@ -1,10 +1,12 @@
-import { webpack } from "webpack";
-import { StartOptions } from "../arguments";
-import { Mode, Paths, generatePaths } from "../paths";
+import _webpack from "webpack";
+import type { StartOptions } from "../../arguments.js";
+import { type Mode, type Paths, generatePaths } from "../../paths.js";
 import WebpackDevServer from "webpack-dev-server";
-import { getDevServerConfig } from "../configs/webpack/devServer";
-import { getCommonWidgetConfig } from "../configs/webpack/common";
-import merge from "webpack-merge";
+import { getDevServerConfig } from "../../configs/webpack/devServer.js";
+import { merge } from "webpack-merge";
+import { getCommonWidgetConfig } from "../../configs/webpack/common.js";
+
+const { webpack } = _webpack;
 
 export const runDevServer = async (options: StartOptions) => {
   const PATHS = generatePaths({

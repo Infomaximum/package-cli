@@ -1,12 +1,14 @@
-import { Configuration, ProgressPlugin } from "webpack";
-import { Mode, Paths } from "../../paths";
+import type { Mode, Paths } from "../../paths.js";
 import ZipPlugin from "zip-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
-import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
+import webpack, { type Configuration } from "webpack";
+
+const { ProgressPlugin } = webpack;
 
 const isProduction = (mode: Mode) => mode === "production";
 const isDevelopment = (mode: Mode) => mode === "development";
@@ -135,7 +137,7 @@ export const getCommonWidgetConfig = (
         }
       : undefined,
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
+      extensions: [".tsx", ".ts", ""],
       plugins: [new TsconfigPathsPlugin()],
     },
     devtool: isProduction(mode) ? false : "cheap-module-source-map",

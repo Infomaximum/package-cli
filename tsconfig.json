@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
+    "target": "ES2015",
     "outDir": "dist",
-    "rootDir": ".",
-    "module": "CommonJS",
+    "declaration": false,
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "importHelpers": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": false,
     "removeComments": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
     "strict": true,
     "exactOptionalPropertyTypes": false,
-    "declaration": false,
     "downlevelIteration": true,
     "lib": ["ESNext"]
   },
-  "include": ["lib", "bin"]
+  "include": ["lib"]
 }
