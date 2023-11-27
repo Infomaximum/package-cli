@@ -13,6 +13,7 @@
     "skipLibCheck": true,
     "verbatimModuleSyntax": true,
     "strict": true,
+    "strictFunctionTypes": false,
     "exactOptionalPropertyTypes": false,
     "downlevelIteration": true,
     "lib": ["ESNext"]

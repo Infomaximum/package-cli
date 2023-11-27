@@ -1,15 +1,29 @@
 import path from "node:path";
-import { run } from "plop";
+import nodePlop from "node-plop";
+import { addCustomActions } from "./actions.js";
+import { addCustomGenerators } from "./generators.js";
 
-export const runInit = (initPath: string) => {
+export const runInit = async (initPath: string) => {
   const createPath = path.resolve(process.cwd(), initPath);
-  console.warn(createPath);
 
-  run(
-    {
-      cwd: createPath,
-    } as any,
-    1,
-    true
-  );
+  const plop = await nodePlop(undefined, {
+    destBasePath: createPath,
+    force: false,
+  });
+
+  addCustomActions(createPath, plop);
+  addCustomGenerators(createPath, plop);
+
+  plop.getGeneratorList().forEach(({ name }) => {
+    const generator = plop.getGenerator(name);
+
+    generator
+      .runPrompts()
+      .then((answers) => {
+        return generator.runActions(answers);
+      })
+      .then((result) => {
+        console.warn(result);
+      });
+  });
 };
