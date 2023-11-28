@@ -1,7 +1,7 @@
 import type { Command } from "commander";
 import { runBuild } from "./scripts/widget/build.js";
 import { runDevServer } from "./scripts/widget/start.js";
-import { runInit } from "./scripts/widget/init/init.js";
+import { runInitWidget } from "./scripts/widget/init/init.js";
 
 export type BuildOptions = {
   entry: string;
@@ -41,7 +41,7 @@ const registerWidgetCommands = (cli: Command) => {
   widgetInitCommand
     .description("Создание виджета")
     .action((initPath: string) => {
-      runInit(initPath);
+      runInitWidget(initPath);
     });
 };
 

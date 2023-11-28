@@ -1,6 +1,6 @@
 import type { Prompts } from "node-plop";
 
-export type Answers = {
+type Answers = {
   packageName: string;
   author: string;
   widgetName: string;
@@ -9,7 +9,7 @@ export type Answers = {
 
 const notEmptyValidator = (input: string) => !!input;
 
-export const prompts = [
+const prompts = [
   {
     message: "Введите название пакета: ",
     type: "input",
@@ -35,3 +35,6 @@ export const prompts = [
     validate: notEmptyValidator,
   },
 ] satisfies Prompts;
+
+export { prompts };
+export type { Answers };

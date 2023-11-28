@@ -1,12 +1,18 @@
 import type { NodePlopAPI } from "node-plop";
-import { actions } from "./actions.js";
+import { getInitWidgetActions } from "./actions.js";
 import { prompts } from "./prompts.js";
 
-export const generateWidgetGeneratorName = "widget-generate";
+const generateWidgetGeneratorName = "widget-generate";
 
-export const addCustomGenerators = (basePath: string, plop: NodePlopAPI) => {
+const getInitWidgetGenerator = (basePath: string, plop: NodePlopAPI) => {
+  const actions = getInitWidgetActions(basePath, plop);
+
   plop.setGenerator(generateWidgetGeneratorName, {
     prompts,
     actions,
   });
+
+  return plop.getGenerator(generateWidgetGeneratorName);
 };
+
+export { getInitWidgetGenerator };

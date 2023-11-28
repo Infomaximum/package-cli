@@ -8,7 +8,7 @@ import { WIDGET_MANIFEST_TEMPLATE } from "../../../templates/widgetManifest.js";
 
 const addIconActionName = "addIcon";
 
-const addCustomActions = (basePath: string, plop: NodePlopAPI) => {
+const addInitActions = (basePath: string, plop: NodePlopAPI) => {
   plop.setActionType(addIconActionName, async function (answers, config, plop) {
     try {
       await writeFile(path.resolve(basePath, config.path), config.template, {
@@ -54,4 +54,10 @@ const actions = (data: Answers) => {
   ];
 };
 
-export { addCustomActions, actions };
+const getInitWidgetActions = (basePath: string, plop: NodePlopAPI) => {
+  addInitActions(basePath, plop);
+
+  return actions;
+};
+
+export { getInitWidgetActions };
