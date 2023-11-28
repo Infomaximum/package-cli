@@ -71,6 +71,8 @@ export const getCommonWidgetConfig = (
           loader: require.resolve("babel-loader"),
           options: {
             plugins: [
+              require.resolve("babel-plugin-inline-json-import"),
+              require.resolve("@babel/plugin-transform-runtime"),
               !isProduction(mode) && require.resolve("react-refresh/babel"),
             ].filter(Boolean),
           },
@@ -80,7 +82,17 @@ export const getCommonWidgetConfig = (
           use: [
             require.resolve("style-loader"),
             require.resolve("css-loader"),
-            require.resolve("postcss-loader"),
+            {
+              loader: require.resolve("postcss-loader"),
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    require.resolve("postcss-preset-env"),
+                    require.resolve("autoprefixer"),
+                  ],
+                },
+              },
+            },
           ],
         },
         {
@@ -88,6 +100,17 @@ export const getCommonWidgetConfig = (
           use: [
             require.resolve("style-loader"),
             require.resolve("css-loader"),
+            {
+              loader: require.resolve("postcss-loader"),
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    require.resolve("postcss-preset-env"),
+                    require.resolve("autoprefixer"),
+                  ],
+                },
+              },
+            },
             {
               loader: require.resolve("sass-loader"),
               options: {
@@ -104,6 +127,17 @@ export const getCommonWidgetConfig = (
           use: [
             require.resolve("style-loader"),
             require.resolve("css-loader"),
+            {
+              loader: require.resolve("postcss-loader"),
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    require.resolve("postcss-preset-env"),
+                    require.resolve("autoprefixer"),
+                  ],
+                },
+              },
+            },
             {
               loader: require.resolve("less-loader"),
               options: {
