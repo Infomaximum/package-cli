@@ -66,7 +66,7 @@ export const getCommonWidgetConfig = (
         {
           test: /\.(ts|tsx)$/i,
           exclude: ["/node_modules/"],
-          loader: "babel-loader",
+          loader: require.resolve("babel-loader"),
           options: {
             plugins: [
               !isProduction(mode) && require.resolve("react-refresh/babel"),
@@ -75,7 +75,43 @@ export const getCommonWidgetConfig = (
         },
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader", "postcss-loader"],
+          use: [
+            require.resolve("style-loader"),
+            require.resolve("css-loader"),
+            require.resolve("postcss-loader"),
+          ],
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [
+            require.resolve("style-loader"),
+            require.resolve("css-loader"),
+            {
+              loader: require.resolve("sass-loader"),
+              options: {
+                implementation: require("sass"),
+                sassOptions: {
+                  fiber: false,
+                },
+              },
+            },
+          ],
+        },
+        {
+          test: /\.less$/i,
+          use: [
+            require.resolve("style-loader"),
+            require.resolve("css-loader"),
+            {
+              loader: require.resolve("less-loader"),
+              options: {
+                sourceMap: isDevelopment(mode),
+                lessOptions: {
+                  javascriptEnabled: true,
+                },
+              },
+            },
+          ],
         },
         {
           test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
