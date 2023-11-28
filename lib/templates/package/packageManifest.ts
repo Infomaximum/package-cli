@@ -6,15 +6,15 @@ export const PACKAGE_MANIFEST_TEMPLATE = `\
     "author": "{{author}}",
     "guid": "${randomUUID()}",
     "type": "widget",
-    "name": "{{capitalizePackageName}}",
+    "name": "{{sentenceCase packageName}}",
     "systems": [
       {
         "name": "Widget"
       }
     ],
     "description": {
-      "ru": "{{packageDescription}}",
-      "en": "{{packageDescription}}"
+      "ru": "{{sentenceCase packageDescription}}",
+      "en": "{{sentenceCase packageDescription}}"
     },
     "categories": {
       "ru": [

@@ -6,8 +6,8 @@ export const WIDGET_MANIFEST_TEMPLATE = `\
     "entry": "index.js",
     "api_version": 1,
     "name": {
-      "en": "{{capitalizeWidgetName}}",
-      "ru": "{{capitalizeWidgetName}}"
+      "en": "{{sentenceCase packageName}}",
+      "ru": "{{sentenceCase packageName}}"
     },
     "default_size_percentage": {
       "width": 60,

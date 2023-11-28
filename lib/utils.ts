@@ -3,10 +3,6 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import https from "node:https";
 
-export function capitalizeFirstLetter(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 export async function writeFile(
   pathToFile: string,
   contents: any,

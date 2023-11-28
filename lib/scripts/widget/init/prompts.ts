@@ -28,12 +28,6 @@ const prompts = [
     name: "author",
     validate: notEmptyValidator,
   },
-  {
-    message: "Название виджета: ",
-    type: "input",
-    name: "widgetName",
-    validate: notEmptyValidator,
-  },
 ] satisfies Prompts;
 
 export { prompts };
