@@ -13,8 +13,8 @@ export async function writeFile(
   await fs.writeFile(pathToFile, contents, options);
 }
 
-export function getLibraryLatestVersion(libraryName: string) {
-  return new Promise((resolve, reject) => {
+export function getLatestVersionOfLibrary(libraryName: string) {
+  return new Promise<string>((resolve, reject) => {
     https
       .get(
         `https://registry.npmjs.org/-/package/${libraryName}/dist-tags`,

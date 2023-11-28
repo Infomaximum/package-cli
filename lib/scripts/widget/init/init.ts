@@ -10,7 +10,7 @@ const runInitWidget = async (initPath: string) => {
     force: false,
   });
 
-  const initGenerator = getInitWidgetGenerator(createPath, plop);
+  const initGenerator = await getInitWidgetGenerator(createPath, plop);
 
   initGenerator
     .runPrompts()

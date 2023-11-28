@@ -4,8 +4,8 @@ import { prompts } from "./prompts.js";
 
 const generateWidgetGeneratorName = "widget-generate";
 
-const getInitWidgetGenerator = (basePath: string, plop: NodePlopAPI) => {
-  const actions = getInitWidgetActions(basePath, plop);
+const getInitWidgetGenerator = async (basePath: string, plop: NodePlopAPI) => {
+  const actions = await getInitWidgetActions(basePath, plop);
 
   plop.setGenerator(generateWidgetGeneratorName, {
     prompts,

@@ -1,6 +1,6 @@
 import type { Actions, CustomActionConfig, NodePlopAPI } from "node-plop";
 import path from "node:path";
-import { writeFile } from "../../../utils.js";
+import { getLatestVersionOfLibrary, writeFile } from "../../../utils.js";
 import { PACKAGE_MANIFEST_TEMPLATE } from "../../../templates/package/packageManifest.js";
 import { PACKAGE_ICON_TEMPLATE } from "../../../templates/package/packageIcon.js";
 import type { Answers } from "./prompts.js";
@@ -16,6 +16,12 @@ import {
 import { WIDGET_INDEX_TEMPLATE } from "../../../templates/src/widgetIndex.js";
 import { APP_D_TS_TEMPLATE } from "../../../templates/src/widgetAppDTs.js";
 import { WIDGET_INDEX_CSS_TEMPLATE } from "../../../templates/src/widgetIndexCSS.js";
+import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../../templates/widgetPackageJson.js";
+
+type ActionData = Answers & {
+  packageCliVersion: string;
+  customWidgetVersion: string;
+};
 
 const addIconActionName = "addIcon";
 
@@ -33,7 +39,7 @@ const addInitActions = (basePath: string, plop: NodePlopAPI) => {
   });
 };
 
-const actions = (data: Answers) => {
+const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
   return [
     {
       type: "add",
@@ -95,13 +101,29 @@ const actions = (data: Answers) => {
       path: "jest.config.js",
       template: WIDGET_JEST_CONFIG,
     },
+    {
+      type: "add",
+      path: "package.json",
+      template: WIDGET_PACKAGE_JSON_TEMPLATE,
+      data: { customWidgetVersion, packageCliVersion },
+    },
   ] satisfies Actions;
 };
 
-const getInitWidgetActions = (basePath: string, plop: NodePlopAPI) => {
+const getInitWidgetActions = async (basePath: string, plop: NodePlopAPI) => {
   addInitActions(basePath, plop);
 
-  return actions;
+  const [packageCliVersion, customWidgetVersion] = await Promise.all([
+    getLatestVersionOfLibrary("@infomaximum/package-cli"),
+    getLatestVersionOfLibrary("@infomaximum/custom-widget"),
+  ]);
+
+  return (data: Answers) =>
+    actions({
+      ...data,
+      packageCliVersion,
+      customWidgetVersion,
+    });
 };
 
 export { getInitWidgetActions };
