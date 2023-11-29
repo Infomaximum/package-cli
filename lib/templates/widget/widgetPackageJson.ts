@@ -11,9 +11,9 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
+    "@infomaximum/custom-widget": "^{{customWidgetVersion}}",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@infomaximum/custom-widget": "^{{customWidgetVersion}}"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@babel/core": "7.23.3",
