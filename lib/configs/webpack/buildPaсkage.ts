@@ -10,7 +10,7 @@ import path from "path";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import { systemRequire } from "../../utils.js";
 
-const packageFilename = "main";
+const packageFilename = "main.js";
 
 export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
   const widgetVersion = systemRequire(PATHS.appPackageJson).version;

@@ -22,7 +22,7 @@ const registerWidgetCommands = (cli: Command) => {
   const widgetBuildCommand = widgetCommand.command("build");
 
   widgetBuildCommand
-    .option("-e, --entry <project-directory>", "Путь до entrypoint")
+    .option("-e, --entry <path>", "Путь до entrypoint")
     .description("Запускает сборку проекта")
     .action((options: BuildOptions) => runBuild(options));
 
@@ -39,12 +39,12 @@ const registerWidgetCommands = (cli: Command) => {
     .option("--host <host>", "host на котором будет доступен виджет", "0.0.0.0")
     .action((options: StartOptions) => runDevServer(options));
 
-  const widgetInitCommand = widgetCommand.command("init <path>");
+  const widgetInitCommand = widgetCommand.command("init <project-directory>");
 
   widgetInitCommand
     .description("Создание виджета")
-    .action((initPath: string) => {
-      runInitWidget(initPath);
+    .action((dirName: string) => {
+      runInitWidget(dirName);
     });
 };
 
