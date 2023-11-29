@@ -2,6 +2,9 @@ import type { Command } from "commander";
 import { runBuild } from "./scripts/widget/build.js";
 import { runDevServer } from "./scripts/widget/start.js";
 import { runInitWidget } from "./scripts/widget/init/init.js";
+import { systemRequire } from "./utils.js";
+
+const packageJson = systemRequire("../package.json");
 
 export type BuildOptions = {
   entry: string;
@@ -48,6 +51,11 @@ const registerWidgetCommands = (cli: Command) => {
 export const registerCommands = (cli: Command) => {
   cli.helpOption("-h", "Отображает помощь по командам");
   cli.name("im-package-cli");
+  cli.version(
+    packageJson.version,
+    "-v, --version",
+    "Текущая версия библиотеки"
+  );
 
   registerWidgetCommands(cli);
 };
