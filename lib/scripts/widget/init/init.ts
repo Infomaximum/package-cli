@@ -18,7 +18,7 @@ const runInitWidget = async (dirName: string) => {
   await initGenerator.runActions(answers);
 
   try {
-    await spawnCommand("npm install", {
+    await spawnCommand("npm", ["install"], {
       cwd: createPath,
     });
   } catch (error) {
@@ -26,7 +26,7 @@ const runInitWidget = async (dirName: string) => {
   }
 
   try {
-    await spawnCommand("git init", {
+    await spawnCommand("git", ["init"], {
       cwd: createPath,
     });
   } catch (error) {

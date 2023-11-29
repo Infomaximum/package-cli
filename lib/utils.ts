@@ -44,11 +44,15 @@ export function getLatestVersionOfLibrary(libraryName: string) {
   });
 }
 
-export function spawnCommand(command: string, options: SpawnOptions) {
+export function spawnCommand(
+  command: string,
+  args: ReadonlyArray<string>,
+  options: SpawnOptions
+) {
   const didSucceed = (code: number | null) => `${code}` === "0";
 
   return new Promise<void>((resolve, reject) => {
-    const childProcess = spawn(command, {
+    const childProcess = spawn(command, args, {
       shell: true,
       stdio: "inherit",
       ...options,
