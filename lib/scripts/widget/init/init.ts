@@ -1,6 +1,7 @@
 import path from "node:path";
 import nodePlop from "node-plop";
 import { getInitWidgetGenerator } from "./generators.js";
+import { spawnCommand } from "../../../utils.js";
 
 const runInitWidget = async (initPath: string) => {
   const createPath = path.resolve(process.cwd(), initPath);
@@ -14,9 +15,23 @@ const runInitWidget = async (initPath: string) => {
 
   const answers = await initGenerator.runPrompts();
 
-  const result = await initGenerator.runActions(answers);
+  await initGenerator.runActions(answers);
 
-  console.warn(result);
+  try {
+    await spawnCommand("npm install", {
+      cwd: createPath,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    await spawnCommand("git init", {
+      cwd: createPath,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export { runInitWidget };

@@ -2,6 +2,7 @@ import type { WriteFileOptions } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import https from "node:https";
+import { spawn, type SpawnOptions } from "node:child_process";
 
 export function capitalizeFirstLetter(str: string = "") {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -37,5 +38,25 @@ export function getLatestVersionOfLibrary(libraryName: string) {
       .on("error", () => {
         reject();
       });
+  });
+}
+
+export function spawnCommand(command: string, options: SpawnOptions) {
+  const didSucceed = (code: number | null) => `${code}` === "0";
+
+  return new Promise<void>((resolve, reject) => {
+    const childProcess = spawn(command, {
+      shell: true,
+      stdio: "inherit",
+      ...options,
+    });
+
+    childProcess.on("close", (code) => {
+      if (didSucceed(code)) {
+        resolve();
+      } else {
+        reject(code);
+      }
+    });
   });
 }
