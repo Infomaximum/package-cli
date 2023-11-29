@@ -49,6 +49,7 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
       template: PACKAGE_MANIFEST_TEMPLATE,
       data: {
         packageIconName,
+        packageType: "widget",
       },
     },
     {

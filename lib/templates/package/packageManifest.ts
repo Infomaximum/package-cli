@@ -6,7 +6,7 @@ export const PACKAGE_MANIFEST_TEMPLATE = `\
     "manifest_version": "1",
     "author": "{{author}}",
     "guid": "${randomUUID()}",
-    "type": "widget",
+    "type": "{{packageType}}",
     "name": "{{${capitalizeHelperName} packageName}}",
     "systems": [
       {
