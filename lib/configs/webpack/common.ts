@@ -7,6 +7,7 @@ import TerserWebpackPlugin from "terser-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
+import { systemRequire } from "../../utils.js";
 
 const { ProgressPlugin } = webpack;
 
@@ -29,7 +30,7 @@ export const getCommonWidgetConfig = (
     entry: [PATHS.moduleIndex, PATHS.manifestJson],
     output: {
       path: PATHS.appBuild,
-      filename: require(PATHS.manifestJson).entry,
+      filename: systemRequire(PATHS.manifestJson).entry,
       asyncChunks: false,
       clean: true,
     },
@@ -68,27 +69,28 @@ export const getCommonWidgetConfig = (
         {
           test: /\.(ts|tsx)$/i,
           exclude: ["/node_modules/"],
-          loader: require.resolve("babel-loader"),
+          loader: systemRequire.resolve("babel-loader"),
           options: {
             plugins: [
-              require.resolve("babel-plugin-inline-json-import"),
-              require.resolve("@babel/plugin-transform-runtime"),
-              !isProduction(mode) && require.resolve("react-refresh/babel"),
+              systemRequire.resolve("babel-plugin-inline-json-import"),
+              systemRequire.resolve("@babel/plugin-transform-runtime"),
+              !isProduction(mode) &&
+                systemRequire.resolve("react-refresh/babel"),
             ].filter(Boolean),
           },
         },
         {
           test: /\.css$/i,
           use: [
-            require.resolve("style-loader"),
-            require.resolve("css-loader"),
+            systemRequire.resolve("style-loader"),
+            systemRequire.resolve("css-loader"),
             {
-              loader: require.resolve("postcss-loader"),
+              loader: systemRequire.resolve("postcss-loader"),
               options: {
                 postcssOptions: {
                   plugins: [
-                    require.resolve("postcss-preset-env"),
-                    require.resolve("autoprefixer"),
+                    systemRequire.resolve("postcss-preset-env"),
+                    systemRequire.resolve("autoprefixer"),
                   ],
                 },
               },
@@ -98,23 +100,23 @@ export const getCommonWidgetConfig = (
         {
           test: /\.s[ac]ss$/i,
           use: [
-            require.resolve("style-loader"),
-            require.resolve("css-loader"),
+            systemRequire.resolve("style-loader"),
+            systemRequire.resolve("css-loader"),
             {
-              loader: require.resolve("postcss-loader"),
+              loader: systemRequire.resolve("postcss-loader"),
               options: {
                 postcssOptions: {
                   plugins: [
-                    require.resolve("postcss-preset-env"),
-                    require.resolve("autoprefixer"),
+                    systemRequire.resolve("postcss-preset-env"),
+                    systemRequire.resolve("autoprefixer"),
                   ],
                 },
               },
             },
             {
-              loader: require.resolve("sass-loader"),
+              loader: systemRequire.resolve("sass-loader"),
               options: {
-                implementation: require("sass"),
+                implementation: systemRequire("sass"),
                 sassOptions: {
                   fiber: false,
                 },
@@ -125,21 +127,21 @@ export const getCommonWidgetConfig = (
         {
           test: /\.less$/i,
           use: [
-            require.resolve("style-loader"),
-            require.resolve("css-loader"),
+            systemRequire.resolve("style-loader"),
+            systemRequire.resolve("css-loader"),
             {
-              loader: require.resolve("postcss-loader"),
+              loader: systemRequire.resolve("postcss-loader"),
               options: {
                 postcssOptions: {
                   plugins: [
-                    require.resolve("postcss-preset-env"),
-                    require.resolve("autoprefixer"),
+                    systemRequire.resolve("postcss-preset-env"),
+                    systemRequire.resolve("autoprefixer"),
                   ],
                 },
               },
             },
             {
-              loader: require.resolve("less-loader"),
+              loader: systemRequire.resolve("less-loader"),
               options: {
                 sourceMap: isDevelopment(mode),
                 lessOptions: {
@@ -177,7 +179,7 @@ export const getCommonWidgetConfig = (
             },
             {
               issuer: /\.[jt]sx?$/,
-              loader: require.resolve("@svgr/webpack"),
+              loader: systemRequire.resolve("@svgr/webpack"),
               options: {
                 svgoConfig: {
                   plugins: [
@@ -207,7 +209,7 @@ export const getCommonWidgetConfig = (
         }
       : undefined,
     resolve: {
-      extensions: [".tsx", ".ts", ""],
+      extensions: [".tsx", ".ts", ".js"],
       plugins: [new TsconfigPathsPlugin()],
     },
     devtool: isProduction(mode) ? false : "cheap-module-source-map",

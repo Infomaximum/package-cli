@@ -3,6 +3,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import https from "node:https";
 import { spawn, type SpawnOptions } from "node:child_process";
+import Module from "node:module";
+
+export const systemRequire = Module.createRequire(import.meta.url);
 
 export function capitalizeFirstLetter(str: string = "") {
   return str.charAt(0).toUpperCase() + str.slice(1);

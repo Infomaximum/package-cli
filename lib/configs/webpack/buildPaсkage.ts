@@ -8,12 +8,13 @@ import {
 import type { Mode, Paths } from "../../paths.js";
 import path from "path";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
+import { systemRequire } from "../../utils.js";
 
 const packageFilename = "main";
 
 export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
-  const widgetVersion = require(PATHS.appPackageJson).version;
-  const manifestPackageName = require(PATHS.packageManifest).name;
+  const widgetVersion = systemRequire(PATHS.appPackageJson).version;
+  const manifestPackageName = systemRequire(PATHS.packageManifest).name;
 
   return {
     mode,

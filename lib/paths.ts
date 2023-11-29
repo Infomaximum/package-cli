@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { systemRequire } from "./utils.js";
 
 export type TGeneratePathsArgs = {
   entryPath: string;
@@ -75,7 +76,7 @@ export const generateIndexPath = (entryPath?: string) => {
   try {
     const mainIndexPath = path.resolve(
       process.cwd(),
-      require(resolveApp("package.json"))?.main
+      systemRequire(resolveApp("package.json"))?.main
     );
 
     if (mainIndexPath && fs.existsSync(mainIndexPath)) {
