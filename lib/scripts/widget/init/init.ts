@@ -12,14 +12,11 @@ const runInitWidget = async (initPath: string) => {
 
   const initGenerator = await getInitWidgetGenerator(createPath, plop);
 
-  initGenerator
-    .runPrompts()
-    .then((answers) => {
-      return initGenerator.runActions(answers);
-    })
-    .then((result) => {
-      console.warn(result);
-    });
+  const answers = await initGenerator.runPrompts();
+
+  const result = await initGenerator.runActions(answers);
+
+  console.warn(result);
 };
 
 export { runInitWidget };
