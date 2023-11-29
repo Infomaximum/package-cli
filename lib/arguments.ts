@@ -22,7 +22,7 @@ const registerWidgetCommands = (cli: Command) => {
   const widgetBuildCommand = widgetCommand.command("build");
 
   widgetBuildCommand
-    .option("-e, --entry <path>", "Путь до entrypoint")
+    .option("-e, --entry <project-directory>", "Путь до entrypoint")
     .description("Запускает сборку проекта")
     .action((options: BuildOptions) => runBuild(options));
 
