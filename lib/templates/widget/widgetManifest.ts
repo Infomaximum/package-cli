@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { capitalizeHelperName } from "../scripts/widget/init/helpers.js";
+import { capitalizeHelperName } from "../../scripts/widget/init/helpers.js";
 
 export const WIDGET_MANIFEST_TEMPLATE = `\
 {

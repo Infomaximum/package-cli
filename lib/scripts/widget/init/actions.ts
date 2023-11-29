@@ -4,7 +4,7 @@ import { getLatestVersionOfLibrary, writeFile } from "../../../utils.js";
 import { PACKAGE_MANIFEST_TEMPLATE } from "../../../templates/package/packageManifest.js";
 import { PACKAGE_ICON_TEMPLATE } from "../../../templates/package/packageIcon.js";
 import type { Answers } from "./prompts.js";
-import { WIDGET_MANIFEST_TEMPLATE } from "../../../templates/widgetManifest.js";
+import { WIDGET_MANIFEST_TEMPLATE } from "../../../templates/widget/widgetManifest.js";
 import {
   WIDGET_BABEL_CONFIG,
   WIDGET_ESLINTIGNORE,
@@ -12,11 +12,11 @@ import {
   WIDGET_GITIGNORE,
   WIDGET_JEST_CONFIG,
   WIDGET_TSCONFIG_JSON,
-} from "../../../templates/widgetConfigs.js";
-import { WIDGET_INDEX_TEMPLATE } from "../../../templates/src/widgetIndex.js";
-import { APP_D_TS_TEMPLATE } from "../../../templates/src/widgetAppDTs.js";
-import { WIDGET_INDEX_CSS_TEMPLATE } from "../../../templates/src/widgetIndexCSS.js";
-import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../../templates/widgetPackageJson.js";
+} from "../../../templates/widget/widgetConfigs.js";
+import { WIDGET_INDEX_TEMPLATE } from "../../../templates/widget/src/widgetIndex.js";
+import { APP_D_TS_TEMPLATE } from "../../../templates/widget/src/widgetAppDTs.js";
+import { WIDGET_INDEX_CSS_TEMPLATE } from "../../../templates/widget/src/widgetIndexCSS.js";
+import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../../templates/widget/widgetPackageJson.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
