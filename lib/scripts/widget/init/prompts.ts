@@ -17,7 +17,7 @@ const prompts = [
     validate: notEmptyValidator,
   },
   {
-    message: "Введите описание пакета: ",
+    message: "Введите описание для пакета: ",
     type: "input",
     name: "packageDescription",
     default: "",
