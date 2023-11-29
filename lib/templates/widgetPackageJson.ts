@@ -3,6 +3,7 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
     "name": "template_widget",
     "version": "1.0.0",
     "private": true,
+    "main": "src/index.tsx",
     "scripts": {
       "build": "im-package-cli widget build --entry ./src/index.tsx",
       "start": "im-package-cli widget start --entry ./src/index.tsx",
