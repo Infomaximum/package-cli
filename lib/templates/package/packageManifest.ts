@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { capitalizeHelperName } from "../../scripts/widget/init/helpers.js";
 
 export const PACKAGE_MANIFEST_TEMPLATE = `\
 {
@@ -6,15 +7,15 @@ export const PACKAGE_MANIFEST_TEMPLATE = `\
     "author": "{{author}}",
     "guid": "${randomUUID()}",
     "type": "widget",
-    "name": "{{sentenceCase packageName}}",
+    "name": "{{${capitalizeHelperName} packageName}}",
     "systems": [
       {
-        "name": "Widget"
+        "name": "{{packageIconName}}"
       }
     ],
     "description": {
-      "ru": "{{sentenceCase packageDescription}}",
-      "en": "{{sentenceCase packageDescription}}"
+      "ru": "{{${capitalizeHelperName} packageDescription}}",
+      "en": "{{${capitalizeHelperName} packageDescription}}"
     },
     "categories": {
       "ru": [

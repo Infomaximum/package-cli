@@ -40,15 +40,20 @@ const addInitActions = (basePath: string, plop: NodePlopAPI) => {
 };
 
 const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
+  const packageIconName = "Widget";
+
   return [
     {
       type: "add",
       path: "package/manifest.json",
       template: PACKAGE_MANIFEST_TEMPLATE,
+      data: {
+        packageIconName,
+      },
     },
     {
       type: addIconActionName,
-      path: "package/resources/Widget.png",
+      path: `package/resources/${packageIconName}.png`,
       template: PACKAGE_ICON_TEMPLATE,
     } as CustomActionConfig<typeof addIconActionName>,
     {
