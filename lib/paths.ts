@@ -55,7 +55,9 @@ export const generatePaths = (args: TGeneratePathsArgs) => {
   return {
     appPath: resolveApp("."),
     appBuild: resolveApp("build"),
-    moduleIndex: generateIndexPath(cwd, entryPath),
+    get moduleIndex() {
+      return generateIndexPath(cwd, entryPath);
+    },
     appPackageJson: resolveApp("package.json"),
     manifestJson: resolveApp("manifest.json"),
     packagePath,
