@@ -1,9 +1,13 @@
 import type { WriteFileOptions } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import https from "node:https";
-import { spawn, type SpawnOptions } from "node:child_process";
+import { spawn, type SpawnOptions, exec } from "node:child_process";
+import util from "node:util";
 import Module from "node:module";
+import semver from "semver";
+import chalk from "chalk";
+
+const execPromise = util.promisify(exec);
 
 export const systemRequire = Module.createRequire(import.meta.url);
 
@@ -11,7 +15,7 @@ export function capitalizeFirstLetter(str: string = "") {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export async function writeFile(
+export async function safeWriteFile(
   pathToFile: string,
   contents: any,
   options: WriteFileOptions
@@ -21,27 +25,16 @@ export async function writeFile(
   await fs.writeFile(pathToFile, contents, options);
 }
 
-export function getLatestVersionOfLibrary(libraryName: string) {
-  return new Promise<string>((resolve, reject) => {
-    https
-      .get(
-        `https://registry.npmjs.org/-/package/${libraryName}/dist-tags`,
-        (res) => {
-          if (res.statusCode === 200) {
-            let body = "";
-            res.on("data", (data) => (body += data));
-            res.on("end", () => {
-              resolve(JSON.parse(body).latest);
-            });
-          } else {
-            reject();
-          }
-        }
-      )
-      .on("error", () => {
-        reject();
-      });
-  });
+export async function getLatestVersionOfLibrary(libraryName: string) {
+  const { stdout } = await execPromise(`npm show -j -p ${libraryName} version`);
+
+  return JSON.parse(stdout);
+}
+
+export async function getLibraryVersionInProject(libraryName: string) {
+  const { stdout } = await execPromise(`npm ls -j -p ${libraryName} version`);
+
+  return JSON.parse(stdout);
 }
 
 export function spawnCommand(
@@ -66,4 +59,36 @@ export function spawnCommand(
       }
     });
   });
+}
+
+export async function checkLatestVersion(libName: string) {
+  const libVersionInProject = await getLibraryVersionInProject(libName);
+
+  const libVersionFromProject: string | undefined = (
+    libVersionInProject?.dependencies?.[libName] ||
+    libVersionInProject?.devDependencies?.[libName]
+  )?.version;
+
+  if (!libVersionFromProject) return;
+
+  const latestVersion = await getLatestVersionOfLibrary(libName);
+
+  const isOldVersion = semver.gt(latestVersion, libVersionFromProject);
+
+  if (isOldVersion) {
+    console.error(
+      chalk.yellow(
+        `A new version of the ${chalk.underline(
+          `${libName}@${latestVersion}`
+        )} library has been released,\n` +
+          `old version ${libVersionFromProject} is used in the project, it is recommended to ` +
+          `update to the latest version \n` +
+          chalk.green.bold(
+            chalk.underline(`npm i --save ${libName}@${latestVersion}`) +
+              " or " +
+              chalk.underline(`yarn upgrade ${libName}@${latestVersion}\n\n`)
+          )
+      )
+    );
+  }
 }

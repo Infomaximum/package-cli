@@ -2,6 +2,7 @@ import path from "node:path";
 import nodePlop from "node-plop";
 import { getInitWidgetGenerator } from "./generators.js";
 import { spawnCommand } from "../../../utils.js";
+import type { Answers } from "./prompts.js";
 
 const runInitWidget = async (dirName: string) => {
   const createPath = path.join(process.cwd(), dirName);
@@ -13,12 +14,14 @@ const runInitWidget = async (dirName: string) => {
 
   const initGenerator = await getInitWidgetGenerator(createPath, plop);
 
-  const answers = await initGenerator.runPrompts();
+  const answers = (await initGenerator.runPrompts()) as Answers;
 
   await initGenerator.runActions(answers);
 
+  const packageManager = answers.packageManager;
+
   try {
-    await spawnCommand("npm", ["install"], {
+    await spawnCommand(packageManager, ["install"], {
       cwd: createPath,
     });
   } catch (error) {

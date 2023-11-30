@@ -1,6 +1,6 @@
 import type { Actions, CustomActionConfig, NodePlopAPI } from "node-plop";
 import path from "node:path";
-import { getLatestVersionOfLibrary, writeFile } from "../../../utils.js";
+import { getLatestVersionOfLibrary, safeWriteFile } from "../../../utils.js";
 import { PACKAGE_MANIFEST_TEMPLATE } from "../../../templates/package/packageManifest.js";
 import { PACKAGE_ICON_TEMPLATE } from "../../../templates/package/packageIcon.js";
 import type { Answers } from "./prompts.js";
@@ -17,6 +17,7 @@ import { WIDGET_INDEX_TEMPLATE } from "../../../templates/widget/src/widgetIndex
 import { APP_D_TS_TEMPLATE } from "../../../templates/widget/src/widgetAppDTs.js";
 import { WIDGET_INDEX_CSS_TEMPLATE } from "../../../templates/widget/src/widgetIndexCSS.js";
 import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../../templates/widget/widgetPackageJson.js";
+import { CUSTOM_WIDGET_LIB_NAME } from "../../../const.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -28,9 +29,13 @@ const addIconActionName = "addIcon";
 const addInitActions = (basePath: string, plop: NodePlopAPI) => {
   plop.setActionType(addIconActionName, async function (answers, config, plop) {
     try {
-      await writeFile(path.resolve(basePath, config.path), config.template, {
-        encoding: "base64",
-      });
+      await safeWriteFile(
+        path.resolve(basePath, config.path),
+        config.template,
+        {
+          encoding: "base64",
+        }
+      );
 
       return config.path;
     } catch (error) {
@@ -121,7 +126,7 @@ const getInitWidgetActions = async (basePath: string, plop: NodePlopAPI) => {
 
   const [packageCliVersion, customWidgetVersion] = await Promise.all([
     getLatestVersionOfLibrary("@infomaximum/package-cli"),
-    getLatestVersionOfLibrary("@infomaximum/custom-widget"),
+    getLatestVersionOfLibrary(CUSTOM_WIDGET_LIB_NAME),
   ]);
 
   return (data: Answers) =>
