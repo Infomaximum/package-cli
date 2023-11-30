@@ -36,7 +36,11 @@ const registerWidgetCommands = (cli: Command) => {
       "Порт на котором будет доступен виджет",
       "5555"
     )
-    .option("--host <host>", "host на котором будет доступен виджет", "0.0.0.0")
+    .option(
+      "--host <host>",
+      "host на котором будет доступен виджет",
+      "localhost"
+    )
     .action((options: StartOptions) => runDevServer(options));
 
   const widgetInitCommand = widgetCommand.command("init <project-directory>");
