@@ -3,13 +3,12 @@ import type { BuildOptions } from "../../arguments.js";
 import { type Mode, generatePaths } from "../../paths.js";
 import { getCommonWidgetConfig } from "../../configs/webpack/common.js";
 import { getPackageConfig } from "../../configs/webpack/buildPaсkage.js";
-import { checkLatestVersion } from "../../utils.js";
-import { CUSTOM_WIDGET_LIB_NAME } from "../../const.js";
+import { checkLatestLibsVersion } from "../../utils.js";
 
 export const runBuild = async (args: BuildOptions) => {
   const mode: Mode = "production";
 
-  await checkLatestVersion(CUSTOM_WIDGET_LIB_NAME);
+  await checkLatestLibsVersion();
 
   const PATHS = generatePaths({
     entryPath: args.entry,

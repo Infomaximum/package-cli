@@ -6,6 +6,10 @@ import util from "node:util";
 import Module from "node:module";
 import semver from "semver";
 import chalk from "chalk";
+import {
+  CUSTOM_PACKAGE_CLI_LIB_NAME,
+  CUSTOM_WIDGET_LIB_NAME,
+} from "./const.js";
 
 const execPromise = util.promisify(exec);
 
@@ -78,7 +82,7 @@ export async function checkLatestVersion(libName: string) {
   if (isOldVersion) {
     console.error(
       chalk.yellow(
-        `A new version of the ${chalk.underline(
+        `\n\nA new version of the ${chalk.underline(
           `${libName}@${latestVersion}`
         )} library has been released,\n` +
           `old version ${libVersionFromProject} is used in the project, it is recommended to ` +
@@ -91,4 +95,9 @@ export async function checkLatestVersion(libName: string) {
       )
     );
   }
+}
+
+export async function checkLatestLibsVersion() {
+  await checkLatestVersion(CUSTOM_WIDGET_LIB_NAME);
+  await checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME);
 }

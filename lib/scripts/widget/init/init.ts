@@ -3,9 +3,16 @@ import nodePlop from "node-plop";
 import { getInitWidgetGenerator } from "./generators.js";
 import { spawnCommand } from "../../../utils.js";
 import type { Answers } from "./prompts.js";
+import chalk from "chalk";
+import { generatePaths } from "../../../paths.js";
 
 const runInitWidget = async (dirName: string) => {
   const createPath = path.join(process.cwd(), dirName);
+
+  const PATHS = generatePaths({
+    cwd: createPath,
+    entryPath: createPath,
+  });
 
   const plop = await nodePlop(undefined, {
     destBasePath: createPath,
@@ -35,6 +42,16 @@ const runInitWidget = async (dirName: string) => {
   } catch (error) {
     console.error(error);
   }
+
+  console.log(
+    chalk.inverse(
+      `\nCheck the package manifest (${chalk.underline(
+        PATHS.packageManifest
+      )}) and widget manifest (${chalk.underline(PATHS.manifestJson)}) ` +
+        "and make the necessary changes. Also replace the " +
+        "package icon with your own icon\n\n"
+    )
+  );
 };
 
 export { runInitWidget };

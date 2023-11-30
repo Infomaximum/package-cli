@@ -5,8 +5,7 @@ import WebpackDevServer from "webpack-dev-server";
 import { getDevServerConfig } from "../../configs/webpack/devServer.js";
 import { merge } from "webpack-merge";
 import { getCommonWidgetConfig } from "../../configs/webpack/common.js";
-import { checkLatestVersion } from "../../utils.js";
-import { CUSTOM_WIDGET_LIB_NAME } from "../../const.js";
+import { checkLatestLibsVersion } from "../../utils.js";
 
 const { webpack } = _webpack;
 
@@ -15,7 +14,7 @@ export const runDevServer = async (options: StartOptions) => {
     entryPath: options.entry,
   });
 
-  await checkLatestVersion(CUSTOM_WIDGET_LIB_NAME);
+  await checkLatestLibsVersion();
 
   try {
     await run(PATHS, options);

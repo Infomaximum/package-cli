@@ -17,7 +17,10 @@ import { WIDGET_INDEX_TEMPLATE } from "../../../templates/widget/src/widgetIndex
 import { APP_D_TS_TEMPLATE } from "../../../templates/widget/src/widgetAppDTs.js";
 import { WIDGET_INDEX_CSS_TEMPLATE } from "../../../templates/widget/src/widgetIndexCSS.js";
 import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../../templates/widget/widgetPackageJson.js";
-import { CUSTOM_WIDGET_LIB_NAME } from "../../../const.js";
+import {
+  CUSTOM_PACKAGE_CLI_LIB_NAME,
+  CUSTOM_WIDGET_LIB_NAME,
+} from "../../../const.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -125,7 +128,7 @@ const getInitWidgetActions = async (basePath: string, plop: NodePlopAPI) => {
   addInitActions(basePath, plop);
 
   const [packageCliVersion, customWidgetVersion] = await Promise.all([
-    getLatestVersionOfLibrary("@infomaximum/package-cli"),
+    getLatestVersionOfLibrary(CUSTOM_PACKAGE_CLI_LIB_NAME),
     getLatestVersionOfLibrary(CUSTOM_WIDGET_LIB_NAME),
   ]);
 
