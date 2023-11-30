@@ -13,6 +13,10 @@ import {
 
 const execPromise = util.promisify(exec);
 
+type Dependency = {
+  version: string;
+};
+
 export const systemRequire = Module.createRequire(import.meta.url);
 
 export function capitalizeFirstLetter(str: string = "") {
@@ -29,14 +33,26 @@ export async function safeWriteFile(
   await fs.writeFile(pathToFile, contents, options);
 }
 
-export async function getLatestVersionOfLibrary(libraryName: string) {
-  const { stdout } = await execPromise(`npm show -j -p ${libraryName} version`);
+export async function getLatestVersionOfLibrary(
+  libraryName: string
+): Promise<string> {
+  const { stdout } = await execPromise(
+    `npm show -j -p ${libraryName} version`,
+    {
+      timeout: 5000,
+    }
+  );
 
   return JSON.parse(stdout);
 }
 
-export async function getLibraryVersionInProject(libraryName: string) {
-  const { stdout } = await execPromise(`npm ls -j -p ${libraryName} version`);
+export async function getLibraryVersionInProject(libraryName: string): Promise<{
+  dependencies?: Record<string, Dependency>;
+  devDependencies?: Record<string, Dependency>;
+}> {
+  const { stdout } = await execPromise(`npm ls -j -p ${libraryName} version`, {
+    timeout: 5000,
+  });
 
   return JSON.parse(stdout);
 }
@@ -68,6 +84,8 @@ export function spawnCommand(
 export async function checkLatestVersion(libName: string) {
   const libVersionInProject = await getLibraryVersionInProject(libName);
 
+  if (!libVersionInProject) return;
+
   const libVersionFromProject: string | undefined = (
     libVersionInProject?.dependencies?.[libName] ||
     libVersionInProject?.devDependencies?.[libName]
@@ -76,6 +94,8 @@ export async function checkLatestVersion(libName: string) {
   if (!libVersionFromProject) return;
 
   const latestVersion = await getLatestVersionOfLibrary(libName);
+
+  if (!latestVersion) return;
 
   const isOldVersion = semver.gt(latestVersion, libVersionFromProject);
 
@@ -98,6 +118,8 @@ export async function checkLatestVersion(libName: string) {
 }
 
 export async function checkLatestLibsVersion() {
-  await checkLatestVersion(CUSTOM_WIDGET_LIB_NAME);
-  await checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME);
+  try {
+    await checkLatestVersion(CUSTOM_WIDGET_LIB_NAME);
+    await checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME);
+  } catch (error) {}
 }
