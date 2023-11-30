@@ -1,12 +1,14 @@
-import webpack, { Configuration, Stats } from "webpack";
-import { BuildOptions } from "../arguments";
-import { Mode, generatePaths } from "../paths";
-import { merge } from "webpack-merge";
-import { getCommonWidgetConfig } from "../configs/webpack/common";
-import { getPackageConfig } from "../configs/webpack/buildPaсkage";
+import webpack, { type Configuration } from "webpack";
+import type { BuildOptions } from "../../arguments.js";
+import { type Mode, generatePaths } from "../../paths.js";
+import { getCommonWidgetConfig } from "../../configs/webpack/common.js";
+import { getPackageConfig } from "../../configs/webpack/buildPaсkage.js";
+import { checkLatestLibsVersion } from "../../utils.js";
 
 export const runBuild = async (args: BuildOptions) => {
   const mode: Mode = "production";
+
+  await checkLatestLibsVersion();
 
   const PATHS = generatePaths({
     entryPath: args.entry,

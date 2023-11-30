@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import commander from "commander";
-import { registerCommands } from "../lib/arguments";
+import { registerCommands } from "./arguments.js";
+import * as commander from "commander";
 
 const cli = new commander.Command();
 

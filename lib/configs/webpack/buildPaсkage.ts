@@ -1,16 +1,20 @@
 import ZipPlugin from "zip-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import { archiveExt, buildWidgetConfigName, widgetArchiveName } from "./common";
-import { Mode } from "fs";
-import { Paths } from "../../paths";
+import {
+  archiveExt,
+  buildWidgetConfigName,
+  widgetArchiveName,
+} from "./common.js";
+import type { Mode, Paths } from "../../paths.js";
 import path from "path";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
+import { systemRequire } from "../../utils.js";
 
 const packageFilename = "main.js";
 
 export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
-  const widgetVersion = require(PATHS.appPackageJson).version;
-  const manifestPackageName = require(PATHS.packageManifest).name;
+  const widgetVersion = systemRequire(PATHS.appPackageJson).version;
+  const manifestPackageName = systemRequire(PATHS.packageManifest).name;
 
   return {
     mode,

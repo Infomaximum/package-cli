@@ -1,13 +1,18 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
+import { systemRequire } from "./utils.js";
+import chalk from "chalk";
 
 export type TGeneratePathsArgs = {
   entryPath: string;
+  cwd?: string;
 };
 
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath: string) =>
-  path.resolve(appDirectory, relativePath);
+const _resolveApp =
+  (cwd = appDirectory) =>
+  (relativePath: string) =>
+    path.resolve(cwd, relativePath);
 
 const moduleFileExtensions = [
   "web.mjs",
@@ -41,12 +46,18 @@ const resolveModule = <T extends (...args: any) => any>(
 };
 
 export const generatePaths = (args: TGeneratePathsArgs) => {
+  const { entryPath, cwd } = args;
+
+  const resolveApp = _resolveApp(cwd);
+
   const packagePath = resolveApp("package");
 
   return {
     appPath: resolveApp("."),
     appBuild: resolveApp("build"),
-    moduleIndex: generateIndexPath(args.entryPath),
+    get moduleIndex() {
+      return generateIndexPath(cwd, entryPath);
+    },
     appPackageJson: resolveApp("package.json"),
     manifestJson: resolveApp("manifest.json"),
     packagePath,
@@ -65,7 +76,9 @@ export const MODE = {
 export type Mode = (typeof MODE)[keyof typeof MODE];
 export type Paths = ReturnType<typeof generatePaths>;
 
-export const generateIndexPath = (entryPath?: string) => {
+const generateIndexPath = (cwd?: string, entryPath?: string) => {
+  const resolveApp = _resolveApp(cwd);
+
   const indexSrcPath = resolveModule(resolveApp, "src/index");
 
   if (entryPath && fs.existsSync(entryPath)) {
@@ -73,23 +86,21 @@ export const generateIndexPath = (entryPath?: string) => {
   }
 
   try {
-    const mainIndexPath = path.resolve(
-      process.cwd(),
-      require(resolveApp("package.json"))?.main
+    const mainIndexPath = resolveApp(
+      systemRequire(resolveApp("package.json"))?.main
     );
 
     if (mainIndexPath && fs.existsSync(mainIndexPath)) {
       return mainIndexPath;
     }
   } catch (error) {
-    console.error("Не найдена секция main в package.json");
-    process.exit(1);
+    console.error(chalk.red("main field not found in package.json"));
   }
 
   if (fs.existsSync(indexSrcPath)) {
     return indexSrcPath;
   }
 
-  console.error("Не найден входной файл");
+  console.error(chalk.red("entry file not found"));
   process.exit(1);
 };
