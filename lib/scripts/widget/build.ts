@@ -20,12 +20,12 @@ export const runBuild = async (args: BuildOptions) => {
     entryPath: entry,
   });
 
-  const pluginsSection = {
+  const sections = {
     plugins: [getZipWidgetPlugin()] as WebpackPluginInstance[],
   } satisfies Configuration;
 
   if (host && port) {
-    pluginsSection.plugins.push(
+    sections.plugins.push(
       getModifyManifestWidgetPlugin({
         host,
         port,
@@ -33,12 +33,12 @@ export const runBuild = async (args: BuildOptions) => {
     );
 
     // не нужно собирать все приложение, можно только собрать манифест
-    (pluginsSection as Configuration).entry = PATHS.manifestJson;
+    (sections as Configuration).entry = PATHS.manifestJson;
   }
 
   const configSections = [
     getCommonWidgetConfig(mode, PATHS),
-    pluginsSection,
+    sections,
     getMinimizer(),
   ] as const;
 
