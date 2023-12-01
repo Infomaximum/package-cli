@@ -17,8 +17,6 @@ export const runDevServer = async (options: StartOptions) => {
     entryPath: options.entry,
   });
 
-  await checkLatestLibsVersion();
-
   try {
     await run(PATHS, options);
   } catch (error: any) {
@@ -71,6 +69,8 @@ const run = async (PATHS: Paths, options: StartOptions) => {
     devServer.close();
     process.exit();
   });
+
+  await checkLatestLibsVersion();
 
   await devServer.start();
 };

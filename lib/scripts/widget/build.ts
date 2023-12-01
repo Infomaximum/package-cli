@@ -16,8 +16,6 @@ export const runBuild = async (args: BuildOptions) => {
   const mode: Mode = "production";
   const { entry, host, port } = args;
 
-  await checkLatestLibsVersion();
-
   const PATHS = generatePaths({
     entryPath: entry,
   });
@@ -60,7 +58,7 @@ export const runBuild = async (args: BuildOptions) => {
 function build(config: webpack.Configuration[]) {
   const compiler = webpack(config);
 
-  return compiler.run((err: any, stats) => {
+  return compiler.run(async (err: any, stats) => {
     if (err) {
       console.error(err.stack || err);
 
@@ -78,5 +76,7 @@ function build(config: webpack.Configuration[]) {
           colors: true,
         })
       );
+
+    await checkLatestLibsVersion();
   });
 }

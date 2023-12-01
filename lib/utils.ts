@@ -119,7 +119,9 @@ export async function checkLatestVersion(libName: string) {
 
 export async function checkLatestLibsVersion() {
   try {
-    await checkLatestVersion(CUSTOM_WIDGET_LIB_NAME);
-    await checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME);
+    await Promise.allSettled([
+      checkLatestVersion(CUSTOM_WIDGET_LIB_NAME),
+      checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME),
+    ]);
   } catch (error) {}
 }
