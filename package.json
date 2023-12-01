@@ -75,8 +75,9 @@
     "url": "git+https://github.com/Infomaximum/package-cli.git"
   },
   "keywords": [
-    "widgets cli",
-    "widgets builder",
+    "package",
+    "builder",
+    "widgets",
     "cli"
   ],
   "bugs": {
