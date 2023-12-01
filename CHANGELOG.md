@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/Infomaximum/package-cli/compare/v1.5.0...v1.5.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* writeToDisk = false ([24bad5e](https://github.com/Infomaximum/package-cli/commit/24bad5e2509585efa1bf699be948a73de875130c))
+
 ## [1.5.0](https://github.com/Infomaximum/package-cli/compare/v1.4.2...v1.5.0) (2023-12-01)
 
 
