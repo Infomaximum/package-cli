@@ -31,6 +31,9 @@ export const runBuild = async (args: BuildOptions) => {
         port,
       })
     );
+
+    // не нужно собирать все приложение, можно только собрать манифест
+    (pluginsSection as Configuration).entry = PATHS.manifestJson;
   }
 
   const configSections = [
