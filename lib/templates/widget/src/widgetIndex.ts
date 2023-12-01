@@ -1,3 +1,5 @@
+import { capitalizeHelperName } from "../../../scripts/widget/init/helpers.js";
+
 export const WIDGET_INDEX_TEMPLATE = `\
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -36,7 +38,7 @@ class CustomWidget implements IWidget<Settings> {
   public render(props: ICustomWidgetProps<Settings>) {
     this.root?.render(
       <React.StrictMode>
-        <div>Custom Component</div>
+        <div>{{ ${capitalizeHelperName} packageName}}</div>
       </React.StrictMode>
     );
   }

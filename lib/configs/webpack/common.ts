@@ -1,24 +1,14 @@
 import type { Mode, Paths } from "../../paths.js";
-import ZipPlugin from "zip-webpack-plugin";
-import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-import TerserWebpackPlugin from "terser-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
-import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 import { systemRequire } from "../../utils.js";
+import { BUILD_WIDGET_CONFIG_NAME } from "../../const.js";
 
 const { ProgressPlugin } = webpack;
 
 const isProduction = (mode: Mode) => mode === "production";
 const isDevelopment = (mode: Mode) => mode === "development";
-export const buildWidgetConfigName = "build-widget";
-
-export const widgetArchiveName = "widget";
-export const archiveExt = "zip";
-const DEV_SERVER_HOST = "0.0.0.0";
-const DEV_SERVER_PORT = 5555;
 
 export const getCommonWidgetConfig = (
   mode: Mode,
@@ -26,7 +16,7 @@ export const getCommonWidgetConfig = (
 ): Configuration => {
   return {
     mode,
-    name: buildWidgetConfigName,
+    name: BUILD_WIDGET_CONFIG_NAME,
     entry: [PATHS.moduleIndex, PATHS.manifestJson],
     output: {
       path: PATHS.appBuild,
@@ -45,24 +35,6 @@ export const getCommonWidgetConfig = (
           },
         },
       }),
-      new ZipPlugin({
-        filename: widgetArchiveName,
-        extension: archiveExt,
-      }),
-      isDevelopment(mode) && new ReactRefreshWebpackPlugin(),
-      isDevelopment(mode) &&
-        new JsonModifyWebpackPlugin({
-          matchers: [
-            {
-              matcher: /^manifest.json$/,
-              action: (currentJsonContent) => {
-                currentJsonContent.entry = `http://${DEV_SERVER_HOST}:${DEV_SERVER_PORT}/${currentJsonContent.entry}`;
-
-                return currentJsonContent;
-              },
-            },
-          ],
-        }),
     ].filter(Boolean),
     module: {
       rules: [
@@ -195,23 +167,9 @@ export const getCommonWidgetConfig = (
         },
       ],
     },
-    optimization: isProduction(mode)
-      ? {
-          minimize: true,
-          splitChunks: false,
-          minimizer: [
-            new TerserWebpackPlugin({
-              minify: TerserWebpackPlugin.terserMinify,
-              parallel: true,
-            }),
-            new CssMinimizerPlugin(),
-          ],
-        }
-      : undefined,
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
       plugins: [new TsconfigPathsPlugin()],
     },
-    devtool: isProduction(mode) ? false : "cheap-module-source-map",
   };
 };

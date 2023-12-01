@@ -1,14 +1,15 @@
 import ZipPlugin from "zip-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import {
-  archiveExt,
-  buildWidgetConfigName,
-  widgetArchiveName,
-} from "./common.js";
 import type { Mode, Paths } from "../../paths.js";
 import path from "path";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import { systemRequire } from "../../utils.js";
+import {
+  BUILD_ARCHIVE_EXT,
+  BUILD_WIDGET_CONFIG_NAME,
+  WIDGET_ARCHIVE_NAME,
+} from "../../const.js";
+import type { Configuration } from "webpack";
 
 const packageFilename = "main.js";
 
@@ -21,7 +22,10 @@ export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
     name: "package",
     entry: [
       PATHS.packageManifest,
-      path.resolve(PATHS.appBuild, `${widgetArchiveName}.${archiveExt}`),
+      path.resolve(
+        PATHS.appBuild,
+        `${WIDGET_ARCHIVE_NAME}.${BUILD_ARCHIVE_EXT}`
+      ),
     ],
     output: {
       path: PATHS.appBuild,
@@ -38,7 +42,7 @@ export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
           },
         },
         {
-          test: new RegExp(`.${archiveExt}$`, "i"),
+          test: new RegExp(`.${BUILD_ARCHIVE_EXT}$`, "i"),
           type: "asset/resource",
           generator: {
             filename: "[name][ext]",
@@ -52,7 +56,7 @@ export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
       }),
       new ZipPlugin({
         filename: `${manifestPackageName}_${widgetVersion}`,
-        extension: archiveExt,
+        extension: BUILD_ARCHIVE_EXT,
         exclude: [packageFilename],
       }),
       new JsonModifyWebpackPlugin({
@@ -68,6 +72,6 @@ export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
         ],
       }),
     ],
-    dependencies: [buildWidgetConfigName],
-  };
+    dependencies: [BUILD_WIDGET_CONFIG_NAME],
+  } satisfies Configuration;
 };

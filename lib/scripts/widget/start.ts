@@ -1,11 +1,14 @@
-import _webpack from "webpack";
+import _webpack, { type Configuration } from "webpack";
 import type { StartOptions } from "../../arguments.js";
 import { type Mode, type Paths, generatePaths } from "../../paths.js";
 import WebpackDevServer from "webpack-dev-server";
-import { getDevServerConfig } from "../../configs/webpack/devServer.js";
+import { getDevServerConfig } from "../../configs/webpack/sections/devServer.js";
 import { merge } from "webpack-merge";
 import { getCommonWidgetConfig } from "../../configs/webpack/common.js";
 import { checkLatestLibsVersion } from "../../utils.js";
+import { getModifyManifestWidgetPlugin } from "../../configs/webpack/sections/plugins/modifyManifestWidget.js";
+import { getReactRefresh } from "../../configs/webpack/sections/plugins/reactRefresh.js";
+import { devtoolSection } from "../../configs/webpack/sections/devtool.js";
 
 const { webpack } = _webpack;
 
@@ -32,7 +35,21 @@ const run = async (PATHS: Paths, options: StartOptions) => {
 
   const mode: Mode = "development";
 
-  const configWebpack = [getCommonWidgetConfig(mode, PATHS)];
+  const pluginsSection = {
+    plugins: [
+      getModifyManifestWidgetPlugin({
+        host,
+        port,
+      }),
+      getReactRefresh(),
+    ],
+  } satisfies Configuration;
+
+  const configWebpack = [
+    getCommonWidgetConfig(mode, PATHS),
+    pluginsSection,
+    devtoolSection,
+  ];
 
   const compiler = webpack(merge(configWebpack));
 
