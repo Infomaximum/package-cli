@@ -15,7 +15,7 @@ export const getDevServerConfig = ({ host, port }: DevServerParams) => {
       "Access-Control-Allow-Origin": "*",
     },
     devMiddleware: {
-      writeToDisk: true,
+      writeToDisk: false,
     },
   } satisfies Configuration;
 };
