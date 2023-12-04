@@ -3,7 +3,7 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 import { systemRequire } from "../../utils.js";
-import { BUILD_WIDGET_CONFIG_NAME } from "../../const.js";
+import { BUILD_WIDGET_CONFIG_NAME, MANIFEST_REG_EXP } from "../../const.js";
 
 const { ProgressPlugin } = webpack;
 
@@ -128,7 +128,7 @@ export const getCommonWidgetConfig = (
           type: "asset/inline",
         },
         {
-          test: /manifest.json$/i,
+          test: MANIFEST_REG_EXP,
           type: "asset/resource",
           generator: {
             filename: "[name][ext]",

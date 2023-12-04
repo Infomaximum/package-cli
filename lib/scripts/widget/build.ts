@@ -16,15 +16,17 @@ export const runBuild = async (args: BuildOptions) => {
   const mode: Mode = "production";
   const { entry, host, port } = args;
 
+  const isOnlyManifest = !!(host && port);
+
   const PATHS = generatePaths({
     entryPath: entry,
   });
 
   const sections = {
-    plugins: [getZipWidgetPlugin()] as WebpackPluginInstance[],
+    plugins: [getZipWidgetPlugin(isOnlyManifest)] as WebpackPluginInstance[],
   } satisfies Configuration;
 
-  if (host && port) {
+  if (isOnlyManifest) {
     sections.plugins.push(
       getModifyManifestWidgetPlugin({
         host,

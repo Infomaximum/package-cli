@@ -1,3 +1,4 @@
+import { MANIFEST_JSON_FILE_NAME } from "../../../const.js";
 import { capitalizeHelperName } from "../../../scripts/widget/init/helpers.js";
 
 export const WIDGET_INDEX_TEMPLATE = `\
@@ -10,7 +11,7 @@ import {
   type IBaseWidgetSettings,
   type ICustomWidgetProps,
 } from "@infomaximum/custom-widget";
-import manifest from "../manifest.json";
+import manifest from "../${MANIFEST_JSON_FILE_NAME}";
 
 interface Settings extends IBaseWidgetSettings {}
 

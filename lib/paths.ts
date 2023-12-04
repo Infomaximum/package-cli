@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { systemRequire } from "./utils.js";
 import chalk from "chalk";
+import { MANIFEST_JSON_FILE_NAME } from "./const.js";
 
 export type TGeneratePathsArgs = {
   entryPath: string;
@@ -59,9 +60,11 @@ export const generatePaths = (args: TGeneratePathsArgs) => {
       return generateIndexPath(cwd, entryPath);
     },
     appPackageJson: resolveApp("package.json"),
-    manifestJson: resolveApp("manifest.json"),
+    manifestJson: resolveApp(MANIFEST_JSON_FILE_NAME),
     packagePath,
-    packageManifest: resolveApp(path.resolve(packagePath, "manifest.json")),
+    packageManifest: resolveApp(
+      path.resolve(packagePath, MANIFEST_JSON_FILE_NAME)
+    ),
     appTsConfig: resolveApp("tsconfig.json"),
     appNodeModules: resolveApp("node_modules"),
     publicPath: "/",

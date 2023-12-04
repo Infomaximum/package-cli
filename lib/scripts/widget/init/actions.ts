@@ -20,6 +20,7 @@ import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../../templates/widget/widgetPa
 import {
   CUSTOM_PACKAGE_CLI_LIB_NAME,
   CUSTOM_WIDGET_LIB_NAME,
+  MANIFEST_JSON_FILE_NAME,
 } from "../../../const.js";
 
 type ActionData = Answers & {
@@ -53,7 +54,7 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
   return [
     {
       type: "add",
-      path: "package/manifest.json",
+      path: `package/${MANIFEST_JSON_FILE_NAME}`,
       template: PACKAGE_MANIFEST_TEMPLATE,
       data: {
         packageIconName,
@@ -67,7 +68,7 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
     } as CustomActionConfig<typeof addIconActionName>,
     {
       type: "add",
-      path: "manifest.json",
+      path: MANIFEST_JSON_FILE_NAME,
       template: WIDGET_MANIFEST_TEMPLATE,
     },
     {

@@ -1,9 +1,14 @@
 import ZipPlugin from "zip-webpack-plugin";
-import { BUILD_ARCHIVE_EXT, WIDGET_ARCHIVE_NAME } from "../../../../const.js";
+import {
+  BUILD_ARCHIVE_EXT,
+  MANIFEST_JSON_FILE_NAME,
+  WIDGET_ARCHIVE_NAME,
+} from "../../../../const.js";
 
-export const getZipWidgetPlugin = () => {
+export const getZipWidgetPlugin = (isOnlyManifest: boolean) => {
   return new ZipPlugin({
     filename: WIDGET_ARCHIVE_NAME,
     extension: BUILD_ARCHIVE_EXT,
+    include: isOnlyManifest ? [MANIFEST_JSON_FILE_NAME] : undefined,
   });
 };

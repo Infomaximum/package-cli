@@ -1,4 +1,5 @@
 import ZipPlugin from "zip-webpack-plugin";
+import RemovePlugin from "remove-files-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import type { Mode, Paths } from "../../paths.js";
 import path from "path";
@@ -7,7 +8,8 @@ import { systemRequire } from "../../utils.js";
 import {
   BUILD_ARCHIVE_EXT,
   BUILD_WIDGET_CONFIG_NAME,
-  WIDGET_ARCHIVE_NAME,
+  MANIFEST_REG_EXP,
+  WIDGET_ARCHIVE_FULL_NAME,
 } from "../../const.js";
 import type { Configuration } from "webpack";
 
@@ -17,15 +19,14 @@ export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
   const widgetVersion = systemRequire(PATHS.appPackageJson).version;
   const manifestPackageName = systemRequire(PATHS.packageManifest).name;
 
+  const widgetPackageName = `${manifestPackageName}_${widgetVersion}`;
+
   return {
     mode,
     name: "package",
     entry: [
       PATHS.packageManifest,
-      path.resolve(
-        PATHS.appBuild,
-        `${WIDGET_ARCHIVE_NAME}.${BUILD_ARCHIVE_EXT}`
-      ),
+      path.resolve(PATHS.appBuild, WIDGET_ARCHIVE_FULL_NAME),
     ],
     output: {
       path: PATHS.appBuild,
@@ -35,7 +36,7 @@ export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
     module: {
       rules: [
         {
-          test: /manifest.json$/i,
+          test: MANIFEST_REG_EXP,
           type: "asset/resource",
           generator: {
             filename: "manifest[ext]",
@@ -54,15 +55,28 @@ export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
       new CopyWebpackPlugin({
         patterns: [{ from: PATHS.packagePath }],
       }),
+      new RemovePlugin({
+        after: {
+          root: PATHS.appBuild,
+          test: [
+            {
+              folder: ".",
+              method: () => true,
+              recursive: true,
+            },
+          ],
+          exclude: [`${widgetPackageName}.${BUILD_ARCHIVE_EXT}`],
+        },
+      }),
       new ZipPlugin({
-        filename: `${manifestPackageName}_${widgetVersion}`,
+        filename: widgetPackageName,
         extension: BUILD_ARCHIVE_EXT,
         exclude: [packageFilename],
       }),
       new JsonModifyWebpackPlugin({
         matchers: [
           {
-            matcher: /^manifest.json$/,
+            matcher: MANIFEST_REG_EXP,
             action: (currentJsonContent) => {
               currentJsonContent.version = widgetVersion;
 
