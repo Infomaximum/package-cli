@@ -17,5 +17,9 @@ export const getDevServerConfig = ({ host, port }: DevServerParams) => {
     devMiddleware: {
       writeToDisk: false,
     },
+    allowedHosts: "all",
+    client: {
+      logging: "error",
+    },
   } satisfies Configuration;
 };
