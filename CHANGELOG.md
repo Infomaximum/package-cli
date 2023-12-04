@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/Infomaximum/package-cli/compare/v1.6.1...v1.7.0) (2023-12-04)
+
+
+### Features
+
+* удаление лишних файлов после сборки пакета ([db79fdd](https://github.com/Infomaximum/package-cli/commit/db79fdd1e15f94961b383ca2295a3eddbd32516a))
+
 ### [1.6.1](https://github.com/Infomaximum/package-cli/compare/v1.6.0...v1.6.1) (2023-12-04)
 
 
