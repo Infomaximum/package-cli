@@ -15,11 +15,17 @@ import type { Configuration } from "webpack";
 
 const packageFilename = "main.js";
 
-export const getPackageConfig = (mode: Mode, PATHS: Paths) => {
+export const getPackageConfig = (
+  mode: Mode,
+  PATHS: Paths,
+  isBuildDevMode: boolean
+) => {
   const widgetVersion = systemRequire(PATHS.appPackageJson).version;
   const manifestPackageName = systemRequire(PATHS.packageManifest).name;
 
-  const widgetPackageName = `${manifestPackageName}_${widgetVersion}`;
+  let widgetPackageName = `${manifestPackageName}_${widgetVersion}`;
+
+  if (isBuildDevMode) widgetPackageName += "__DEV";
 
   return {
     mode,

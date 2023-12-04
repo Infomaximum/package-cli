@@ -16,17 +16,17 @@ export const runBuild = async (args: BuildOptions) => {
   const mode: Mode = "production";
   const { entry, host, port } = args;
 
-  const isOnlyManifest = !!(host && port);
+  const isBuildDevMode = !!(host && port);
 
   const PATHS = generatePaths({
     entryPath: entry,
   });
 
   const sections = {
-    plugins: [getZipWidgetPlugin(isOnlyManifest)] as WebpackPluginInstance[],
+    plugins: [getZipWidgetPlugin(isBuildDevMode)] as WebpackPluginInstance[],
   } satisfies Configuration;
 
-  if (isOnlyManifest) {
+  if (isBuildDevMode) {
     sections.plugins.push(
       getModifyManifestWidgetPlugin({
         host,
@@ -48,7 +48,7 @@ export const runBuild = async (args: BuildOptions) => {
 
   const configs = [
     widgetConfig,
-    getPackageConfig(mode, PATHS),
+    getPackageConfig(mode, PATHS, isBuildDevMode),
   ] as Configuration[];
 
   try {
