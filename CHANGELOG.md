@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/Infomaximum/package-cli/compare/v1.6.0...v1.6.1) (2023-12-04)
+
+
+### Bug Fixes
+
+* не работал HMR при разработке на удаленном стенде ([f2339af](https://github.com/Infomaximum/package-cli/commit/f2339afd5d1285d362ea85818611814e7d49c44c))
+
 ## [1.6.0](https://github.com/Infomaximum/package-cli/compare/v1.5.1...v1.6.0) (2023-12-01)
 
 
