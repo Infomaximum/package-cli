@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/Infomaximum/package-cli/compare/v1.8.0...v1.9.0) (2023-12-05)
+
+
+### Features
+
+* добавлено генерирование файлов настроек панели ([120dc23](https://github.com/Infomaximum/package-cli/commit/120dc236d2d3967f5c5cbb022cc21baeb042841a))
+
 ## [1.8.0](https://github.com/Infomaximum/package-cli/compare/v1.7.0...v1.8.0) (2023-12-04)
 
 
