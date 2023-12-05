@@ -22,6 +22,8 @@ import {
   CUSTOM_WIDGET_LIB_NAME,
   MANIFEST_JSON_FILE_NAME,
 } from "../../../const.js";
+import { WIDGET_SETTINGS_TEMPLATE } from "../../../templates/widget/src/settings.js";
+import { WIDGET_PANEL_TEMPLATE } from "../../../templates/widget/src/panel.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -85,6 +87,16 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
       type: "add",
       path: "src/index.css",
       template: WIDGET_INDEX_CSS_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: "src/settings.ts",
+      template: WIDGET_SETTINGS_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: "src/panel.ts",
+      template: WIDGET_PANEL_TEMPLATE,
     },
     {
       type: "add",

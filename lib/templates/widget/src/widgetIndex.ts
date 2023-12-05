@@ -8,25 +8,34 @@ import "./index.css";
 import {
   type IWidget,
   type IPanelDescription,
-  type IBaseWidgetSettings,
   type ICustomWidgetProps,
+  type IWidgetsContext,
+  type IWidgetMeasure,
+  type IWidgetDimension,
+  type IWidgetDimensionHierarchy,
 } from "@infomaximum/custom-widget";
 import manifest from "../${MANIFEST_JSON_FILE_NAME}";
+import { fillSettings, type WidgetSettings } from "settings";
+import { createPanelDescription } from "panel";
 
-interface Settings extends IBaseWidgetSettings {}
-
-class CustomWidget implements IWidget<Settings> {
+class CustomWidget implements IWidget<WidgetSettings> {
   root: ReactDOM.Root | null = null;
 
   public initialize(container: HTMLElement) {
     this.root = ReactDOM.createRoot(container);
   }
 
-  public update(container: HTMLElement, props: ICustomWidgetProps<Settings>) {
+  public update(
+    container: HTMLElement,
+    props: ICustomWidgetProps<WidgetSettings>
+  ) {
     this.render(props);
   }
 
-  public mount(container: HTMLElement, props: ICustomWidgetProps<Settings>) {
+  public mount(
+    container: HTMLElement,
+    props: ICustomWidgetProps<WidgetSettings>
+  ) {
     this.render(props);
   }
 
@@ -36,23 +45,35 @@ class CustomWidget implements IWidget<Settings> {
     this.root = null;
   }
 
-  public render(props: ICustomWidgetProps<Settings>) {
+  public render(props: ICustomWidgetProps<WidgetSettings>) {
     this.root?.render(
       <React.StrictMode>
-        <div>{{ ${capitalizeHelperName} packageName}}</div>
+      <div>{{ ${capitalizeHelperName} packageName}}</div>
       </React.StrictMode>
     );
   }
 
-  public static createPanelDescription(): IPanelDescription<Settings> {
-    return {
-      displayRecords: [],
-    };
+  public static createPanelDescription(
+    context: IWidgetsContext,
+    settings: WidgetSettings
+  ): IPanelDescription<WidgetSettings> {
+    return createPanelDescription(context, settings);
   }
 
-  public static fillSettings() {}
+  public static fillSettings(
+    settings: WidgetSettings,
+    context: IWidgetsContext
+  ) {
+    return fillSettings(settings, context);
+  }
 
-  public static getDimensions() {
+  public static getDimensions(
+    settings: WidgetSettings
+  ): (IWidgetDimension | IWidgetDimensionHierarchy)[] {
+    return [];
+  }
+
+  public static getMeasures(settings: WidgetSettings): IWidgetMeasure[] {
     return [];
   }
 }
