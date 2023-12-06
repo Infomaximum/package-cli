@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/Infomaximum/package-cli/compare/v1.9.0...v1.9.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* изменена иконка пакета ([d61307c](https://github.com/Infomaximum/package-cli/commit/d61307ced761783bb6715bb95803bf9732adf1ec))
+
 ## [1.9.0](https://github.com/Infomaximum/package-cli/compare/v1.8.0...v1.9.0) (2023-12-05)
 
 
