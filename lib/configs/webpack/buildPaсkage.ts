@@ -4,18 +4,18 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import type { Mode, Paths } from "../../paths.js";
 import path from "path";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
-import { systemRequire } from "../../utils.js";
+import { isExist, systemRequire } from "../../utils.js";
 import {
   BUILD_ARCHIVE_EXT,
-  BUILD_WIDGET_CONFIG_NAME,
   MANIFEST_REG_EXP,
   WIDGET_ARCHIVE_FULL_NAME,
 } from "../../const.js";
 import type { Configuration } from "webpack";
+import { assertSimple } from "@infomaximum/assert";
 
 const packageFilename = "main.js";
 
-export const getPackageConfig = (
+export const getPackageConfig = async (
   mode: Mode,
   PATHS: Paths,
   isBuildDevMode: boolean
@@ -27,13 +27,24 @@ export const getPackageConfig = (
 
   if (isBuildDevMode) widgetPackageName += "__DEV";
 
+  const widgetArchivePath = path.resolve(
+    PATHS.appBuild,
+    WIDGET_ARCHIVE_FULL_NAME
+  );
+
+  assertSimple(
+    await isExist(PATHS.packageManifest),
+    `File ${PATHS.packageManifest} not found`
+  );
+
+  assertSimple(
+    await isExist(widgetArchivePath),
+    `File ${widgetArchivePath} not found`
+  );
+
   return {
     mode,
-    name: "package",
-    entry: [
-      PATHS.packageManifest,
-      path.resolve(PATHS.appBuild, WIDGET_ARCHIVE_FULL_NAME),
-    ],
+    entry: [PATHS.packageManifest, widgetArchivePath],
     output: {
       path: PATHS.appBuild,
       filename: packageFilename,
@@ -63,6 +74,7 @@ export const getPackageConfig = (
       }),
       new RemovePlugin({
         after: {
+          log: false,
           root: PATHS.appBuild,
           test: [
             {
@@ -92,6 +104,5 @@ export const getPackageConfig = (
         ],
       }),
     ],
-    dependencies: [BUILD_WIDGET_CONFIG_NAME],
   } satisfies Configuration;
 };

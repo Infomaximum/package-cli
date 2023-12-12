@@ -13,6 +13,16 @@ import {
 
 const execPromise = util.promisify(exec);
 
+/** Проверка на то, что папка или файл существуют */
+export const isExist = async (entityPath: string) => {
+  try {
+    await fs.access(entityPath);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 type Dependency = {
   version: string;
 };

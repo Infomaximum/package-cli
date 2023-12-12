@@ -11,6 +11,7 @@ import { merge } from "webpack-merge";
 import { getModifyManifestWidgetPlugin } from "../../configs/webpack/sections/plugins/modifyManifestWidget.js";
 import { getMinimizer } from "../../configs/webpack/sections/plugins/minimizer.js";
 import { getZipWidgetPlugin } from "../../configs/webpack/sections/plugins/zipWidget.js";
+import chalk from "chalk";
 
 export const runBuild = async (args: BuildOptions) => {
   const mode: Mode = "production";
@@ -46,42 +47,43 @@ export const runBuild = async (args: BuildOptions) => {
 
   const widgetConfig = merge(configSections);
 
-  const configs = [
-    widgetConfig,
-    getPackageConfig(mode, PATHS, isBuildDevMode),
-  ] as Configuration[];
-
   try {
-    build(configs);
+    await build(widgetConfig as Configuration);
+    console.log("");
+    await build(await getPackageConfig(mode, PATHS, isBuildDevMode));
+
+    await checkLatestLibsVersion();
   } catch (error: any) {
-    console.error("Failed to compile.\n");
-    console.error(error);
+    console.error(chalk.red("\nFailed to compile.\n"));
+    console.error(chalk.red(error));
     process.exit(1);
   }
 };
 
-function build(config: webpack.Configuration[]) {
+function build(config: webpack.Configuration) {
   const compiler = webpack(config);
 
-  return compiler.run(async (err: any, stats) => {
-    if (err) {
-      console.error(err.stack || err);
+  return new Promise<void>((res, rej) => {
+    compiler.run((err: any, stats) => {
+      if (err) {
+        console.error(err.stack || err);
 
-      if (err?.details) {
-        console.error(err.details);
+        if (err?.details) {
+          console.error(err.details);
+        }
+
+        rej();
       }
 
-      return;
-    }
+      stats &&
+        console.log(
+          stats?.toString({
+            chunks: false,
+            colors: true,
+          })
+        );
 
-    stats &&
-      console.log(
-        stats?.toString({
-          chunks: false,
-          colors: true,
-        })
-      );
-
-    await checkLatestLibsVersion();
+      res();
+    });
   });
 }

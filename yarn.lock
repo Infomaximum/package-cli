@@ -1422,6 +1422,11 @@
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.2.tgz#98c23c950a3d9b6c8f0daed06da6c3af06981340"
   integrity sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==
 
+"@infomaximum/assert@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@infomaximum/assert/-/assert-1.1.2.tgz#2474b2003f12243b0041e52557a76422767ebd5c"
+  integrity sha512-yjG8I2T71JCRWCXMWb+W6u2tSSy6MREoEeRt4MKEb4Vgc3ukQUK6Ol93NbkJFPezWox+ZURaaxcVt2U9NQQ8Bg==
+
 "@infomaximum/json-modify-webpack-plugin@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@infomaximum/json-modify-webpack-plugin/-/json-modify-webpack-plugin-1.0.1.tgz#c3d547d190a935f0c05e3d81ffc37cdd6f416d43"

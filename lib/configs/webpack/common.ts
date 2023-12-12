@@ -3,7 +3,7 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 import { systemRequire } from "../../utils.js";
-import { BUILD_WIDGET_CONFIG_NAME, MANIFEST_REG_EXP } from "../../const.js";
+import { MANIFEST_REG_EXP } from "../../const.js";
 
 const { ProgressPlugin } = webpack;
 
@@ -16,7 +16,6 @@ export const getCommonWidgetConfig = (
 ): Configuration => {
   return {
     mode,
-    name: BUILD_WIDGET_CONFIG_NAME,
     entry: [PATHS.moduleIndex, PATHS.manifestJson],
     output: {
       path: PATHS.appBuild,

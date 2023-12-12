@@ -23,6 +23,7 @@
   "dependencies": {
     "@babel/core": "^7.23.6",
     "@babel/plugin-transform-runtime": "^7.23.6",
+    "@infomaximum/assert": "1.1.2",
     "@infomaximum/json-modify-webpack-plugin": "^1.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@svgr/webpack": "^8.1.0",
