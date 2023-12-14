@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://github.com/Infomaximum/package-cli/compare/v1.10.0...v1.10.1) (2023-12-14)
+
+
+### Bug Fixes
+
+* private render ([126fe3d](https://github.com/Infomaximum/package-cli/commit/126fe3df93089151cdc2ace1d52d2e7db18ac80a))
+
 ### [1.9.2](https://github.com/Infomaximum/package-cli/compare/v1.9.1...v1.9.2) (2023-12-12)
 
 
