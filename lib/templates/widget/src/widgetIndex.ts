@@ -45,7 +45,7 @@ class CustomWidget implements IWidget<WidgetSettings> {
     this.root = null;
   }
 
-  public render(props: ICustomWidgetProps<WidgetSettings>) {
+  private render(props: ICustomWidgetProps<WidgetSettings>) {
     this.root?.render(
       <React.StrictMode>
       <div>{{ ${capitalizeHelperName} packageName}}</div>
