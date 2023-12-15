@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/Infomaximum/package-cli/compare/v1.10.1...v1.11.0) (2023-12-15)
+
+
+### Features
+
+* добавлена обработка js, jsx файлов ([baccaba](https://github.com/Infomaximum/package-cli/commit/baccababc23a7fe5b3c78f83aebae4c93083d8a8))
+
 ### [1.10.1](https://github.com/Infomaximum/package-cli/compare/v1.10.0...v1.10.1) (2023-12-14)
 
 
