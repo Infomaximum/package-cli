@@ -38,7 +38,7 @@ export const getCommonWidgetConfig = (
     module: {
       rules: [
         {
-          test: /\.(ts|tsx)$/i,
+          test: /\.(js|ts|jsx|tsx)$/i,
           exclude: ["/node_modules/"],
           loader: systemRequire.resolve("babel-loader"),
           options: {
