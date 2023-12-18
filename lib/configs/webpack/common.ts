@@ -123,7 +123,7 @@ export const getCommonWidgetConfig = (
           ],
         },
         {
-          test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
+          test: /\.(eot|ttf|woff|woff2|png|jpg|jpeg|webp|gif)$/i,
           type: "asset/inline",
         },
         {

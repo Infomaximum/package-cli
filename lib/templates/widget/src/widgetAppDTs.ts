@@ -3,26 +3,6 @@ export const APP_D_TS_TEMPLATE = `\
 /// <reference types="@infomaximum/global-types" />
 /// <reference types="@infomaximum/custom-widget" />
 
-/// <reference types="node" />
-/// <reference types="react" />
-/// <reference types="react-dom" />
-
-declare namespace NodeJS {
-  interface ProcessEnv {
-    readonly NODE_ENV: "development" | "production";
-  }
-}
-
-declare module "*.avif" {
-  const src: string;
-  export default src;
-}
-
-declare module "*.bmp" {
-  const src: string;
-  export default src;
-}
-
 declare module "*.gif" {
   const src: string;
   export default src;
