@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/Infomaximum/package-cli/compare/v1.11.0...v1.12.0) (2023-12-18)
+
+
+### Features
+
+* добавлено объявление модуля "*.module.less" ([df0b133](https://github.com/Infomaximum/package-cli/commit/df0b133b9bcd205b0209b70f4b28f2b8829372f7))
+
+
+### Bug Fixes
+
+* удалены объявления модулей ([6c0f4a8](https://github.com/Infomaximum/package-cli/commit/6c0f4a8a02e3cf08062f445a0c58df39edb35470))
+
 ## [1.11.0](https://github.com/Infomaximum/package-cli/compare/v1.10.1...v1.11.0) (2023-12-15)
 
 
