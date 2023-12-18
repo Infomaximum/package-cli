@@ -4,6 +4,7 @@ import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 import { systemRequire } from "../../utils.js";
 import { MANIFEST_REG_EXP } from "../../const.js";
+import { cssLoaders } from "./sections/loaders/cssLoaders.js";
 
 const { ProgressPlugin } = webpack;
 
@@ -52,38 +53,12 @@ export const getCommonWidgetConfig = (
         },
         {
           test: /\.css$/i,
-          use: [
-            systemRequire.resolve("style-loader"),
-            systemRequire.resolve("css-loader"),
-            {
-              loader: systemRequire.resolve("postcss-loader"),
-              options: {
-                postcssOptions: {
-                  plugins: [
-                    systemRequire.resolve("postcss-preset-env"),
-                    systemRequire.resolve("autoprefixer"),
-                  ],
-                },
-              },
-            },
-          ],
+          use: cssLoaders,
         },
         {
           test: /\.s[ac]ss$/i,
           use: [
-            systemRequire.resolve("style-loader"),
-            systemRequire.resolve("css-loader"),
-            {
-              loader: systemRequire.resolve("postcss-loader"),
-              options: {
-                postcssOptions: {
-                  plugins: [
-                    systemRequire.resolve("postcss-preset-env"),
-                    systemRequire.resolve("autoprefixer"),
-                  ],
-                },
-              },
-            },
+            ...cssLoaders,
             {
               loader: systemRequire.resolve("sass-loader"),
               options: {
@@ -98,19 +73,7 @@ export const getCommonWidgetConfig = (
         {
           test: /\.less$/i,
           use: [
-            systemRequire.resolve("style-loader"),
-            systemRequire.resolve("css-loader"),
-            {
-              loader: systemRequire.resolve("postcss-loader"),
-              options: {
-                postcssOptions: {
-                  plugins: [
-                    systemRequire.resolve("postcss-preset-env"),
-                    systemRequire.resolve("autoprefixer"),
-                  ],
-                },
-              },
-            },
+            ...cssLoaders,
             {
               loader: systemRequire.resolve("less-loader"),
               options: {
