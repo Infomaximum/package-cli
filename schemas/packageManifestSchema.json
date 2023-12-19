@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "manifest_version": {
+      "type": "string",
+      "title": "Версия манифеста"
+    },
+    "author": {
+      "type": "string",
+      "title": "Автор пакета"
+    },
+    "guid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Уникальный идентификатор пакета, формат uuid v4"
+    },
+    "name": {
+      "type": "string",
+      "title": "Имя пакета"
+    },
+    "type": {
+      "enum": ["widget", "application", "workspace"]
+    },
+    "version": {
+      "type": "string",
+      "title": "Версия пакета"
+    },
+    "min_version_platform": {
+      "type": "string",
+      "title": "Минимальная версия платформы (модуля subsytems) с которой совместим пакет"
+    },
+    "max_version_platform": {
+      "type": "string",
+      "title": "Максимальная версия платформы (модуля subsytems) с которой совместим пакет"
+    },
+    "systems": {
+      "type": "array",
+      "title": "Список систем пакета",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "description": {
+      "type": "object",
+      "title": "Краткое описание пакета",
+      "required": ["ru", "en"],
+      "properties": {
+        "ru": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      }
+    },
+    "categories": {
+      "type": "object",
+      "required": ["ru", "en"],
+      "title": "Категории пакета",
+      "properties": {
+        "ru": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": ["name"]
+          }
+        },
+        "en": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": ["name"]
+          }
+        }
+      }
+    },
+    "dependency": {
+      "type": "array",
+      "title": "Зависимости пакета",
+      "items": {
+        "type": "object",
+        "required": ["guid", "version"],
+        "properties": {
+          "guid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "manifest_version",
+    "author",
+    "guid",
+    "name",
+    "type",
+    "systems",
+    "description",
+    "categories"
+  ]
+}

@@ -3,32 +3,31 @@ import { capitalizeHelperName } from "../../scripts/widget/init/helpers.js";
 
 export const PACKAGE_MANIFEST_TEMPLATE = `\
 {
-    "manifest_version": "1",
-    "author": "{{author}}",
-    "guid": "${randomUUID()}",
-    "type": "{{packageType}}",
-    "name": "{{${capitalizeHelperName} packageName}}",
-    "systems": [
+  "$schema": "../node_modules/@infomaximum/package-cli/schemas/packageManifestSchema.json",
+  "manifest_version": "1",
+  "author": "{{author}}",
+  "guid": "${randomUUID()}",
+  "type": "{{packageType}}",
+  "name": "{{${capitalizeHelperName} packageName}}",
+  "systems": [
+    {
+      "name": "{{packageIconName}}"
+    }
+  ],
+  "description": {
+    "ru": "{{${capitalizeHelperName} packageDescription}}",
+    "en": "{{${capitalizeHelperName} packageDescription}}"
+  },
+  "categories": {
+    "ru": [
       {
-        "name": "{{packageIconName}}"
+        "name": "Сторонние"
       }
     ],
-    "description": {
-      "ru": "{{${capitalizeHelperName} packageDescription}}",
-      "en": "{{${capitalizeHelperName} packageDescription}}"
-    },
-    "categories": {
-      "ru": [
-        {
-          "name": "Сторонние"
-        }
-      ],
-      "en": [
-        {
-          "name": "Other"
-        }
-      ]
-    }
+    "en": [
+      {
+        "name": "Other"
+      }
+    ]
   }
-  
-`;
+}`;

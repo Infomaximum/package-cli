@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Уникальный идентификатор виджета в формате uuid v4"
+    },
+    "entry": {
+      "type": "string",
+      "title": "Имя файла в который будет собран виджет",
+      "examples": ["index.js", "main.js"]
+    },
+    "api_version": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "object",
+      "title": "Локализованное имя виджета",
+      "required": ["ru", "en"],
+      "properties": {
+        "en": {
+          "type": "string"
+        },
+        "ru": {
+          "type": "string"
+        }
+      }
+    },
+    "default_size_percentage": {
+      "type": "object",
+      "title": "Размеры виджета по умолчанию при переносе его на холст",
+      "required": ["width", "height", "min_width", "min_height"],
+      "properties": {
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "min_width": {
+          "type": "integer"
+        },
+        "min_height": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": ["uuid", "entry", "api_version", "name"]
+}

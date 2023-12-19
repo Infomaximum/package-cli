@@ -3,6 +3,7 @@ import { capitalizeHelperName } from "../../scripts/widget/init/helpers.js";
 
 export const WIDGET_MANIFEST_TEMPLATE = `\
 {
+  "$schema": "node_modules/@infomaximum/package-cli/schemas/widgetManifestSchema.json",
   "uuid": "${randomUUID()}",
   "entry": "index.js",
   "api_version": 1,
