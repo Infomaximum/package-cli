@@ -5,11 +5,13 @@
     "uuid": {
       "type": "string",
       "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
       "title": "Уникальный идентификатор виджета в формате uuid v4"
     },
     "entry": {
       "type": "string",
       "title": "Имя файла в который будет собран виджет",
+      "pattern": "\\w+\\.js$",
       "examples": ["index.js", "main.js"]
     },
     "api_version": {
@@ -21,10 +23,12 @@
       "required": ["ru", "en"],
       "properties": {
         "en": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "ru": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         }
       }
     },
