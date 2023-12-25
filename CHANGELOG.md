@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/Infomaximum/package-cli/compare/v1.13.0...v1.14.0) (2023-12-25)
+
+
+### Features
+
+* добавлены валидаторы манифестов ([cfbd6f4](https://github.com/Infomaximum/package-cli/commit/cfbd6f4a047dabf85c39000ea54add57ed2b8871))
+
 ## [1.13.0](https://github.com/Infomaximum/package-cli/compare/v1.12.0...v1.13.0) (2023-12-19)
 
 
