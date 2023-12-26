@@ -24,6 +24,10 @@ import {
 } from "../../../const.js";
 import { WIDGET_SETTINGS_TEMPLATE } from "../../../templates/widget/src/settings.js";
 import { WIDGET_PANEL_TEMPLATE } from "../../../templates/widget/src/panel.js";
+import {
+  GET_CHANGELOG_MD,
+  GET_DOC_MD,
+} from "../../../templates/package/additionalFiles.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -54,6 +58,7 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
   const packageIconName = "Widget";
 
   return [
+    //---------------------------------------PACKAGE------------------------------------
     {
       type: "add",
       path: `package/${MANIFEST_JSON_FILE_NAME}`,
@@ -68,6 +73,20 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
       path: `package/resources/${packageIconName}.png`,
       template: PACKAGE_ICON_TEMPLATE,
     } as CustomActionConfig<typeof addIconActionName>,
+    ...(["ru", "en"] as const).flatMap((language) => [
+      {
+        type: "add",
+        path: `package/${language}/doc.md`,
+        template: GET_DOC_MD(language),
+      },
+      {
+        type: "add",
+        path: `package/${language}/changelog.md`,
+        template: GET_CHANGELOG_MD(language),
+      },
+    ]),
+
+    //---------------------------------------WIDGET------------------------------------
     {
       type: "add",
       path: MANIFEST_JSON_FILE_NAME,
