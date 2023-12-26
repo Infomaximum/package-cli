@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/Infomaximum/package-cli/compare/v1.14.0...v1.15.0) (2023-12-26)
+
+
+### Features
+
+* добавлены шаблоны документации, и истории изменений пакета ([125891b](https://github.com/Infomaximum/package-cli/commit/125891bd80741171216698204dbf8387c6bafa1c))
+
 ## [1.14.0](https://github.com/Infomaximum/package-cli/compare/v1.13.0...v1.14.0) (2023-12-25)
 
 
