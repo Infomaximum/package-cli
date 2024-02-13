@@ -3,7 +3,7 @@ import {
   type IPanelDescriptionCreator,
   type IGroupSettings,
 } from "@infomaximum/custom-widget";
-import type { WidgetSettings } from "settings";
+import type { WidgetSettings } from "definition/settings";
 
 export const createPanelDescription: IPanelDescriptionCreator<
   WidgetSettings,

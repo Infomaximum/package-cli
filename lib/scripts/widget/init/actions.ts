@@ -22,12 +22,13 @@ import {
   CUSTOM_WIDGET_LIB_NAME,
   MANIFEST_JSON_FILE_NAME,
 } from "../../../const.js";
-import { WIDGET_SETTINGS_TEMPLATE } from "../../../templates/widget/src/settings.js";
-import { WIDGET_PANEL_TEMPLATE } from "../../../templates/widget/src/panel.js";
+import { WIDGET_SETTINGS_TEMPLATE } from "../../../templates/widget/src/definition/settings.js";
+import { WIDGET_PANEL_TEMPLATE } from "../../../templates/widget/src/definition/panel.js";
 import {
   GET_CHANGELOG_MD,
   GET_DOC_MD,
 } from "../../../templates/package/additionalFiles.js";
+import { WIDGET_DEFINITION_TEMPLATE } from "../../../templates/widget/src/definition/definition.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -107,16 +108,23 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
       path: "src/index.css",
       template: WIDGET_INDEX_CSS_TEMPLATE,
     },
+
     {
       type: "add",
-      path: "src/settings.ts",
+      path: "src/definition/definition.ts",
+      template: WIDGET_DEFINITION_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: "src/definition/settings.ts",
       template: WIDGET_SETTINGS_TEMPLATE,
     },
     {
       type: "add",
-      path: "src/panel.ts",
+      path: "src/definition/panel.ts",
       template: WIDGET_PANEL_TEMPLATE,
     },
+
     {
       type: "add",
       path: "tsconfig.json",
