@@ -13,7 +13,7 @@ import manifest from "../${MANIFEST_JSON_FILE_NAME}";
 import { type WidgetSettings } from "definition/settings";
 import { Definition } from "definition/definition";
 
-class TemplateWidget implements IWidget<WidgetSettings> {
+class CustomWidget implements IWidget<WidgetSettings> {
   public static definition = new Definition();
 
   root: ReactDOM.Root | null = null;
@@ -42,7 +42,7 @@ class TemplateWidget implements IWidget<WidgetSettings> {
     this.root = null;
   }
 
-  public render(props: ICustomWidgetProps<WidgetSettings>) {
+  private render(props: ICustomWidgetProps<WidgetSettings>) {
     this.root?.render(
       <React.StrictMode>
         <div>{{ ${capitalizeHelperName} packageName}}</div>
@@ -51,5 +51,5 @@ class TemplateWidget implements IWidget<WidgetSettings> {
   }
 }
 
-window.im.defineWidget(manifest.uuid, TemplateWidget);
+window.im.defineWidget(manifest.uuid, CustomWidget);
 `;
