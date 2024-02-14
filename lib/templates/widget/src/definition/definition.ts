@@ -25,7 +25,7 @@ export class Definition implements IDefinition<WidgetSettings, IGroupSettings> {
     return [];
   }
 
-  public static getMeasures(settings: WidgetSettings): IWidgetMeasure[] {
+  public getMeasures(settings: WidgetSettings): IWidgetMeasure[] {
     return [];
   }
 }
