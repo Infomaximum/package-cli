@@ -7,18 +7,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import {
   type IWidget,
-  type IPanelDescription,
   type ICustomWidgetProps,
-  type IWidgetsContext,
-  type IWidgetMeasure,
-  type IWidgetDimension,
-  type IWidgetDimensionHierarchy,
 } from "@infomaximum/custom-widget";
 import manifest from "../${MANIFEST_JSON_FILE_NAME}";
-import { fillSettings, type WidgetSettings } from "settings";
-import { createPanelDescription } from "panel";
+import { type WidgetSettings } from "definition/settings";
+import { Definition } from "definition/definition";
 
 class CustomWidget implements IWidget<WidgetSettings> {
+  public static definition = new Definition();
+
   root: ReactDOM.Root | null = null;
 
   public initialize(container: HTMLElement) {
@@ -48,33 +45,9 @@ class CustomWidget implements IWidget<WidgetSettings> {
   private render(props: ICustomWidgetProps<WidgetSettings>) {
     this.root?.render(
       <React.StrictMode>
-      <div>{{ ${capitalizeHelperName} packageName}}</div>
+        <div>{{ ${capitalizeHelperName} packageName}}</div>
       </React.StrictMode>
     );
-  }
-
-  public static createPanelDescription(
-    context: IWidgetsContext,
-    settings: WidgetSettings
-  ): IPanelDescription<WidgetSettings> {
-    return createPanelDescription(context, settings);
-  }
-
-  public static fillSettings(
-    settings: WidgetSettings,
-    context: IWidgetsContext
-  ) {
-    return fillSettings(settings, context);
-  }
-
-  public static getDimensions(
-    settings: WidgetSettings
-  ): (IWidgetDimension | IWidgetDimensionHierarchy)[] {
-    return [];
-  }
-
-  public static getMeasures(settings: WidgetSettings): IWidgetMeasure[] {
-    return [];
   }
 }
 
