@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.1](https://github.com/Infomaximum/package-cli/compare/v1.16.0...v1.16.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* исправлен шаблон ([a02cafe](https://github.com/Infomaximum/package-cli/commit/a02cafe34a045cf1537702ae678626d97e4ff726))
+
 ## [1.16.0](https://github.com/Infomaximum/package-cli/compare/v1.15.0...v1.16.0) (2024-02-14)
 
 
