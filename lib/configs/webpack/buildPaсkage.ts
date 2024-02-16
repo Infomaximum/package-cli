@@ -7,6 +7,7 @@ import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin
 import { isExist, systemRequire } from "../../utils.js";
 import {
   BUILD_ARCHIVE_EXT,
+  DEV_POSTFIX,
   MANIFEST_REG_EXP,
   WIDGET_ARCHIVE_FULL_NAME,
 } from "../../const.js";
@@ -25,7 +26,7 @@ export const getPackageConfig = async (
 
   let widgetPackageName = `${manifestPackageName}_${widgetVersion}`;
 
-  if (isBuildDevMode) widgetPackageName += "__DEV";
+  if (isBuildDevMode) widgetPackageName += DEV_POSTFIX;
 
   const widgetArchivePath = path.resolve(
     PATHS.appBuild,

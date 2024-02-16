@@ -1427,10 +1427,10 @@
   resolved "https://registry.yarnpkg.com/@infomaximum/assert/-/assert-1.1.2.tgz#2474b2003f12243b0041e52557a76422767ebd5c"
   integrity sha512-yjG8I2T71JCRWCXMWb+W6u2tSSy6MREoEeRt4MKEb4Vgc3ukQUK6Ol93NbkJFPezWox+ZURaaxcVt2U9NQQ8Bg==
 
-"@infomaximum/json-modify-webpack-plugin@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@infomaximum/json-modify-webpack-plugin/-/json-modify-webpack-plugin-1.0.1.tgz#c3d547d190a935f0c05e3d81ffc37cdd6f416d43"
-  integrity sha512-+utg/Bn7Bn9EY6Tdfu488qq6SDag4mBqW7KGYjED+OoJ9IxU9tQFHmKPKfmw2acz383ORKYrIbQOdFf8ynzl1Q==
+"@infomaximum/json-modify-webpack-plugin@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@infomaximum/json-modify-webpack-plugin/-/json-modify-webpack-plugin-1.0.2.tgz#7e36b7eb6695d6381711506eabcf2e40ad97d7e5"
+  integrity sha512-2l8J6pTXN6BRK4O+ouciKLwT4F04S/Lmdi1FkuVs7DfhxAQVLzyyJGNCN7QanICnb5ynwu1njdWGbzY+3mF2IQ==
   dependencies:
     "@types/webpack" "^5.28.3"
     detect-indent "^7.0.1"

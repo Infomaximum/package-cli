@@ -12,3 +12,5 @@ export const DEFAULT_PORT = "5555";
 export const MANIFEST_JSON_FILE_NAME = "manifest.json";
 
 export const MANIFEST_REG_EXP = new RegExp(`${MANIFEST_JSON_FILE_NAME}$`, "i");
+
+export const DEV_POSTFIX = "__DEV";
