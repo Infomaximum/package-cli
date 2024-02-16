@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/Infomaximum/package-cli/compare/v1.16.1...v1.17.0) (2024-02-16)
+
+
+### Features
+
+* добавлен постфикс имени виджета при выполнении сборки пакета для разработки ([f05a35f](https://github.com/Infomaximum/package-cli/commit/f05a35f45a1776f905e2bd7405f9bc06a244e838))
+
 ### [1.16.1](https://github.com/Infomaximum/package-cli/compare/v1.16.0...v1.16.1) (2024-02-14)
 
 
