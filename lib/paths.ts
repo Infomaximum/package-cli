@@ -2,7 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { systemRequire } from "./utils.js";
 import chalk from "chalk";
-import { MANIFEST_JSON_FILE_NAME } from "./const.js";
+import {
+  MANIFEST_JSON_FILE_NAME,
+  WIDGET_RESOURCES_PATH_NAME,
+} from "./const.js";
 
 export type TGeneratePathsArgs = {
   entryPath: string;
@@ -56,6 +59,7 @@ export const generatePaths = (args: TGeneratePathsArgs) => {
   return {
     appPath: resolveApp("."),
     appBuild: resolveApp("build"),
+    resourcesWidget: resolveApp(`_${WIDGET_RESOURCES_PATH_NAME}`),
     get moduleIndex() {
       return generateIndexPath(cwd, entryPath);
     },
