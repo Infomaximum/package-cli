@@ -15,4 +15,4 @@ export const MANIFEST_REG_EXP = new RegExp(`${MANIFEST_JSON_FILE_NAME}$`, "i");
 
 export const DEV_POSTFIX = "__DEV";
 
-export const WIDGET_RESOURCES_PATH_NAME = "resources";
+export const WIDGET_RESOURCES_PATH_NAME = "_resources";

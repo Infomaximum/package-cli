@@ -59,7 +59,7 @@ export const generatePaths = (args: TGeneratePathsArgs) => {
   return {
     appPath: resolveApp("."),
     appBuild: resolveApp("build"),
-    resourcesWidget: resolveApp(`_${WIDGET_RESOURCES_PATH_NAME}`),
+    resourcesWidget: resolveApp(WIDGET_RESOURCES_PATH_NAME),
     get moduleIndex() {
       return generateIndexPath(cwd, entryPath);
     },
