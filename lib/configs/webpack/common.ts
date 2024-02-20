@@ -4,7 +4,7 @@ import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 import { systemRequire } from "../../utils.js";
-import { WIDGET_RESOURCES_PATH_NAME, MANIFEST_REG_EXP } from "../../const.js";
+import { WIDGET_RESOURCES_DIR_NAME, MANIFEST_REG_EXP } from "../../const.js";
 import { cssLoaders } from "./sections/loaders/cssLoaders.js";
 
 const { ProgressPlugin } = webpack;
@@ -41,7 +41,7 @@ export const getCommonWidgetConfig = (
           {
             from: PATHS.resourcesWidget,
             toType: "dir",
-            to: WIDGET_RESOURCES_PATH_NAME,
+            to: WIDGET_RESOURCES_DIR_NAME,
             noErrorOnMissing: true,
           },
         ],
