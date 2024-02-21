@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.1](https://github.com/Infomaximum/package-cli/compare/v1.19.0...v1.19.1) (2024-02-21)
+
+
+### Bug Fixes
+
+* в шаблоне исправлено действие виджета при размонтировании ([2972b86](https://github.com/Infomaximum/package-cli/commit/2972b869f9838ddc8aa0ce4a1039a97a9976faa7))
+
 ## [1.19.0](https://github.com/Infomaximum/package-cli/compare/v1.18.0...v1.19.0) (2024-02-21)
 
 ## [1.18.0](https://github.com/Infomaximum/package-cli/compare/v1.17.0...v1.18.0) (2024-02-21)
