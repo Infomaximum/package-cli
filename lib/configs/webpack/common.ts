@@ -1,9 +1,10 @@
 import type { Mode, Paths } from "../../paths.js";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 import { systemRequire } from "../../utils.js";
-import { MANIFEST_REG_EXP } from "../../const.js";
+import { WIDGET_RESOURCES_DIR_NAME, MANIFEST_REG_EXP } from "../../const.js";
 import { cssLoaders } from "./sections/loaders/cssLoaders.js";
 
 const { ProgressPlugin } = webpack;
@@ -34,6 +35,16 @@ export const getCommonWidgetConfig = (
             syntactic: true,
           },
         },
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: PATHS.resourcesWidget,
+            toType: "dir",
+            to: WIDGET_RESOURCES_DIR_NAME,
+            noErrorOnMissing: true,
+          },
+        ],
       }),
     ].filter(Boolean),
     module: {

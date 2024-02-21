@@ -5,7 +5,7 @@ import webpack, {
 import type { BuildOptions } from "../../arguments.js";
 import { type Mode, generatePaths } from "../../paths.js";
 import { getCommonWidgetConfig } from "../../configs/webpack/common.js";
-import { getPackageConfig } from "../../configs/webpack/buildPaсkage.js";
+import { getPackageConfig } from "../../configs/webpack/buildPackage.js";
 import { checkLatestLibsVersion } from "../../utils.js";
 import { merge } from "webpack-merge";
 import { getModifyManifestWidgetPlugin } from "../../configs/webpack/sections/plugins/modifyManifestWidget.js";
