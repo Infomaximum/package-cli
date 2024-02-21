@@ -1,3 +1,5 @@
+import { WIDGET_SDK_LIB_NAME } from "../../../../const.js";
+
 export const WIDGET_DEFINITION_TEMPLATE = `\
 import type {
   IDefinition,
@@ -7,7 +9,7 @@ import type {
   IWidgetDimension,
   IWidgetDimensionHierarchy,
   IWidgetMeasure,
-} from "@infomaximum/custom-widget";
+} from "${WIDGET_SDK_LIB_NAME}";
 import { fillSettings, type WidgetSettings } from "definition/settings";
 import { createPanelDescription } from "definition/panel";
 

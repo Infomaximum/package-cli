@@ -1,4 +1,7 @@
-import { MANIFEST_JSON_FILE_NAME } from "../../../const.js";
+import {
+  MANIFEST_JSON_FILE_NAME,
+  WIDGET_SDK_LIB_NAME,
+} from "../../../const.js";
 import { capitalizeHelperName } from "../../../scripts/widget/init/helpers.js";
 
 export const WIDGET_INDEX_TEMPLATE = `\
@@ -8,7 +11,7 @@ import "./index.css";
 import {
   type IWidget,
   type ICustomWidgetProps,
-} from "@infomaximum/custom-widget";
+} from "${WIDGET_SDK_LIB_NAME}";
 import manifest from "../${MANIFEST_JSON_FILE_NAME}";
 import { type WidgetSettings } from "definition/settings";
 import { Definition } from "definition/definition";

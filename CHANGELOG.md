@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/Infomaximum/package-cli/compare/v1.17.0...v1.18.0) (2024-02-21)
+
+
+### Features
+
+* переименована библиотека @infomaximum/custom-widget -> @infomaximum/widget-sdk ([d86378c](https://github.com/Infomaximum/package-cli/commit/d86378c0ad2aff4c8d9b03099b3be30c19d0b9a1))
+
 ## [1.17.0](https://github.com/Infomaximum/package-cli/compare/v1.16.1...v1.17.0) (2024-02-16)
 
 

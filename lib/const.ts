@@ -1,4 +1,4 @@
-export const CUSTOM_WIDGET_LIB_NAME = "@infomaximum/custom-widget";
+export const WIDGET_SDK_LIB_NAME = "@infomaximum/widget-sdk";
 export const CUSTOM_PACKAGE_CLI_LIB_NAME = "@infomaximum/package-cli";
 
 export const WIDGET_ARCHIVE_NAME = "widget";

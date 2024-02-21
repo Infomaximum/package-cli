@@ -1,3 +1,8 @@
+import {
+  CUSTOM_PACKAGE_CLI_LIB_NAME,
+  WIDGET_SDK_LIB_NAME,
+} from "../../const.js";
+
 export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
 {
   "name": "template_widget",
@@ -12,7 +17,7 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@infomaximum/custom-widget": "^{{customWidgetVersion}}",
+    "${WIDGET_SDK_LIB_NAME}": "{{widgetSDKVersion}}",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -21,7 +26,7 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
     "@babel/preset-env": "7.23.6",
     "@babel/preset-react": "7.23.3",
     "@babel/preset-typescript": "7.23.3",
-    "@infomaximum/package-cli": "^{{packageCliVersion}}",
+    "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
     "@types/jest": "29.5.11",
     "@types/react": "18.2.43",
     "@types/react-dom": "18.2.17",

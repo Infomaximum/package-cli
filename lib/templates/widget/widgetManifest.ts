@@ -1,9 +1,10 @@
 import { randomUUID } from "node:crypto";
 import { capitalizeHelperName } from "../../scripts/widget/init/helpers.js";
+import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
 
 export const WIDGET_MANIFEST_TEMPLATE = `\
 {
-  "$schema": "node_modules/@infomaximum/package-cli/schemas/widgetManifestSchema.json",
+  "$schema": "node_modules/${CUSTOM_PACKAGE_CLI_LIB_NAME}/schemas/widgetManifestSchema.json",
   "uuid": "${randomUUID()}",
   "entry": "index.js",
   "api_version": 1,
