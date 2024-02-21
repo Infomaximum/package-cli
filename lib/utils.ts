@@ -6,10 +6,7 @@ import util from "node:util";
 import Module from "node:module";
 import semver from "semver";
 import chalk from "chalk";
-import {
-  CUSTOM_PACKAGE_CLI_LIB_NAME,
-  CUSTOM_WIDGET_LIB_NAME,
-} from "./const.js";
+import { CUSTOM_PACKAGE_CLI_LIB_NAME, WIDGET_SDK_LIB_NAME } from "./const.js";
 
 const execPromise = util.promisify(exec);
 
@@ -130,7 +127,7 @@ export async function checkLatestVersion(libName: string) {
 export async function checkLatestLibsVersion() {
   try {
     await Promise.allSettled([
-      checkLatestVersion(CUSTOM_WIDGET_LIB_NAME),
+      checkLatestVersion(WIDGET_SDK_LIB_NAME),
       checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME),
     ]);
   } catch (error) {}

@@ -1,7 +1,9 @@
+import { WIDGET_SDK_LIB_NAME } from "../../../const.js";
+
 export const APP_D_TS_TEMPLATE = `\
 /* eslint-disable @typescript-eslint/triple-slash-reference */
 /// <reference types="@infomaximum/global-types" />
-/// <reference types="@infomaximum/custom-widget" />
+/// <reference types="${WIDGET_SDK_LIB_NAME}" />
 
 declare module "*.gif" {
   const src: string;

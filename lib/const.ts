@@ -1,4 +1,4 @@
-export const CUSTOM_WIDGET_LIB_NAME = "@infomaximum/custom-widget";
+export const WIDGET_SDK_LIB_NAME = "@infomaximum/widget-sdk";
 export const CUSTOM_PACKAGE_CLI_LIB_NAME = "@infomaximum/package-cli";
 
 export const WIDGET_ARCHIVE_NAME = "widget";
@@ -14,3 +14,5 @@ export const MANIFEST_JSON_FILE_NAME = "manifest.json";
 export const MANIFEST_REG_EXP = new RegExp(`${MANIFEST_JSON_FILE_NAME}$`, "i");
 
 export const DEV_POSTFIX = "__DEV";
+
+export const WIDGET_RESOURCES_DIR_NAME = "_resources";

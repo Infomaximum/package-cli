@@ -19,7 +19,7 @@ import { WIDGET_INDEX_CSS_TEMPLATE } from "../../../templates/widget/src/widgetI
 import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../../templates/widget/widgetPackageJson.js";
 import {
   CUSTOM_PACKAGE_CLI_LIB_NAME,
-  CUSTOM_WIDGET_LIB_NAME,
+  WIDGET_SDK_LIB_NAME,
   MANIFEST_JSON_FILE_NAME,
 } from "../../../const.js";
 import { WIDGET_SETTINGS_TEMPLATE } from "../../../templates/widget/src/definition/settings.js";
@@ -32,7 +32,7 @@ import { WIDGET_DEFINITION_TEMPLATE } from "../../../templates/widget/src/defini
 
 type ActionData = Answers & {
   packageCliVersion: string;
-  customWidgetVersion: string;
+  widgetSDKVersion: string;
 };
 
 const addIconActionName = "addIcon";
@@ -55,7 +55,7 @@ const addInitActions = (basePath: string, plop: NodePlopAPI) => {
   });
 };
 
-const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
+const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
   const packageIconName = "Widget";
 
   return [
@@ -159,7 +159,7 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
       type: "add",
       path: "package.json",
       template: WIDGET_PACKAGE_JSON_TEMPLATE,
-      data: { customWidgetVersion, packageCliVersion },
+      data: { widgetSDKVersion, packageCliVersion },
     },
   ] satisfies Actions;
 };
@@ -167,16 +167,16 @@ const actions = ({ customWidgetVersion, packageCliVersion }: ActionData) => {
 const getInitWidgetActions = async (basePath: string, plop: NodePlopAPI) => {
   addInitActions(basePath, plop);
 
-  const [packageCliVersion, customWidgetVersion] = await Promise.all([
+  const [packageCliVersion, widgetSDKVersion] = await Promise.all([
     getLatestVersionOfLibrary(CUSTOM_PACKAGE_CLI_LIB_NAME),
-    getLatestVersionOfLibrary(CUSTOM_WIDGET_LIB_NAME),
+    getLatestVersionOfLibrary(WIDGET_SDK_LIB_NAME),
   ]);
 
   return (data: Answers) =>
     actions({
       ...data,
       packageCliVersion,
-      customWidgetVersion,
+      widgetSDKVersion,
     });
 };
 
