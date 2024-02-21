@@ -41,8 +41,6 @@ class CustomWidget implements IWidget<WidgetSettings> {
 
   public unmount() {
     this.root?.unmount();
-
-    this.root = null;
   }
 
   private render(props: ICustomWidgetProps<WidgetSettings>) {
