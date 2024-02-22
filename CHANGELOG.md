@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/Infomaximum/package-cli/compare/v1.19.1...v1.20.0) (2024-02-22)
+
+
+### Features
+
+* добавлен постфикс для имени пакета при разработке ([530fdd2](https://github.com/Infomaximum/package-cli/commit/530fdd24ecb12e31c2d22bd99b6bbec5c3edf13c))
+
 ### [1.19.1](https://github.com/Infomaximum/package-cli/compare/v1.19.0...v1.19.1) (2024-02-21)
 
 
