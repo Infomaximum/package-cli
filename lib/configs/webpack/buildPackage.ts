@@ -99,6 +99,14 @@ export const getPackageConfig = async (
             action: (currentJsonContent) => {
               currentJsonContent.version = widgetVersion;
 
+              const packageName = currentJsonContent.name;
+
+              if (isBuildDevMode && typeof packageName === "string") {
+                Object.assign(currentJsonContent, {
+                  name: packageName + DEV_POSTFIX,
+                });
+              }
+
               return currentJsonContent;
             },
           },
