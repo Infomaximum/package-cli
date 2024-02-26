@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/package-cli",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "exports": "./dist/index.js",
   "type": "module",
   "license": "Apache-2.0",
