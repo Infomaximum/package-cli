@@ -1,5 +1,6 @@
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import { DEV_POSTFIX } from "../../../../const.js";
+import { removeServiceFieldsForDevelopment } from "../../../../utils.js";
 
 type Params = {
   port: string;
@@ -24,6 +25,8 @@ export const getModifyManifestWidgetPlugin = ({ host, port }: Params) => {
               });
             });
           }
+
+          removeServiceFieldsForDevelopment(currentJsonContent);
 
           return currentJsonContent;
         },

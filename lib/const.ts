@@ -16,3 +16,5 @@ export const MANIFEST_REG_EXP = new RegExp(`${MANIFEST_JSON_FILE_NAME}$`, "i");
 export const DEV_POSTFIX = "__DEV";
 
 export const WIDGET_RESOURCES_DIR_NAME = "_resources";
+
+export const MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT = ["$schema"];

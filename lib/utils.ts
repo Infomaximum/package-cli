@@ -6,7 +6,11 @@ import util from "node:util";
 import Module from "node:module";
 import semver from "semver";
 import chalk from "chalk";
-import { CUSTOM_PACKAGE_CLI_LIB_NAME, WIDGET_SDK_LIB_NAME } from "./const.js";
+import {
+  CUSTOM_PACKAGE_CLI_LIB_NAME,
+  MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT,
+  WIDGET_SDK_LIB_NAME,
+} from "./const.js";
 
 const execPromise = util.promisify(exec);
 
@@ -131,4 +135,10 @@ export async function checkLatestLibsVersion() {
       checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME),
     ]);
   } catch (error) {}
+}
+
+export function removeServiceFieldsForDevelopment(obj: Record<string, any>) {
+  MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT.forEach((key) => {
+    delete obj[key];
+  });
 }

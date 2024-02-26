@@ -4,7 +4,11 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import type { Mode, Paths } from "../../paths.js";
 import path from "path";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
-import { isExist, systemRequire } from "../../utils.js";
+import {
+  isExist,
+  removeServiceFieldsForDevelopment,
+  systemRequire,
+} from "../../utils.js";
 import {
   BUILD_ARCHIVE_EXT,
   DEV_POSTFIX,
@@ -106,6 +110,8 @@ export const getPackageConfig = async (
                   name: packageName + DEV_POSTFIX,
                 });
               }
+
+              removeServiceFieldsForDevelopment(currentJsonContent);
 
               return currentJsonContent;
             },
