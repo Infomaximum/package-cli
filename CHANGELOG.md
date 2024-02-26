@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.1](https://github.com/Infomaximum/package-cli/compare/v1.21.0...v1.21.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* удаление поля "$schema" из манифеста виджета ([752f68d](https://github.com/Infomaximum/package-cli/commit/752f68dcb9b191853a456c146151225136b4dbd3))
+
 ## [1.21.0](https://github.com/Infomaximum/package-cli/compare/v1.20.0...v1.21.0) (2024-02-26)
 
 
