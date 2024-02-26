@@ -24,17 +24,17 @@ export const runBuild = async (args: BuildOptions) => {
   });
 
   const sections = {
-    plugins: [getZipWidgetPlugin(isBuildDevMode)] as WebpackPluginInstance[],
+    plugins: [
+      getZipWidgetPlugin(isBuildDevMode),
+      getModifyManifestWidgetPlugin({
+        isBuildDevMode,
+        host,
+        port,
+      }),
+    ] as WebpackPluginInstance[],
   } satisfies Configuration;
 
   if (isBuildDevMode) {
-    sections.plugins.push(
-      getModifyManifestWidgetPlugin({
-        host,
-        port,
-      })
-    );
-
     // не нужно собирать все приложение, можно только собрать манифест
     (sections as Configuration).entry = PATHS.manifestJson;
   }

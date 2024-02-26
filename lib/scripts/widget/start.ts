@@ -36,6 +36,7 @@ const run = async (PATHS: Paths, options: StartOptions) => {
   const pluginsSection = {
     plugins: [
       getModifyManifestWidgetPlugin({
+        isBuildDevMode: true,
         host,
         port,
       }),
