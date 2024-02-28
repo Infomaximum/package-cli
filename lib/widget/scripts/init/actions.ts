@@ -29,6 +29,7 @@ import {
 } from "../../templates/widgetConfigs.js";
 import { WIDGET_PACKAGE_JSON_TEMPLATE } from "../../templates/widgetPackageJson.js";
 import { WIDGET_SDK_LIB_NAME } from "../../const.js";
+import { WIDGET_RC_CONFIG } from "../../templates/widgetRCConfig.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -125,6 +126,11 @@ const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
       template: WIDGET_PANEL_TEMPLATE,
     },
 
+    {
+      type: "add",
+      path: "widgetrc.json",
+      template: WIDGET_RC_CONFIG,
+    },
     {
       type: "add",
       path: "tsconfig.json",
