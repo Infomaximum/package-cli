@@ -19,13 +19,11 @@ export const generateGlobalPaths = (args: TGeneratePathsArgs) => {
   const { cwd, buildDirPath } = args || {};
 
   const resolveApp = _resolveApp(cwd);
-  const packagePath = resolveApp("package");
 
   return {
     appPath: resolveApp("."),
     appBuildPath: resolveApp(buildDirPath),
     appPackageJson: resolveApp("package.json"),
-    packagePath,
     appTsConfig: resolveApp("tsconfig.json"),
     appNodeModules: resolveApp("node_modules"),
     publicPath: "/",
