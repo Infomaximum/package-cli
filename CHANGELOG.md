@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* использование конфига для работы с проектам
+* использование конфига для работы с проектом
 
 ### Features
 
