@@ -75,7 +75,8 @@
 
 ```json
 {
-  ...
+  "name": "my_widget",
+  "version": "1.0.0",
   "dependencies": {
     ...
   },
