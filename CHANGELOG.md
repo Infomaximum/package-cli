@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/Infomaximum/package-cli/compare/v1.21.1...v2.0.0) (2024-02-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* использование конфига для работы с проектам
+
+### Features
+
+* добавлен шаблон конфига виджета ([10eb6e4](https://github.com/Infomaximum/package-cli/commit/10eb6e46e3864b30337fa34d4f1b25e8a1cf3b23))
+* добавлено описание полей конфига ([704a72b](https://github.com/Infomaximum/package-cli/commit/704a72b19fc58419a58e524af3ae306ee211910f))
+* использование конфига для работы с проектам ([46df151](https://github.com/Infomaximum/package-cli/commit/46df15186558105407c0abf5230546bd6dfc9d34))
+
+
+### Bug Fixes
+
+* использованы константы ([42fac3e](https://github.com/Infomaximum/package-cli/commit/42fac3e14cf8dd80798d09c8debff96e089cab83))
+* путь до пакета ([5941def](https://github.com/Infomaximum/package-cli/commit/5941defe45eda388aaa93c8dd5ad73626338a22d))
+* удалено поле ([31dca08](https://github.com/Infomaximum/package-cli/commit/31dca08a70dccf4af8e0bd61096ed4e8e36e08ac))
+
 ### [1.21.1](https://github.com/Infomaximum/package-cli/compare/v1.21.0...v1.21.1) (2024-02-26)
 
 
