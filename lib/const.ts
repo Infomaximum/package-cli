@@ -1,20 +1,12 @@
-export const WIDGET_SDK_LIB_NAME = "@infomaximum/widget-sdk";
 export const CUSTOM_PACKAGE_CLI_LIB_NAME = "@infomaximum/package-cli";
 
-export const WIDGET_ARCHIVE_NAME = "widget";
 export const BUILD_ARCHIVE_EXT = "zip";
-
-export const WIDGET_ARCHIVE_FULL_NAME = `${WIDGET_ARCHIVE_NAME}.${BUILD_ARCHIVE_EXT}`;
-
-export const DEFAULT_HOST = "localhost";
-export const DEFAULT_PORT = "5555";
 
 export const MANIFEST_JSON_FILE_NAME = "manifest.json";
 
 export const MANIFEST_REG_EXP = new RegExp(`${MANIFEST_JSON_FILE_NAME}$`, "i");
 
 export const DEV_POSTFIX = "__DEV";
-
-export const WIDGET_RESOURCES_DIR_NAME = "_resources";
+export const DEFAULT_BUILD_DIR_NAME = "build";
 
 export const MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT = ["$schema"];

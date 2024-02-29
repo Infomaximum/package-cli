@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "entry": {
+      "type": "string",
+      "description": "файл который является точкой входа"
+    },
+    "widgetManifest": {
+      "type": "string",
+      "description": "путь до файла манифеста виджета"
+    },
+    "packageManifest": {
+      "type": "string",
+      "description": "путь до файла манифеста пакета"
+    },
+    "packageDir": {
+      "type": "string",
+      "description": "директория с файлами пакета"
+    },
+    "assetsDir": {
+      "type": "string",
+      "description": "директория с файлами для динамической загрузки ресурсов виджета"
+    },
+    "buildDir": {
+      "type": "string",
+      "description": "директория в которую будет осуществляться сборка проекта"
+    },
+    "port": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "description": "порт по которому будет доступен сервер разработки"
+    },
+    "host": {
+      "type": "string",
+      "description": "хост по которому будет доступен сервер разработки"
+    }
+  },
+  "required": [
+    "entry",
+    "widgetManifest",
+    "packageManifest",
+    "packageDir",
+    "port",
+    "host"
+  ]
+}

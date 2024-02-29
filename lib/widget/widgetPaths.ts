@@ -1,0 +1,32 @@
+import {
+  _resolveApp,
+  generateGlobalPaths,
+  generateIndexPath,
+} from "../paths.js";
+import type { MergedBuildOptions, MergedStartOptions } from "./commands.js";
+
+export type WidgetPaths = ReturnType<typeof generateWidgetPaths>;
+
+type Options = MergedBuildOptions | MergedStartOptions;
+
+export function generateWidgetPaths({
+  entry,
+  assetsDir,
+  widgetManifest,
+  buildDir,
+}: Options) {
+  const globalPaths = generateGlobalPaths({ buildDirPath: buildDir });
+
+  const resolveApp = _resolveApp();
+
+  return {
+    ...globalPaths,
+    get moduleIndex() {
+      return generateIndexPath(entry);
+    },
+
+    widgetManifestJsonPath: resolveApp(widgetManifest),
+    widgetResourcesPath: assetsDir ? resolveApp(assetsDir) : null,
+    widgetBuildDirPath: resolveApp(buildDir),
+  };
+}
