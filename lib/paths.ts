@@ -8,35 +8,15 @@ export type TGeneratePathsArgs = {
   buildDirPath: string;
 };
 
+export type Mode = "development" | "production";
+export type GlobalPaths = ReturnType<typeof generateGlobalPaths>;
+
 export const appDirectory = fs.realpathSync(process.cwd());
 
 export const _resolveApp =
   (cwd = appDirectory) =>
   (relativePath: string) =>
     path.resolve(cwd, relativePath);
-
-export const generateGlobalPaths = (args: TGeneratePathsArgs) => {
-  const { cwd, buildDirPath } = args || {};
-
-  const resolveApp = _resolveApp(cwd);
-
-  return {
-    appPath: resolveApp("."),
-    appBuildPath: resolveApp(buildDirPath),
-    appPackageJson: resolveApp("package.json"),
-    appTsConfig: resolveApp("tsconfig.json"),
-    appNodeModules: resolveApp("node_modules"),
-    publicPath: "/",
-  };
-};
-
-export const MODE = {
-  DEV: "development",
-  PROD: "production",
-} as const;
-
-export type Mode = (typeof MODE)[keyof typeof MODE];
-export type Paths = ReturnType<typeof generateGlobalPaths>;
 
 export const generateIndexPath = (entryPath?: string) => {
   const resolveApp = _resolveApp();
@@ -63,4 +43,19 @@ export const generateIndexPath = (entryPath?: string) => {
 
   console.error(chalk.red("entry file not found"));
   process.exit(1);
+};
+
+export const generateGlobalPaths = (args: TGeneratePathsArgs) => {
+  const { cwd, buildDirPath } = args || {};
+
+  const resolveApp = _resolveApp(cwd);
+
+  return {
+    appPath: resolveApp("."),
+    appBuildPath: resolveApp(buildDirPath),
+    appPackageJson: resolveApp("package.json"),
+    appTsConfig: resolveApp("tsconfig.json"),
+    appNodeModules: resolveApp("node_modules"),
+    publicPath: "/",
+  };
 };

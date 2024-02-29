@@ -1,5 +1,5 @@
 import { MANIFEST_JSON_FILE_NAME } from "../../../const.js";
-import { capitalizeHelperName } from "../../../widget/scripts/init/helpers.js";
+import { capitalizeHelperName } from "../../../plopHelpers.js";
 import { WIDGET_SDK_LIB_NAME } from "../../const.js";
 
 export const WIDGET_INDEX_TEMPLATE = `\

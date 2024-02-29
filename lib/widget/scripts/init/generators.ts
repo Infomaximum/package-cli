@@ -1,12 +1,12 @@
 import type { NodePlopAPI } from "node-plop";
 import { getInitWidgetActions } from "./actions.js";
 import { prompts } from "./prompts.js";
-import { addHelpers } from "./helpers.js";
+import { addCommonHelpers } from "../../../plopHelpers.js";
 
 const generateWidgetGeneratorName = "widget-generate";
 
 const getInitWidgetGenerator = async (basePath: string, plop: NodePlopAPI) => {
-  addHelpers(plop);
+  addCommonHelpers(plop);
 
   const actions = await getInitWidgetActions(basePath, plop);
 

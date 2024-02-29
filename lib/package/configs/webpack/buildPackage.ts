@@ -1,7 +1,7 @@
 import ZipPlugin from "zip-webpack-plugin";
 import RemovePlugin from "remove-files-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import type { Mode, Paths } from "../../../paths.js";
+import type { Mode } from "../../../paths.js";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import {
   isExist,

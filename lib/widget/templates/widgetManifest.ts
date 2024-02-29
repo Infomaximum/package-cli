@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { capitalizeHelperName } from "../../widget/scripts/init/helpers.js";
 import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
+import { capitalizeHelperName } from "../../plopHelpers.js";
 
 export const WIDGET_MANIFEST_TEMPLATE = `\
 {

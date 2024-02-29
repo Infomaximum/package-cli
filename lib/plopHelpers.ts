@@ -4,8 +4,8 @@ import { capitalizeFirstLetter } from "./utils.js";
 const capitalizeHelperName = "capitalize";
 
 /** Добавляет кастомный хелпер, у стандартного проблемы с кириллицей */
-const addHelpers = (plop: NodePlopAPI) => {
+const addCommonHelpers = (plop: NodePlopAPI) => {
   plop.setHelper(capitalizeHelperName, capitalizeFirstLetter);
 };
 
-export { capitalizeHelperName, addHelpers };
+export { capitalizeHelperName, addCommonHelpers };
