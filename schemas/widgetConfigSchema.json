@@ -3,30 +3,38 @@
   "type": "object",
   "properties": {
     "entry": {
-      "type": "string"
+      "type": "string",
+      "description": "файл который является точкой входа"
     },
     "widgetManifest": {
-      "type": "string"
+      "type": "string",
+      "description": "путь до файла манифеста виджета"
     },
     "packageManifest": {
-      "type": "string"
+      "type": "string",
+      "description": "путь до файла манифеста пакета"
     },
     "packageDir": {
-      "type": "string"
+      "type": "string",
+      "description": "директория с файлами пакета"
     },
     "assetsDir": {
-      "type": "string"
+      "type": "string",
+      "description": "директория с файлами для динамической загрузки ресурсов виджета"
     },
     "buildDir": {
-      "type": "string"
+      "type": "string",
+      "description": "директория в которую будет осуществляться сборка проекта"
     },
     "port": {
       "type": "integer",
       "minimum": 0,
-      "maximum": 65535
+      "maximum": 65535,
+      "description": "порт по которому будет доступен сервер разработки"
     },
     "host": {
-      "type": "string"
+      "type": "string",
+      "description": "хост по которому будет доступен сервер разработки"
     }
   },
   "required": [
