@@ -48,10 +48,16 @@ function configMergeWithOptionsCommon(
     options["package-manifest"] || config?.packageManifest;
   const widgetManifest = options["widget-manifest"] || config?.widgetManifest;
 
-  assertSimple(!!entry, "Не найден entry");
-  assertSimple(!!packageDir, "Не найден packageDir");
-  assertSimple(!!packageManifest, "Не найден packageManifest");
-  assertSimple(!!widgetManifest, "Не найден widgetManifest");
+  assertSimple(!!entry, chalk.red("В конфигурации не задан entry"));
+  assertSimple(!!packageDir, chalk.red("В конфигурации не задан packageDir"));
+  assertSimple(
+    !!packageManifest,
+    chalk.red("В конфигурации не задан packageManifest")
+  );
+  assertSimple(
+    !!widgetManifest,
+    chalk.red("В конфигурации не задан widgetManifest")
+  );
 
   return {
     entry,
@@ -130,7 +136,7 @@ export const registerWidgetCommands = (cli: Command) => {
   registerCommonOption(widgetBuildCommand);
 
   widgetBuildCommand
-    .description("Выполняет сборку пакета для дальнейшей загрузки в систему")
+    .description("Выполняет сборку пакета")
     .option(
       "--build-dir <buildDirPath>",
       "Путь до директории в которую будет собран пакет"
@@ -139,9 +145,8 @@ export const registerWidgetCommands = (cli: Command) => {
     .option("--host <host>", "host который будет указан в манифесте виджета")
     .option(
       "-p, --port <port>",
-      "Порт который будет указан в манифесте виджета"
+      "порт который будет указан в манифесте виджета"
     )
-    .description("Запускает сборку проекта")
     .action((options: InputBuildOptions) =>
       runBuild(configMergeWithOptionsBuild(options))
     );
@@ -161,7 +166,7 @@ export const registerWidgetCommands = (cli: Command) => {
   const widgetInitCommand = widgetCommand.command("init <project-directory>");
 
   widgetInitCommand
-    .description("Создание виджета")
+    .description("Инициализация сущностей связанных с виджетом")
     .action((dirName: string) => {
       runInitWidget(dirName);
     });
