@@ -109,22 +109,22 @@ function configMergeWithOptionsBuild(options: InputBuildOptions) {
 
 function registerCommonOption(command: Command) {
   command
-    .option("-e, --entry <path>", "Путь до entrypoint")
+    .option("--entry <path>", "путь до entrypoint")
     .option(
       "--assets-dir <assetsDirPath>",
-      "Путь до директории с ресурсами виджета, которые будут перенесены в архив с виджетом"
+      "путь до директории с ресурсами виджета, которые будут перенесены в архив с виджетом"
     )
     .option(
       "--package-manifest <manifestPath>",
-      "Путь до файла манифеста пакета"
+      "путь до файла манифеста пакета"
     )
     .option(
       "--package-dir <packageDirPath>",
-      "Путь до директории с файлами пакета"
+      "путь до директории с файлами пакета"
     )
     .option(
       "--widget-manifest <manifestPath>",
-      "Путь до файла манифеста виджета"
+      "путь до файла манифеста виджета"
     );
 }
 
@@ -139,14 +139,11 @@ export const registerWidgetCommands = (cli: Command) => {
     .description("Выполняет сборку пакета")
     .option(
       "--build-dir <buildDirPath>",
-      "Путь до директории в которую будет собран пакет"
+      "путь до директории в которую будет собран пакет"
     )
     .option("--dev", "собрать пакет для разработки", false)
-    .option("--host <host>", "host который будет указан в манифесте виджета")
-    .option(
-      "-p, --port <port>",
-      "порт который будет указан в манифесте виджета"
-    )
+    .option("--host <host>", "хост который будет указан в манифесте виджета")
+    .option("--port <port>", "порт который будет указан в манифесте виджета")
     .action((options: InputBuildOptions) =>
       runBuild(configMergeWithOptionsBuild(options))
     );
@@ -157,7 +154,7 @@ export const registerWidgetCommands = (cli: Command) => {
 
   widgetStartCommand
     .description("Выполняет запуск проекта для разработки")
-    .option("-p, --port <port>", "Порт на котором будет доступен виджет")
+    .option("--port <port>", "порт на котором будет доступен виджет")
     .option("--host <host>", "host на котором будет доступен виджет")
     .action((options: InputStartOptions) =>
       runDevServer(configMergeWithOptionsStart(options))
@@ -166,7 +163,7 @@ export const registerWidgetCommands = (cli: Command) => {
   const widgetInitCommand = widgetCommand.command("init <project-directory>");
 
   widgetInitCommand
-    .description("Инициализация сущностей связанных с виджетом")
+    .description("Инициализация проекта виджета")
     .action((dirName: string) => {
       runInitWidget(dirName);
     });
