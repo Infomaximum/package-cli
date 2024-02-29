@@ -36,6 +36,62 @@
 
 Полученный в результате выполнения данной команды пакет можно загрузить в маркетплейс.
 
+## Файл конфигурации виджета
+
+#### **`widgetrc.json`**
+
+```json
+{
+  "$schema": "node_modules/@infomaximum/package-cli/schemas/widgetConfigSchema.json",
+  "entry": "src/index.tsx",
+  "widgetManifest": "manifest.json",
+  "packageManifest": "package/manifest.json",
+  "packageDir": "package",
+  "assetsDir": "_resources",
+  "buildDir": "build",
+  "port": 5555,
+  "host": "localhost"
+}
+```
+
+- `entry`: Путь к точке входа вашего приложения
+- `widgetManifest`: Путь к файлу манифеста виджета
+
+- `packageManifest`: Путь к файлу манифеста пакета
+
+- `packageDir`: Путь к каталогу пакета
+
+- `assetsDir`: Путь к каталогу ресурсов
+
+- `buildDir`: Путь к каталогу сборки
+
+- `port`: Порт, на котором будет запущен сервер разработки
+
+- `host`: Хост, на котором будет запущен сервер разработки
+
+Этот файл должен называться `widgetrc.json`, но также может иметь расширение `.js`, `.yaml`. Кроме того, конфигурацию можно добавить в `package.json` в поле `widget`. Примерно так:
+
+```json
+{
+  ⋮
+  "dependencies": {
+    ...
+  },
+  "widget": {
+    "entry": "src/index.tsx",
+    "widgetManifest": "manifest.json",
+    "packageManifest": "package/manifest.json",
+    "packageDir": "package",
+    "assetsDir": "_resources",
+    "buildDir": "build",
+    "port": 5555,
+    "host": "localhost"
+  }
+}
+```
+
+Эта конфигурация определяет, как будут собираться и запускаться ваш пакет или виджет с использованием `@infomaximum/package-cli`.
+
 ## Вывод всех доступных команд
 
 Вы можете использовать флаг `-h`, чтобы просмотреть список всех доступных команд и их описаний:
