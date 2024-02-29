@@ -56,6 +56,5 @@ export const generateGlobalPaths = (args: TGeneratePathsArgs) => {
     appPackageJson: resolveApp("package.json"),
     appTsConfig: resolveApp("tsconfig.json"),
     appNodeModules: resolveApp("node_modules"),
-    publicPath: "/",
   };
 };
