@@ -27,7 +27,7 @@ export const runDevServer = async (options: MergedStartOptions) => {
   }
 };
 
-const run = async (PATHS: WidgetPaths, options: MergedStartOptions) => {
+const run = async (WIDGET_PATHS: WidgetPaths, options: MergedStartOptions) => {
   const { host, port } = options;
 
   const mode: Mode = "development";
@@ -38,13 +38,14 @@ const run = async (PATHS: WidgetPaths, options: MergedStartOptions) => {
         isBuildDevMode: true,
         host,
         port,
+        WIDGET_PATHS,
       }),
       getReactRefresh(),
     ],
   } satisfies Configuration;
 
   const configWebpack = [
-    getCommonWidgetConfig(mode, PATHS),
+    getCommonWidgetConfig(mode, WIDGET_PATHS),
     pluginsSection,
     devtoolSection,
   ];
