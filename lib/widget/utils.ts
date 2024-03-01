@@ -61,12 +61,16 @@ export function getSDKVersionFromPackageJSON(
   let version: number = 0;
 
   for (const field of ["dependencies", "devDependencies"]) {
-    const tempVersion = packageJson?.[field]?.[WIDGET_SDK_LIB_NAME];
+    const tempVersion = packageJson?.[field]?.[WIDGET_SDK_LIB_NAME] as
+      | string
+      | undefined;
 
-    if (semver.valid(tempVersion)) {
+    if (tempVersion && semver.valid(tempVersion)) {
       version = semver.major(tempVersion);
       break;
-    } else if (semver.validRange(tempVersion)) {
+    }
+
+    if (tempVersion && semver.validRange(tempVersion)) {
       version = semver.major(semver.minVersion(tempVersion) || "0.0.0");
       break;
     }
