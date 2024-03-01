@@ -7,3 +7,4 @@ export const WIDGET_ARCHIVE_NAME = "widget";
 export const WIDGET_ARCHIVE_FULL_NAME = `${WIDGET_ARCHIVE_NAME}.${BUILD_ARCHIVE_EXT}`;
 export const WIDGET_DEFAULT_HOST = "localhost";
 export const WIDGET_DEFAULT_PORT = "5555";
+export const WIDGET_SDK_VERSION_FIELD_NAME = "sdk_version";

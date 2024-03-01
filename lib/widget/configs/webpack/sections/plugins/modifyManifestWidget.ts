@@ -1,17 +1,22 @@
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import { DEV_POSTFIX } from "../../../../../const.js";
 import { removeServiceFieldsForDevelopment } from "../../../../../utils.js";
+import type { WidgetPaths } from "../../../../widgetPaths.js";
+import { WIDGET_SDK_VERSION_FIELD_NAME } from "../../../../const.js";
+import { getSDKVersionFromPackageJSON } from "../../../../utils.js";
 
 type Params = {
   port?: string | number;
   host?: string;
   isBuildDevMode: boolean;
+  WIDGET_PATHS: WidgetPaths;
 };
 
 export const getModifyManifestWidgetPlugin = ({
   host,
   port,
   isBuildDevMode,
+  WIDGET_PATHS,
 }: Params) => {
   return new JsonModifyWebpackPlugin({
     matchers: [
@@ -32,6 +37,9 @@ export const getModifyManifestWidgetPlugin = ({
               });
             }
           }
+
+          currentJsonContent[WIDGET_SDK_VERSION_FIELD_NAME] =
+            getSDKVersionFromPackageJSON(WIDGET_PATHS.appPackageJson);
 
           removeServiceFieldsForDevelopment(currentJsonContent);
 

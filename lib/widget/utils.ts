@@ -3,6 +3,7 @@ import chalk from "chalk";
 import {
   getLatestVersionOfLibrary,
   getLibraryVersionInProject,
+  systemRequire,
 } from "../utils.js";
 import { WIDGET_SDK_LIB_NAME } from "./const.js";
 import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../const.js";
@@ -50,4 +51,26 @@ export async function checkLatestLibsVersion() {
       checkLatestVersion(CUSTOM_PACKAGE_CLI_LIB_NAME),
     ]);
   } catch (error) {}
+}
+
+export function getSDKVersionFromPackageJSON(
+  appPackageJsonPath: string
+): number {
+  const packageJson = systemRequire(appPackageJsonPath);
+
+  let version: number = 0;
+
+  for (const field of ["dependencies", "devDependencies"]) {
+    const tempVersion = packageJson?.[field]?.[WIDGET_SDK_LIB_NAME];
+
+    if (semver.valid(tempVersion)) {
+      version = semver.major(tempVersion);
+      break;
+    } else if (semver.validRange(tempVersion)) {
+      version = semver.major(semver.minVersion(tempVersion) || "0.0.0");
+      break;
+    }
+  }
+
+  return version;
 }
