@@ -53,7 +53,7 @@ export async function checkLatestLibsVersion() {
   } catch (error) {}
 }
 
-export function getSDKVersionFromPackageJSON(
+export function getSdkVersionFromPackageJSON(
   appPackageJsonPath: string
 ): number {
   const packageJson = systemRequire(appPackageJsonPath);

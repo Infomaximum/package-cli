@@ -3,7 +3,7 @@ import { DEV_POSTFIX } from "../../../../../const.js";
 import { removeServiceFieldsForDevelopment } from "../../../../../utils.js";
 import type { WidgetPaths } from "../../../../widgetPaths.js";
 import { WIDGET_SDK_VERSION_FIELD_NAME } from "../../../../const.js";
-import { getSDKVersionFromPackageJSON } from "../../../../utils.js";
+import { getSdkVersionFromPackageJSON } from "../../../../utils.js";
 
 type Params = {
   port?: string | number;
@@ -38,8 +38,14 @@ export const getModifyManifestWidgetPlugin = ({
             }
           }
 
-          currentJsonContent[WIDGET_SDK_VERSION_FIELD_NAME] =
-            getSDKVersionFromPackageJSON(WIDGET_PATHS.appPackageJson);
+          const sdkVersion = getSdkVersionFromPackageJSON(
+            WIDGET_PATHS.appPackageJson
+          );
+
+          currentJsonContent[WIDGET_SDK_VERSION_FIELD_NAME] = sdkVersion;
+
+          /** @deprecated удалить после 04.06.2024 */
+          currentJsonContent["api_version"] = sdkVersion;
 
           removeServiceFieldsForDevelopment(currentJsonContent);
 
