@@ -3,7 +3,7 @@ import { DEV_POSTFIX } from "../../../../../const.js";
 import { removeServiceFieldsForDevelopment } from "../../../../../utils.js";
 import type { WidgetPaths } from "../../../../widgetPaths.js";
 import { WIDGET_SDK_VERSION_FIELD_NAME } from "../../../../const.js";
-import { getSdkVersionFromPackageJSON } from "../../../../utils.js";
+import { getSdkVersionFromPackageJson } from "../../../../utils.js";
 
 type Params = {
   port?: string | number;
@@ -38,7 +38,7 @@ export const getModifyManifestWidgetPlugin = ({
             }
           }
 
-          const sdkVersion = getSdkVersionFromPackageJSON(
+          const sdkVersion = getSdkVersionFromPackageJson(
             WIDGET_PATHS.appPackageJson
           );
 
