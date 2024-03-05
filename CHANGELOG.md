@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Infomaximum/package-cli/compare/v2.0.1...v2.1.0) (2024-03-05)
+
+
+### Features
+
+* добавление api_version в манифест при сборке для обратной совместимости ([7d2a9d8](https://github.com/Infomaximum/package-cli/commit/7d2a9d8ea1bf9bf6399057df89bbb8fe02fc51e7))
+* новый путь регистрации виджета ([1b2cf4a](https://github.com/Infomaximum/package-cli/commit/1b2cf4a71ba101a3e16f16d9fede3b64f3a546c8))
+* sdk_version -> manifest.json ([ee5aa42](https://github.com/Infomaximum/package-cli/commit/ee5aa42b1a71db5c3ed96b5ed6ea18b9f68c770f))
+
+
+### Bug Fixes
+
+* 10 секунд ожидание ([f829632](https://github.com/Infomaximum/package-cli/commit/f829632b7c314aa806d506a9bbcc0433c91a1104))
+* без дополнительных свойств ([8a2b08d](https://github.com/Infomaximum/package-cli/commit/8a2b08d74171ed9b5c94e43292d1032f4ed75e90))
+* типизация ([c7482c5](https://github.com/Infomaximum/package-cli/commit/c7482c50647c0f6461fb42de521bd511f87cc08a))
+
 ### [2.0.1](https://github.com/Infomaximum/package-cli/compare/v2.0.0...v2.0.1) (2024-03-05)
 
 
