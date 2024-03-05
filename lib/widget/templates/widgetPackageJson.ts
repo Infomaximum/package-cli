@@ -8,9 +8,9 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
   "private": true,
   "main": "src/index.tsx",
   "scripts": {
-    "build": "im-package-cli widget build --entry ./src/index.tsx",
-    "build:dev": "im-package-cli widget build --port 5555 --host localhost --entry ./src/index.tsx",
-    "start": "im-package-cli widget start --port 5555 --host localhost --entry ./src/index.tsx",
+    "build": "im-package-cli widget build",
+    "build:dev": "im-package-cli widget build --dev",
+    "start": "im-package-cli widget start",
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "jest --passWithNoTests"
   },
