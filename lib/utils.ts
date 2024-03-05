@@ -49,7 +49,7 @@ export async function getLatestVersionOfLibrary(
   const { stdout } = await execPromise(
     `npm show -j -p ${libraryName} version`,
     {
-      timeout: 5000,
+      timeout: 10000,
     }
   );
 

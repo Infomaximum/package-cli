@@ -50,5 +50,5 @@ class CustomWidget implements IWidget<WidgetSettings> {
   }
 }
 
-window.im.defineWidget(manifest.uuid, CustomWidget);
+window.im.widget.defineWidget(manifest.uuid, CustomWidget);
 `;

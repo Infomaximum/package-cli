@@ -19,6 +19,7 @@ import { checkLatestLibsVersion } from "../utils.js";
 
 export const runBuild = async (args: MergedBuildOptions) => {
   const mode: Mode = "production";
+
   const {
     buildDir,
     host,
@@ -26,7 +27,6 @@ export const runBuild = async (args: MergedBuildOptions) => {
     dev: isBuildDevMode,
     packageDir,
     packageManifest,
-    assetsDir,
   } = args;
 
   const WIDGET_PATHS = generateWidgetPaths(args);
@@ -41,6 +41,7 @@ export const runBuild = async (args: MergedBuildOptions) => {
         isBuildDevMode,
         host,
         port,
+        WIDGET_PATHS,
       }),
     ] as WebpackPluginInstance[],
   } satisfies Configuration;

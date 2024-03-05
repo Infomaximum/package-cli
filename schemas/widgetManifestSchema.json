@@ -14,9 +14,6 @@
       "pattern": "\\w+\\.js$",
       "examples": ["index.js", "main.js"]
     },
-    "api_version": {
-      "type": "integer"
-    },
     "name": {
       "type": "object",
       "title": "Локализованное имя виджета",
@@ -52,5 +49,5 @@
       }
     }
   },
-  "required": ["uuid", "entry", "api_version", "name"]
+  "required": ["uuid", "entry", "name"]
 }
