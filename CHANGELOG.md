@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/Infomaximum/package-cli/compare/v2.1.0...v2.1.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* исправлено копирование директории с ресурсами во время сборки ([e351a48](https://github.com/Infomaximum/package-cli/commit/e351a48d5bcb274b03e0ee2a97361d6a5c526ada))
+
 ## [2.1.0](https://github.com/Infomaximum/package-cli/compare/v2.0.1...v2.1.0) (2024-03-05)
 
 
