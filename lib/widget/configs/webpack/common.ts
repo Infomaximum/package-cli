@@ -4,7 +4,7 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
 import { cssLoaders } from "./sections/loaders/cssLoaders.js";
 import type { Mode } from "../../../paths.js";
-import { systemRequire } from "../../../utils.js";
+import { compact, systemRequire } from "../../../utils.js";
 import { MANIFEST_REG_EXP } from "../../../const.js";
 import type { WidgetPaths } from "../../widgetPaths.js";
 import path from "path";
@@ -27,7 +27,7 @@ export const getCommonWidgetConfig = (
       asyncChunks: false,
       clean: true,
     },
-    plugins: [
+    plugins: compact([
       new ProgressPlugin(),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
@@ -38,18 +38,20 @@ export const getCommonWidgetConfig = (
           },
         },
       }),
+
       PATHS.widgetResourcesPath &&
+        PATHS.widgetResourcesDirName &&
         new CopyWebpackPlugin({
           patterns: [
             {
               from: PATHS.widgetResourcesPath,
               toType: "dir",
-              to: path.basename(PATHS.widgetResourcesPath),
+              to: PATHS.widgetResourcesDirName,
               noErrorOnMissing: true,
             },
           ],
         }),
-    ].filter(Boolean),
+    ]),
     module: {
       rules: [
         {

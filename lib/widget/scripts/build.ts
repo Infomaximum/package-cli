@@ -35,7 +35,7 @@ export const runBuild = async (args: MergedBuildOptions) => {
     plugins: [
       getZipWidgetPlugin({
         isOnlyManifest: isBuildDevMode,
-        widgetResourcesPath: WIDGET_PATHS.widgetResourcesPath,
+        widgetResourcesDirName: WIDGET_PATHS.widgetResourcesDirName,
       }),
       getModifyManifestWidgetPlugin({
         isBuildDevMode,

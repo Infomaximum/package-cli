@@ -1,3 +1,4 @@
+import path from "node:path";
 import {
   _resolveApp,
   generateGlobalPaths,
@@ -27,6 +28,7 @@ export function generateWidgetPaths({
 
     widgetManifestJsonPath: resolveApp(widgetManifest),
     widgetResourcesPath: assetsDir ? resolveApp(assetsDir) : null,
+    widgetResourcesDirName: assetsDir ? path.basename(assetsDir) : null,
     widgetBuildDirPath: resolveApp(buildDir),
   };
 }
