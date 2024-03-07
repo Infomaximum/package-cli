@@ -29,6 +29,12 @@
         }
       }
     },
+    "icon": {
+      "type": "string",
+      "description": "Иконка виджета которая будет отображаться в системе формата .svg или .png",
+      "pattern": ".(svg|png)$",
+      "examples": ["_resources/icon.svg"]
+    },
     "default_size_percentage": {
       "type": "object",
       "title": "Размеры виджета по умолчанию при переносе его на холст",
