@@ -1,7 +1,6 @@
 export const WIDGET_TSCONFIG_JSON = `\
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "target": "ES2015",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

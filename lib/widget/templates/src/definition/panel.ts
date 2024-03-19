@@ -5,7 +5,7 @@ import {
   type IPanelDescriptionCreator,
   type IGroupSettings,
 } from "${WIDGET_SDK_LIB_NAME}";
-import type { WidgetSettings } from "definition/settings";
+import type { WidgetSettings } from "./settings";
 
 export const createPanelDescription: IPanelDescriptionCreator<
   WidgetSettings,
