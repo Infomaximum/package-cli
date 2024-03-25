@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/Infomaximum/package-cli/compare/v2.2.1...v2.3.0) (2024-03-25)
+
+
+### Features
+
+* передача манифеста при регистрации виджета ([f24a231](https://github.com/Infomaximum/package-cli/commit/f24a23144b061d5627b69919575d5de7fb138940))
+
+
+### Bug Fixes
+
+* убран baseUrl ([2448a1a](https://github.com/Infomaximum/package-cli/commit/2448a1ad7ec69af8369576b544364dc519df5060))
+
 ### [2.2.1](https://github.com/Infomaximum/package-cli/compare/v2.2.0...v2.2.1) (2024-03-22)
 
 
