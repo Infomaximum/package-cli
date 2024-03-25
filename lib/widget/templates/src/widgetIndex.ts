@@ -11,8 +11,8 @@ import {
   type ICustomWidgetProps,
 } from "${WIDGET_SDK_LIB_NAME}";
 import manifest from "../${MANIFEST_JSON_FILE_NAME}";
-import { type WidgetSettings } from "definition/settings";
-import { Definition } from "definition/definition";
+import { type WidgetSettings } from "./definition/settings";
+import { Definition } from "./definition/definition";
 
 class CustomWidget implements IWidget<WidgetSettings> {
   public static definition = new Definition();
@@ -50,5 +50,5 @@ class CustomWidget implements IWidget<WidgetSettings> {
   }
 }
 
-window.im.widget.defineWidget(manifest.uuid, CustomWidget);
+window.im.widget.defineWidget(manifest.uuid, CustomWidget, { manifest });
 `;

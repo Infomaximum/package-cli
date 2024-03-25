@@ -10,8 +10,8 @@ import type {
   IWidgetDimensionHierarchy,
   IWidgetMeasure,
 } from "${WIDGET_SDK_LIB_NAME}";
-import { fillSettings, type WidgetSettings } from "definition/settings";
-import { createPanelDescription } from "definition/panel";
+import { fillSettings, type WidgetSettings } from "./settings";
+import { createPanelDescription } from "./panel";
 
 export class Definition implements IDefinition<WidgetSettings, IGroupSettings> {
   public createPanelDescription: IPanelDescriptionCreator<
