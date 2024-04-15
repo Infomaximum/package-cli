@@ -17,7 +17,7 @@ import { Definition } from "./definition/definition";
 class CustomWidget implements IWidget<WidgetSettings> {
   public static definition = new Definition();
 
-  root: ReactDOM.Root | null = null;
+  private root: ReactDOM.Root | null = null;
 
   public initialize(container: HTMLElement) {
     this.root = ReactDOM.createRoot(container);
