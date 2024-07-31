@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/Infomaximum/package-cli/compare/v2.3.0...v2.4.0) (2024-07-31)
+
+
+### Features
+
+* добавлено поле min_version_platform в манифест пакета ([ff562f3](https://github.com/Infomaximum/package-cli/commit/ff562f35d94345e1a80e4ee86adebbf79b38eb00))
+
 ## [2.3.0](https://github.com/Infomaximum/package-cli/compare/v2.2.1...v2.3.0) (2024-03-25)
 
 
