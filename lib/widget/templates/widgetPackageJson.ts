@@ -16,29 +16,29 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
   },
   "dependencies": {
     "${WIDGET_SDK_LIB_NAME}": "{{widgetSDKVersion}}",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
-    "@babel/preset-env": "7.23.6",
-    "@babel/preset-react": "7.23.3",
-    "@babel/preset-typescript": "7.23.3",
+    "@babel/core": "7.25.2",
+    "@babel/preset-env": "7.25.4",
+    "@babel/preset-react": "7.24.7",
+    "@babel/preset-typescript": "7.24.7",
     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
     "@types/jest": "29.5.11",
-    "@types/react": "18.2.43",
-    "@types/react-dom": "18.2.17",
-    "@typescript-eslint/eslint-plugin": "6.14.0",
-    "@typescript-eslint/parser": "6.14.0",
-    "eslint": "8.55.0",
-    "eslint-plugin-react": "7.33.2",
-    "eslint-plugin-react-hooks": "4.6.0",
+    "@types/react": "18.3.4",
+    "@types/react-dom": "18.3.0",
+    "@typescript-eslint/eslint-plugin": "8.3.0",
+    "@typescript-eslint/parser": "8.3.0",
+    "eslint": "8.57.0",
+    "eslint-plugin-react": "7.35.0",
+    "eslint-plugin-react-hooks": "4.6.2",
     "jest": "29.7.0",
     "jest-canvas-mock": "2.5.2",
     "jest-environment-jsdom": "29.7.0",
     "jest-environment-jsdom-global": "4.0.0",
     "prettier": "3.1.1",
-    "typescript": "~5.3.3"
+    "typescript": "5.5.4"
   },
   "browserslist": [
     "defaults and supports es6-module"
