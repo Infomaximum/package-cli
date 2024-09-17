@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/Infomaximum/package-cli/compare/v2.7.0...v2.7.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* удалено поле entry из манифеста виджета ([02d00a7](https://github.com/Infomaximum/package-cli/commit/02d00a753485de953020dc565dadfdf28138ff2d))
+
 ## [2.7.0](https://github.com/Infomaximum/package-cli/compare/v2.6.1...v2.7.0) (2024-09-17)
 
 
