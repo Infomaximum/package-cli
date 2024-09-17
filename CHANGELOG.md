@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/Infomaximum/package-cli/compare/v2.6.1...v2.7.0) (2024-09-17)
+
+
+### Features
+
+* добавлена возможность генерации filename с использованием хеша содержимого файла ([15b11ea](https://github.com/Infomaximum/package-cli/commit/15b11eaf56bc3b4eeaf53be025ee122adc1b3053))
+
 ### [2.6.1](https://github.com/Infomaximum/package-cli/compare/v2.6.0...v2.6.1) (2024-09-17)
 
 
