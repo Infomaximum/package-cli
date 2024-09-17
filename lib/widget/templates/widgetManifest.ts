@@ -6,7 +6,6 @@ export const WIDGET_MANIFEST_TEMPLATE = `\
 {
   "$schema": "node_modules/${CUSTOM_PACKAGE_CLI_LIB_NAME}/schemas/widgetManifestSchema.json",
   "uuid": "${randomUUID()}",
-  "entry": "index.js",
   "api_version": 1,
   "name": {
     "en": "{{${capitalizeHelperName} packageName}}",
