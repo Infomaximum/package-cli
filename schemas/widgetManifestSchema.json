@@ -11,6 +11,7 @@
     "entry": {
       "type": "string",
       "title": "Имя файла в который будет собран виджет",
+      "description": "Если не задан, то будет сгенерирован widget.[contenthash].js",
       "pattern": "\\w+\\.js$",
       "examples": ["index.js", "main.js"]
     },
@@ -55,5 +56,5 @@
       }
     }
   },
-  "required": ["uuid", "entry", "name"]
+  "required": ["uuid", "name"]
 }

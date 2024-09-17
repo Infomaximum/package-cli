@@ -2,7 +2,11 @@ import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin
 import { DEV_POSTFIX } from "../../../../../const.js";
 import { removeServiceFieldsForDevelopment } from "../../../../../utils.js";
 import type { WidgetPaths } from "../../../../widgetPaths.js";
-import { WIDGET_SDK_VERSION_FIELD_NAME } from "../../../../const.js";
+import {
+  WIDGET_OUTPUT_FILE_NAME,
+  WIDGET_OUTPUT_FULL_FILE_NAME,
+  WIDGET_SDK_VERSION_FIELD_NAME,
+} from "../../../../const.js";
 import { getSdkVersionFromPackageJson } from "../../../../utils.js";
 
 type Params = {
@@ -22,9 +26,13 @@ export const getModifyManifestWidgetPlugin = ({
     matchers: [
       {
         matcher: /^manifest.json$/,
-        action: (currentJsonContent) => {
+        action: (currentJsonContent, assetNames) => {
+          const manifestEntry = currentJsonContent.entry;
+
           if (isBuildDevMode && host && port) {
-            currentJsonContent.entry = `http://${host}:${port}/${currentJsonContent.entry}`;
+            currentJsonContent.entry = `http://${host}:${port}/${
+              manifestEntry ?? WIDGET_OUTPUT_FULL_FILE_NAME
+            }`;
 
             if (
               currentJsonContent?.name &&
@@ -35,6 +43,14 @@ export const getModifyManifestWidgetPlugin = ({
                   [lang]: currentJsonContent.name[lang] + DEV_POSTFIX,
                 });
               });
+            }
+          } else if (!manifestEntry) {
+            const entryName = assetNames.find((asset) =>
+              asset.startsWith(`${WIDGET_OUTPUT_FILE_NAME}.`)
+            );
+
+            if (entryName) {
+              currentJsonContent.entry = entryName;
             }
           }
 

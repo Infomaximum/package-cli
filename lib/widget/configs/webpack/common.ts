@@ -7,7 +7,10 @@ import type { Mode } from "../../../paths.js";
 import { compact, systemRequire } from "../../../utils.js";
 import { MANIFEST_REG_EXP } from "../../../const.js";
 import type { WidgetPaths } from "../../widgetPaths.js";
-import path from "path";
+import {
+  WIDGET_OUTPUT_FILE_NAME,
+  WIDGET_OUTPUT_FULL_FILE_NAME,
+} from "../../const.js";
 
 const { ProgressPlugin } = webpack;
 
@@ -18,12 +21,18 @@ export const getCommonWidgetConfig = (
   mode: Mode,
   PATHS: WidgetPaths
 ): Configuration => {
+  const manifestEntry = systemRequire(PATHS.widgetManifestJsonPath).entry;
+
+  const filename = isProduction(mode)
+    ? `${WIDGET_OUTPUT_FILE_NAME}.[contenthash].js`
+    : WIDGET_OUTPUT_FULL_FILE_NAME;
+
   return {
     mode,
     entry: [PATHS.moduleIndex, PATHS.widgetManifestJsonPath],
     output: {
       path: PATHS.appBuildPath,
-      filename: systemRequire(PATHS.widgetManifestJsonPath).entry,
+      filename: manifestEntry ?? filename,
       asyncChunks: false,
       clean: true,
     },
