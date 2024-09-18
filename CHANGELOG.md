@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/Infomaximum/package-cli/compare/v2.7.1...v2.8.0) (2024-09-18)
+
+
+### Features
+
+* добавлена возможность импортировать svg в исходном виде (*.svg?src) ([47f0f2c](https://github.com/Infomaximum/package-cli/commit/47f0f2c75f35fae070f58e9b481bf9d98f739bb7))
+
 ### [2.7.1](https://github.com/Infomaximum/package-cli/compare/v2.7.0...v2.7.1) (2024-09-17)
 
 
