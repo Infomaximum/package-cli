@@ -137,6 +137,10 @@ export const getCommonWidgetConfig = (
               },
             },
             {
+              type: "asset/source",
+              resourceQuery: /src/, // *.svg?src
+            },
+            {
               issuer: /\.[jt]sx?$/,
               loader: systemRequire.resolve("@svgr/webpack"),
               options: {
