@@ -7,6 +7,7 @@ import { assertSilent, assertSimple } from "@infomaximum/assert";
 import chalk from "chalk";
 import { WIDGET_DEFAULT_HOST, WIDGET_DEFAULT_PORT } from "./const.js";
 import { DEFAULT_BUILD_DIR_NAME } from "../const.js";
+import { runReleaseWidget } from "./scripts/init/release.js";
 
 type InputCommonOptions = {
   entry: string;
@@ -166,5 +167,14 @@ export const registerWidgetCommands = (cli: Command) => {
     .description("Инициализация проекта виджета")
     .action((dirName: string) => {
       runInitWidget(dirName);
+    });
+
+  const widgetReleaseCommand = widgetCommand.command("release");
+
+  widgetReleaseCommand
+    .description("Создание релиза виджета")
+    .option("--dry", "", false)
+    .action(() => {
+      runReleaseWidget();
     });
 };

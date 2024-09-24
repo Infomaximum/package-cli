@@ -4,12 +4,7 @@ import path from "node:path";
 import { spawn, type SpawnOptions, exec } from "node:child_process";
 import util from "node:util";
 import Module from "node:module";
-
-import {
-  CUSTOM_PACKAGE_CLI_LIB_NAME,
-  MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT,
-} from "./const.js";
-import { WIDGET_SDK_LIB_NAME } from "./widget/const.js";
+import { MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT } from "./const.js";
 
 const execPromise = util.promisify(exec);
 
