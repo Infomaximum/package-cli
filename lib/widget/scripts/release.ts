@@ -4,8 +4,11 @@ import { getConfigFromFile } from "../configs/file.js";
 import { DEFAULT_BUILD_DIR_NAME } from "../../const.js";
 import path from "path";
 import { isExist } from "../../utils.js";
+import type { InputReleaseOptions } from "../commands/release.js";
 
-export const runReleaseWidget = async () => {
+export const runReleaseWidget = async (options: InputReleaseOptions) => {
+  const { first } = options;
+
   const config = getConfigFromFile();
 
   const globalPaths = generateGlobalPaths({
@@ -14,7 +17,7 @@ export const runReleaseWidget = async () => {
 
   const changelogFile = path.resolve(globalPaths.appPath, "CHANGELOG.md");
 
-  const isFirstRelease = !(await isExist(changelogFile));
+  const isFirstRelease = first || !(await isExist(changelogFile));
 
   await standardVersion({
     infile: changelogFile,
