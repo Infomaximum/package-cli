@@ -2,7 +2,6 @@ import _webpack, { type Configuration } from "webpack";
 import { type Mode } from "../../paths.js";
 import WebpackDevServer from "webpack-dev-server";
 import { merge } from "webpack-merge";
-import type { MergedStartOptions } from "../commands.js";
 import { getModifyManifestWidgetPlugin } from "../configs/webpack/sections/plugins/modifyManifestWidget.js";
 import { getReactRefresh } from "../configs/webpack/sections/plugins/reactRefresh.js";
 import { getCommonWidgetConfig } from "../configs/webpack/common.js";
@@ -10,6 +9,7 @@ import { devtoolSection } from "../configs/webpack/sections/devtool.js";
 import { getDevServerConfig } from "../configs/webpack/sections/devServer.js";
 import { generateWidgetPaths, type WidgetPaths } from "../widgetPaths.js";
 import { checkLatestLibsVersion } from "../utils.js";
+import type { MergedStartOptions } from "../commands/start.js";
 
 const { webpack } = _webpack;
 

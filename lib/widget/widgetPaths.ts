@@ -4,7 +4,8 @@ import {
   generateGlobalPaths,
   generateIndexPath,
 } from "../paths.js";
-import type { MergedBuildOptions, MergedStartOptions } from "./commands.js";
+import type { MergedBuildOptions } from "./commands/build.js";
+import type { MergedStartOptions } from "./commands/start.js";
 
 export type WidgetPaths = ReturnType<typeof generateWidgetPaths>;
 

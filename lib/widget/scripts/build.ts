@@ -6,7 +6,6 @@ import { type Mode } from "../../paths.js";
 import { getPackageBuildConfig } from "../../package/configs/webpack/buildPackage.js";
 import { merge } from "webpack-merge";
 import chalk from "chalk";
-import type { MergedBuildOptions } from "../commands.js";
 import { getZipWidgetPlugin } from "../configs/webpack/sections/plugins/zipWidget.js";
 import { getModifyManifestWidgetPlugin } from "../configs/webpack/sections/plugins/modifyManifestWidget.js";
 import { getCommonWidgetConfig } from "../configs/webpack/common.js";
@@ -16,6 +15,7 @@ import { WIDGET_ARCHIVE_FULL_NAME } from "../const.js";
 import { generateWidgetPaths } from "../widgetPaths.js";
 import { generatePackagePaths } from "../../package/packagePaths.js";
 import { checkLatestLibsVersion } from "../utils.js";
+import type { MergedBuildOptions } from "../commands/build.js";
 
 export const runBuild = async (args: MergedBuildOptions) => {
   const mode: Mode = "production";
