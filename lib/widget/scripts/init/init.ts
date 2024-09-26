@@ -29,7 +29,7 @@ const runInitWidget = async (dirName: string) => {
   }
 
   try {
-    await spawnCommand("git", ["init"], {
+    await spawnCommand("git", ["init", "-b", "develop"], {
       cwd: createPath,
     });
   } catch (error) {
