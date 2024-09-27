@@ -4,17 +4,27 @@ import { DEFAULT_BUILD_DIR_NAME } from "../../const.js";
 import type { WidgetRCConfig } from "../configs/file.js";
 import type { Command } from "commander";
 
+export type InputWidgetManifestOption = {
+  "widget-manifest"?: string;
+};
+
 export type InputCommonOptions = {
   entry: string;
-  "widget-manifest"?: string;
   "package-manifest"?: string;
   "package-dir"?: string;
   "assets-dir"?: string;
-};
+} & InputWidgetManifestOption;
 
 export type MergedCommonOptions = ReturnType<
   typeof configMergeWithOptionsCommon
 >;
+
+export function registerWidgetManifestOption(command: Command) {
+  command.option(
+    "--widget-manifest <manifestPath>",
+    "путь до файла манифеста виджета"
+  );
+}
 
 export function registerCommonOption(command: Command) {
   command
@@ -30,11 +40,25 @@ export function registerCommonOption(command: Command) {
     .option(
       "--package-dir <packageDirPath>",
       "путь до директории с файлами пакета"
-    )
-    .option(
-      "--widget-manifest <manifestPath>",
-      "путь до файла манифеста виджета"
     );
+
+  registerWidgetManifestOption(command);
+}
+
+export function configMergeWithWidgetManifestOptions<
+  O extends InputWidgetManifestOption,
+>(
+  config: WidgetRCConfig | undefined,
+  { "widget-manifest": optionWidgetManifest, ...rest }: O
+) {
+  const widgetManifest = optionWidgetManifest || config?.widgetManifest;
+
+  assertSimple(
+    !!widgetManifest,
+    chalk.red("В конфигурации не задан widgetManifest")
+  );
+
+  return { widgetManifest, ...rest };
 }
 
 export function configMergeWithOptionsCommon(
@@ -47,7 +71,6 @@ export function configMergeWithOptionsCommon(
   const buildDir = config?.buildDir || DEFAULT_BUILD_DIR_NAME;
   const packageManifest =
     options["package-manifest"] || config?.packageManifest;
-  const widgetManifest = options["widget-manifest"] || config?.widgetManifest;
 
   assertSimple(!!entry, chalk.red("В конфигурации не задан entry"));
   assertSimple(!!packageDir, chalk.red("В конфигурации не задан packageDir"));
@@ -55,10 +78,11 @@ export function configMergeWithOptionsCommon(
     !!packageManifest,
     chalk.red("В конфигурации не задан packageManifest")
   );
-  assertSimple(
-    !!widgetManifest,
-    chalk.red("В конфигурации не задан widgetManifest")
-  );
+
+  const widgetManifest = configMergeWithWidgetManifestOptions(
+    config,
+    options
+  ).widgetManifest;
 
   return {
     entry,
