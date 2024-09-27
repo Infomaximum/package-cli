@@ -12,7 +12,8 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
     "build:dev": "im-package-cli widget build --dev",
     "start": "im-package-cli widget start",
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "changelog":"im-package-cli widget release --dry-run"
   },
   "dependencies": {
     "${WIDGET_SDK_LIB_NAME}": "{{widgetSDKVersion}}",

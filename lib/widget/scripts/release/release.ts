@@ -21,16 +21,16 @@ import {
 import { MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME } from "./const.js";
 
 const getSkipOptions = ({
-  changelog,
-  bump,
-  commit,
-  tag,
+  skipChangelog,
+  skipBump,
+  skipCommit,
+  skipTag,
 }: InputReleaseOptions): Options.Skip => {
   return {
-    changelog,
-    bump,
-    commit,
-    tag,
+    changelog: skipChangelog,
+    bump: skipBump,
+    commit: skipCommit,
+    tag: skipTag,
   };
 };
 
