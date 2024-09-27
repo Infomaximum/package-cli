@@ -3,10 +3,8 @@ import path from "path";
 import semver from "semver";
 import standardVersion, { type Options } from "standard-version";
 import stringifyPackage from "stringify-package";
-import detectIndent from "detect-indent";
-import { detectNewline } from "detect-newline";
 import { number } from "@inquirer/prompts";
-import { generateGlobalPaths } from "../../../paths.js";
+import { generateGlobalPaths, type GlobalPaths } from "../../../paths.js";
 import { getConfigFromFile } from "../../configs/file.js";
 import { DEFAULT_BUILD_DIR_NAME } from "../../../const.js";
 import { isExist } from "../../../utils.js";
@@ -17,6 +15,7 @@ import type {
 import { getWidgetManifestPath } from "../../widgetPaths.js";
 import {
   getBumpedMajorVersion,
+  getJsonContentFile,
   getRecommendedReleaseType,
   validateSystemVersion,
 } from "./utils.js";
@@ -58,34 +57,30 @@ const getBumpFiles = (manifestWidgetPath: string): Options.VersionFile[] => {
     contents,
     version
   ) => {
-    const packageJSON = JSON.parse(contents);
-    const indent = detectIndent(contents).indent;
-    const newline = detectNewline(contents);
+    const { json, indent, newline } = getJsonContentFile(contents);
 
-    packageJSON.version = version;
+    json.version = version;
 
-    return stringifyPackage(packageJSON, indent, newline);
+    return stringifyPackage(json, indent, newline);
   };
 
   const writeVersionManifest: Options.Updater["writeVersion"] = (
     contents,
     version
   ) => {
-    const manifestJSON = JSON.parse(contents);
-    const indent = detectIndent(contents).indent;
-    const newline = detectNewline(contents);
+    const { json, indent, newline } = getJsonContentFile(contents);
 
-    manifestJSON[MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME] = String(
+    json[MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME] = String(
       semver.major(version)
     );
 
-    return stringifyPackage(manifestJSON, indent, newline);
+    return stringifyPackage(json, indent, newline);
   };
 
   return [
     {
       filename: "package.json",
-      //@ts-expect-error
+      //@ts-expect-error fix ошибки внутри библиотеки связанной с валидацией
       readVersion: readVersionPackageJson,
       writeVersion: writeVersionPackageJson,
       updater: {
@@ -96,7 +91,7 @@ const getBumpFiles = (manifestWidgetPath: string): Options.VersionFile[] => {
 
     {
       filename: manifestWidgetPath,
-      //@ts-expect-error
+      //@ts-expect-error fix ошибки внутри библиотеки связанной с валидацией
       readVersion: readVersionManifest,
       writeVersion: writeVersionManifest,
       updater: {
@@ -105,6 +100,53 @@ const getBumpFiles = (manifestWidgetPath: string): Options.VersionFile[] => {
       },
     },
   ];
+};
+
+type TVersionOnReleaseParams = {
+  globalPaths: GlobalPaths;
+  manifestWidgetPath: string;
+};
+
+const getVersionOnRelease = async ({
+  globalPaths,
+  manifestWidgetPath,
+}: TVersionOnReleaseParams) => {
+  const releaseType = await getRecommendedReleaseType(globalPaths.appPath);
+
+  const [packageJsonContent, widgetManifestContent] = await Promise.all([
+    fs.readFile(globalPaths.appPackageJson, {
+      encoding: "utf-8",
+    }),
+    fs.readFile(manifestWidgetPath, {
+      encoding: "utf-8",
+    }),
+  ]);
+
+  const packageJSON = JSON.parse(packageJsonContent);
+  const currentWidgetVersion: string = packageJSON.version;
+  const manifestJSON = JSON.parse(widgetManifestContent);
+  const minSystemVersionFromManifest: string | undefined =
+    manifestJSON?.[MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME];
+
+  let newVersion = currentWidgetVersion;
+
+  if (releaseType === "major") {
+    const majorWidgetVersion = semver.major(currentWidgetVersion);
+    const minMajorVersion = majorWidgetVersion + 1;
+
+    const minSystemVersion = await number({
+      message:
+        "Введите минимальную версию системы в которой работает виджет (в формате 2409): ",
+      min: minMajorVersion,
+      validate: validateSystemVersion(majorWidgetVersion),
+    });
+
+    newVersion = getBumpedMajorVersion(currentWidgetVersion, minSystemVersion!);
+  } else {
+    newVersion = semver.inc(currentWidgetVersion, releaseType)!;
+  }
+
+  return newVersion;
 };
 
 export const runReleaseWidget = async (options: MergedReleaseOptions) => {
@@ -122,53 +164,8 @@ export const runReleaseWidget = async (options: MergedReleaseOptions) => {
 
   const isFirstRelease = first || !(await isExist(changelogFile));
 
-  const releaseType = await getRecommendedReleaseType(globalPaths.appPath);
-
-  const getVersionOnRelease = async () => {
-    const packageJsonContent = await fs.readFile(globalPaths.appPackageJson, {
-      encoding: "utf-8",
-    });
-
-    const widgetManifestContent = await fs.readFile(manifestWidgetPath, {
-      encoding: "utf-8",
-    });
-
-    const packageJSON = JSON.parse(packageJsonContent);
-    const indentPackageJson = detectIndent(packageJsonContent).indent;
-    const newlinePackageJson = detectNewline(packageJsonContent);
-    const currentWidgetVersion: string = packageJSON.version;
-
-    const manifestJSON = JSON.parse(widgetManifestContent);
-    const indentManifest = detectIndent(widgetManifestContent).indent;
-    const newlineManifest = detectNewline(widgetManifestContent);
-    const minSystemVersionFromManifest: string | undefined =
-      manifestJSON?.[MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME];
-
-    let newVersion = currentWidgetVersion;
-
-    if (releaseType === "major") {
-      const majorWidgetVersion = semver.major(currentWidgetVersion);
-
-      const minSystemVersion = await number({
-        message:
-          "Введите минимальную версию системы в которой работает виджет (в формате 2409): ",
-        min: majorWidgetVersion,
-        validate: validateSystemVersion,
-      });
-
-      newVersion = getBumpedMajorVersion(
-        currentWidgetVersion,
-        minSystemVersion!
-      );
-    } else {
-      newVersion = semver.inc(currentWidgetVersion, releaseType)!;
-    }
-
-    return newVersion;
-  };
-
   await standardVersion({
-    releaseAs: await getVersionOnRelease(),
+    releaseAs: await getVersionOnRelease({ globalPaths, manifestWidgetPath }),
     header: "",
     dryRun: false,
     path: globalPaths.appPath,

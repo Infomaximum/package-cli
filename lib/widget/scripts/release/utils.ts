@@ -1,4 +1,6 @@
 import { Bumper } from "conventional-recommended-bump";
+import detectIndent from "detect-indent";
+import { detectNewline } from "detect-newline";
 import semver, { type ReleaseType } from "semver";
 
 export const getRecommendedReleaseType = async (
@@ -24,25 +26,42 @@ export const getBumpedMajorVersion = (
   return newVersion;
 };
 
-export const validateSystemVersion = (version: number | undefined) => {
-  if (!version) {
-    return "Версия не была указана, укажите версию";
-  }
+export const validateSystemVersion =
+  (currentMajorVersion: number) => (version: number | undefined) => {
+    if (!version) {
+      return "Версия не была указана, укажите версию";
+    }
 
-  const versionStr = `${version}`;
+    const versionStr = `${version}`;
 
-  const versionRegex = /^\d{4}$/;
+    const versionRegex = /^\d{4}$/;
 
-  if (!versionRegex.test(versionStr)) {
-    return "Указанная версия не соответствует шаблону версии системы 2409";
-  }
+    if (!versionRegex.test(versionStr)) {
+      return `Указанная версия (${version}) не соответствует шаблону версии системы 2409`;
+    }
 
-  const year = parseInt(versionStr.slice(0, 2), 10);
-  const month = parseInt(versionStr.slice(2, 4), 10);
+    const year = parseInt(versionStr.slice(0, 2), 10);
+    const month = parseInt(versionStr.slice(2, 4), 10);
 
-  if (year >= 24 && month >= 1 && month <= 12) {
-    return true;
-  }
+    if (year >= 24 && month >= 1 && month <= 12) {
+      return true;
+    }
 
-  return "Указанная версия не является валидной";
+    if (version <= currentMajorVersion) {
+      return `Указанная версия системы (${version}) должна быть больше текущей версии (${currentMajorVersion}) `;
+    }
+
+    return `Указанная версия (${version}) не является валидной`;
+  };
+
+export const getJsonContentFile = (content: string) => {
+  const json = JSON.parse(content);
+  const indent = detectIndent(content).indent;
+  const newline = detectNewline(content);
+
+  return {
+    json,
+    indent,
+    newline,
+  };
 };
