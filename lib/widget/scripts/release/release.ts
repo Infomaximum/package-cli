@@ -20,21 +20,17 @@ import {
 } from "./utils.js";
 import { MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME } from "./const.js";
 
-const getSkipOptions = ({ changelog }: InputReleaseOptions): Options.Skip => {
-  if (changelog) {
-    return {
-      changelog: false,
-      bump: true,
-      commit: true,
-      tag: true,
-    };
-  }
-
+const getSkipOptions = ({
+  changelog,
+  bump,
+  commit,
+  tag,
+}: InputReleaseOptions): Options.Skip => {
   return {
-    changelog: false,
-    bump: false,
-    commit: false,
-    tag: false,
+    changelog,
+    bump,
+    commit,
+    tag,
   };
 };
 
@@ -155,7 +151,7 @@ const getVersionOnRelease = async ({
 };
 
 export const runReleaseWidget = async (options: MergedReleaseOptions) => {
-  const { first, widgetManifest } = options;
+  const { first, widgetManifest, dryRun } = options;
 
   const config = getConfigFromFile();
 
@@ -172,7 +168,7 @@ export const runReleaseWidget = async (options: MergedReleaseOptions) => {
   await standardVersion({
     releaseAs: await getVersionOnRelease({ globalPaths, manifestWidgetPath }),
     header: "",
-    dryRun: false,
+    dryRun,
     path: globalPaths.appPath,
     bumpFiles: getBumpFiles(manifestWidgetPath),
     firstRelease: isFirstRelease,

@@ -9,7 +9,11 @@ import { getConfigFromFile } from "../configs/file.js";
 
 export type InputReleaseOptions = {
   first: boolean;
+  dryRun: boolean;
+  tag: boolean;
   changelog: boolean;
+  bump: boolean;
+  commit: boolean;
 } & InputWidgetManifestOption;
 
 export type MergedReleaseOptions = ReturnType<
@@ -29,7 +33,11 @@ export const registerWidgetReleaseCommand = (widgetCommand: Command) => {
       "Первый релиз без повышения версии в package.json",
       false
     )
-    .option("-c, --changelog", "Генерация changelog", false)
+    .option("--no-tag", "Не создавать тег", false)
+    .option("--no-changelog", "Не создавать changelog", false)
+    .option("--no-commit", "Не создавать commit", false)
+    .option("--no-bump", "Не увеличивать версию", false)
+    .option("--dry-run", "Посмотреть что будет сделано при релизе", false)
     .action((options: InputReleaseOptions) => {
       runReleaseWidget(configMergeWithWidgetManifestOptions(config, options));
     });
