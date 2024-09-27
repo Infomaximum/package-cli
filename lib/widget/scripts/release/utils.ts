@@ -40,15 +40,15 @@ export const validateSystemVersion =
       return `Указанная версия (${version}) не соответствует шаблону версии системы 2409`;
     }
 
+    if (version <= currentMajorVersion) {
+      return `Указанная версия системы (${version}) должна быть больше текущей версии (${currentMajorVersion}) `;
+    }
+
     const year = parseInt(versionStr.slice(0, 2), 10);
     const month = parseInt(versionStr.slice(2, 4), 10);
 
-    if (year >= 24 && month >= 1 && month <= 12) {
+    if (year >= 23 && month >= 1 && month <= 12) {
       return true;
-    }
-
-    if (version <= currentMajorVersion) {
-      return `Указанная версия системы (${version}) должна быть больше текущей версии (${currentMajorVersion}) `;
     }
 
     return `Указанная версия (${version}) не является валидной`;

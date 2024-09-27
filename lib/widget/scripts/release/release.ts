@@ -34,13 +34,6 @@ const getSkipOptions = ({ changelog }: InputReleaseOptions): Options.Skip => {
   return {
     changelog: false,
     bump: false,
-    commit: true,
-    tag: true,
-  };
-
-  return {
-    changelog: false,
-    bump: false,
     commit: false,
     tag: false,
   };
@@ -132,14 +125,21 @@ const getVersionOnRelease = async ({
 
   if (releaseType === "major") {
     const majorWidgetVersion = semver.major(currentWidgetVersion);
-    const minMajorVersion = majorWidgetVersion + 1;
+    const currentMinSystemVersion =
+      minSystemVersionFromManifest && +minSystemVersionFromManifest;
 
-    const minSystemVersion = await number({
-      message:
-        "Введите минимальную версию системы в которой работает виджет (в формате 2409): ",
-      min: minMajorVersion,
-      validate: validateSystemVersion(majorWidgetVersion),
-    });
+    const isValidVersion =
+      typeof currentMinSystemVersion === "number" &&
+      !isNaN(currentMinSystemVersion) &&
+      currentMinSystemVersion > majorWidgetVersion;
+
+    const minSystemVersion = isValidVersion
+      ? currentMinSystemVersion
+      : await number({
+          message:
+            "Введите минимальную версию системы в которой работает виджет (в формате 2409): ",
+          validate: validateSystemVersion(majorWidgetVersion),
+        });
 
     newVersion = getBumpedMajorVersion(currentWidgetVersion, minSystemVersion!);
   } else {
