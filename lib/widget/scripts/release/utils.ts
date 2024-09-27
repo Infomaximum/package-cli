@@ -13,19 +13,6 @@ export const getRecommendedReleaseType = async (
   return (recommendation.releaseType as ReleaseType | undefined) ?? "patch";
 };
 
-export const getBumpedMajorVersion = (
-  currentVersion: string,
-  targetMajor: number
-) => {
-  let newVersion = currentVersion;
-
-  while (semver.major(newVersion) < targetMajor) {
-    newVersion = semver.inc(newVersion, "major")!;
-  }
-
-  return newVersion;
-};
-
 export const validateSystemVersion =
   (currentMajorVersion: number) => (version: number | undefined) => {
     if (!version) {

@@ -14,7 +14,6 @@ import type {
 } from "../../commands/release.js";
 import { getWidgetManifestPath } from "../../widgetPaths.js";
 import {
-  getBumpedMajorVersion,
   getJsonContentFile,
   getRecommendedReleaseType,
   validateSystemVersion,
@@ -141,7 +140,13 @@ const getVersionOnRelease = async ({
           validate: validateSystemVersion(majorWidgetVersion),
         });
 
-    newVersion = getBumpedMajorVersion(currentWidgetVersion, minSystemVersion!);
+    const version = `${minSystemVersion}.0.0`;
+
+    if (!semver.valid(version)) {
+      throw new Error(`Не валидная версия ${version}`);
+    }
+
+    newVersion = version;
   } else {
     newVersion = semver.inc(currentWidgetVersion, releaseType)!;
   }
