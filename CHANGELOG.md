@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.1](https://github.com/Infomaximum/package-cli/compare/v2.10.0...v2.10.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* запись в манифест только валидной версии ([fd07f58](https://github.com/Infomaximum/package-cli/commit/fd07f58b9eeeda5a43798160a34ce5e0590a580f))
+
 ## [2.10.0](https://github.com/Infomaximum/package-cli/compare/v2.9.0...v2.10.0) (2024-09-30)
 
 
