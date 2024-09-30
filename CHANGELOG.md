@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/Infomaximum/package-cli/compare/v2.9.0...v2.10.0) (2024-09-30)
+
+
+### Features
+
+* в шаблон добавлена команда релиза виджета ([21c3812](https://github.com/Infomaximum/package-cli/commit/21c3812f316f5527b9764d7a826dae782c2d670f))
+* добавлена информацию о версионировании пакета с виджетом ([e53b8dc](https://github.com/Infomaximum/package-cli/commit/e53b8dc2b0ca000e2b17e806e35b98af5701e102))
+* добавлены опции пропуска этапов ([40a8fe2](https://github.com/Infomaximum/package-cli/commit/40a8fe22647032c08a23e19c75816819d2a64066))
+* добавлены флаги ([8305b4f](https://github.com/Infomaximum/package-cli/commit/8305b4fea02545d13a0d90d81f639669e7b31973))
+* начальная реализация команды версионирования ([d9e5941](https://github.com/Infomaximum/package-cli/commit/d9e5941e84cd09a24fb210519b5cc8c1de2510e5))
+* реализовано версионирование ([745780d](https://github.com/Infomaximum/package-cli/commit/745780d2aedfbb520f3759c59c185b837ffd15db))
+
+
+### Bug Fixes
+
+* исправлена валидация версии системы ([5b36de8](https://github.com/Infomaximum/package-cli/commit/5b36de8714fdbfbaf42cda847104b57e994a4402))
+* исправлены команды ([eeb24a0](https://github.com/Infomaximum/package-cli/commit/eeb24a0ee30599d9230cadaae9b1f02f95d1fd03))
+* повышение версии ([7d9d8d1](https://github.com/Infomaximum/package-cli/commit/7d9d8d1b03ce0954e1dbffd2006a4b876a89df2d))
+
 ## [2.9.0](https://github.com/Infomaximum/package-cli/compare/v2.8.0...v2.9.0) (2024-09-25)
 
 
