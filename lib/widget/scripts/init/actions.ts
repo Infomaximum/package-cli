@@ -46,7 +46,7 @@ const addInitActions = (basePath: string, plop: NodePlopAPI) => {
         config.template,
         {
           encoding: "base64",
-        }
+        },
       );
 
       return config.path;

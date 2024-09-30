@@ -31,7 +31,7 @@ export const registerWidgetReleaseCommand = (widgetCommand: Command) => {
     .option(
       "--first",
       "Первый релиз без повышения версии в package.json",
-      false
+      false,
     )
     .option("--skip-tag", "Не создавать тег", false)
     .option("--skip-changelog", "Не создавать changelog", false)

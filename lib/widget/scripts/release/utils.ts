@@ -4,7 +4,7 @@ import { detectNewline } from "detect-newline";
 import semver, { type ReleaseType } from "semver";
 
 export const getRecommendedReleaseType = async (
-  projectPath: string
+  projectPath: string,
 ): Promise<ReleaseType> => {
   const bumper = new Bumper(projectPath).loadPreset("angular");
 

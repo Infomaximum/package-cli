@@ -10,7 +10,7 @@ export const registerCommands = (cli: Command) => {
   cli.version(
     packageJson.version,
     "-v, --version",
-    "текущая версия библиотеки"
+    "текущая версия библиотеки",
   );
 
   registerWidgetCommands(cli);

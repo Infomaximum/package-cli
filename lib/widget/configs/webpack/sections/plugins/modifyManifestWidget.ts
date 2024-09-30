@@ -46,7 +46,7 @@ export const getModifyManifestWidgetPlugin = ({
             }
           } else if (!manifestEntry) {
             const entryName = assetNames.find((asset) =>
-              asset.startsWith(`${WIDGET_OUTPUT_FILE_NAME}.`)
+              asset.startsWith(`${WIDGET_OUTPUT_FILE_NAME}.`),
             );
 
             if (entryName) {
@@ -55,7 +55,7 @@ export const getModifyManifestWidgetPlugin = ({
           }
 
           const sdkVersion = getSdkVersionFromPackageJson(
-            WIDGET_PATHS.appPackageJson
+            WIDGET_PATHS.appPackageJson,
           );
 
           currentJsonContent[WIDGET_SDK_VERSION_FIELD_NAME] = sdkVersion;

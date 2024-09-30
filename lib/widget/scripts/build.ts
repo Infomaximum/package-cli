@@ -61,7 +61,7 @@ export const runBuild = async (args: MergedBuildOptions) => {
 
   const widgetArchivePath = path.resolve(
     WIDGET_PATHS.appBuildPath,
-    WIDGET_ARCHIVE_FULL_NAME
+    WIDGET_ARCHIVE_FULL_NAME,
   );
 
   try {
@@ -77,7 +77,7 @@ export const runBuild = async (args: MergedBuildOptions) => {
         }),
         isBuildDevMode,
         entityArchivePath: widgetArchivePath,
-      })
+      }),
     );
 
     await checkLatestLibsVersion();
@@ -108,7 +108,7 @@ function build(config: webpack.Configuration) {
           stats?.toString({
             chunks: false,
             colors: true,
-          })
+          }),
         );
 
       res();

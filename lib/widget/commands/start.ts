@@ -26,15 +26,15 @@ function configMergeWithOptionsStart(options: InputStartOptions) {
   assertSilent(
     !!host,
     chalk.yellow(
-      `В конфигурациях не найден host, используется host по умолчанию "${WIDGET_DEFAULT_HOST}"`
-    )
+      `В конфигурациях не найден host, используется host по умолчанию "${WIDGET_DEFAULT_HOST}"`,
+    ),
   );
 
   assertSilent(
     !!port,
     chalk.yellow(
-      `В конфигурациях не найден port, используется port по умолчанию "${WIDGET_DEFAULT_PORT}"`
-    )
+      `В конфигурациях не найден port, используется port по умолчанию "${WIDGET_DEFAULT_PORT}"`,
+    ),
   );
 
   return {
@@ -54,6 +54,6 @@ export const registerWidgetStartCommand = (widgetCommand: Command) => {
     .option("--port <port>", "порт на котором будет доступен виджет")
     .option("--host <host>", "host на котором будет доступен виджет")
     .action((options: InputStartOptions) =>
-      runDevServer(configMergeWithOptionsStart(options))
+      runDevServer(configMergeWithOptionsStart(options)),
     );
 };

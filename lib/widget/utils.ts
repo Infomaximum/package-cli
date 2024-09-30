@@ -30,16 +30,16 @@ export async function checkLatestVersion(libName: string) {
     console.error(
       chalk.yellow(
         `\n\nA new version of the ${chalk.underline(
-          `${libName}@${latestVersion}`
+          `${libName}@${latestVersion}`,
         )} library has been released,\n` +
           `old version ${libVersionFromProject} is used in the project, it is recommended to ` +
           `update to the latest version \n` +
           chalk.green.bold(
             chalk.underline(`npm i --save ${libName}@${latestVersion}`) +
               " or " +
-              chalk.underline(`yarn upgrade ${libName}@${latestVersion}\n\n`)
-          )
-      )
+              chalk.underline(`yarn upgrade ${libName}@${latestVersion}\n\n`),
+          ),
+      ),
     );
   }
 }
@@ -54,7 +54,7 @@ export async function checkLatestLibsVersion() {
 }
 
 export function getSdkVersionFromPackageJson(
-  appPackageJsonPath: string
+  appPackageJsonPath: string,
 ): number {
   const packageJson = systemRequire(appPackageJsonPath);
 

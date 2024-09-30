@@ -31,7 +31,7 @@ export const generateIndexPath = (entryPath?: string) => {
 
   try {
     const mainIndexPath = resolveApp(
-      systemRequire(resolveApp("package.json"))?.main
+      systemRequire(resolveApp("package.json"))?.main,
     );
 
     if (mainIndexPath && fs.existsSync(mainIndexPath)) {

@@ -31,7 +31,7 @@ export function capitalizeFirstLetter(str: string = "") {
 export async function safeWriteFile(
   pathToFile: string,
   contents: any,
-  options: WriteFileOptions
+  options: WriteFileOptions,
 ) {
   await fs.mkdir(path.dirname(pathToFile), { recursive: true });
 
@@ -39,13 +39,13 @@ export async function safeWriteFile(
 }
 
 export async function getLatestVersionOfLibrary(
-  libraryName: string
+  libraryName: string,
 ): Promise<string> {
   const { stdout } = await execPromise(
     `npm show -j -p ${libraryName} version`,
     {
       timeout: 10000,
-    }
+    },
   );
 
   return JSON.parse(stdout);
@@ -65,7 +65,7 @@ export async function getLibraryVersionInProject(libraryName: string): Promise<{
 export function spawnCommand(
   command: string,
   args: ReadonlyArray<string>,
-  options: SpawnOptions
+  options: SpawnOptions,
 ) {
   const didSucceed = (code: number | null) => `${code}` === "0";
 
