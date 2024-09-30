@@ -43,7 +43,7 @@ const getBumpFiles = (manifestWidgetPath: string): Options.VersionFile[] => {
 
   const writeVersionPackageJson: Options.Updater["writeVersion"] = (
     contents,
-    version,
+    version
   ) => {
     const { json, indent, newline } = getJsonContentFile(contents);
 
@@ -54,13 +54,21 @@ const getBumpFiles = (manifestWidgetPath: string): Options.VersionFile[] => {
 
   const writeVersionManifest: Options.Updater["writeVersion"] = (
     contents,
-    version,
+    version
   ) => {
     const { json, indent, newline } = getJsonContentFile(contents);
 
-    json[MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME] = String(
-      semver.major(version),
-    );
+    const newVersion = semver.major(version);
+
+    const currentMajorVersion = semver.major(readVersionManifest(contents));
+
+    const validator = validateSystemVersion(currentMajorVersion);
+
+    const isValid = validator(newVersion);
+
+    if (isValid === true) {
+      json[MIN_SYSTEM_VERSION_MANIFEST_FIELD_NAME] = String(newVersion);
+    }
 
     return stringifyPackage(json, indent, newline);
   };
