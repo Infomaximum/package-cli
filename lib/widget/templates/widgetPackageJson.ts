@@ -13,6 +13,7 @@ export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
     "start": "im-package-cli widget start",
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "jest --passWithNoTests",
+    "release": "im-package-cli widget release",
     "changelog":"im-package-cli widget release --dry-run"
   },
   "dependencies": {
