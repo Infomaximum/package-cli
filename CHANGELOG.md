@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.2](https://github.com/Infomaximum/package-cli/compare/v2.10.1...v2.10.2) (2024-10-02)
+
+
+### Bug Fixes
+
+* возвращено стандартное семантическое версионирование ([2ba7fbc](https://github.com/Infomaximum/package-cli/commit/2ba7fbce4363bcd64957a594efb1d44d72ade484))
+* поля в манифесте виджета 2408 ([ed269f4](https://github.com/Infomaximum/package-cli/commit/ed269f4fc726f14349c308131817e4e75eeb2b36))
+
 ### [2.10.1](https://github.com/Infomaximum/package-cli/compare/v2.10.0...v2.10.1) (2024-09-30)
 
 
