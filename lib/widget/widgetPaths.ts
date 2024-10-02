@@ -27,13 +27,9 @@ export function generateWidgetPaths({
       return generateIndexPath(entry);
     },
 
-    widgetManifestJsonPath: getWidgetManifestPath(widgetManifest),
+    widgetManifestJsonPath: resolveApp(widgetManifest),
     widgetResourcesPath: assetsDir ? resolveApp(assetsDir) : null,
     widgetResourcesDirName: assetsDir ? path.basename(assetsDir) : null,
     widgetBuildDirPath: resolveApp(buildDir),
   };
-}
-
-export function getWidgetManifestPath(widgetManifest: string) {
-  return resolveApp(widgetManifest);
 }
