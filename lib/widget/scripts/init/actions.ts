@@ -38,7 +38,7 @@ type ActionData = Answers & {
 const addInitActions = (basePath: string, plop: NodePlopAPI) => {};
 
 const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
-  const packageIconName = "Package";
+  const packageIconName = "Widget";
 
   return [
     //---------------------------------------PACKAGE------------------------------------
