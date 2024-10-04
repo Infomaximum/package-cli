@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.4](https://github.com/Infomaximum/package-cli/compare/v2.10.3...v2.10.4) (2024-10-04)
+
+
+### Bug Fixes
+
+* имя иконки пакета с виджетом переименовано ([d7a90cf](https://github.com/Infomaximum/package-cli/commit/d7a90cf0629e39b0ea4c26f91e156c30eacfb0ec))
+
 ### [2.10.3](https://github.com/Infomaximum/package-cli/compare/v2.10.2...v2.10.3) (2024-10-04)
 
 
