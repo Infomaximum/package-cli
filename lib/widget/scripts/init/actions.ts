@@ -1,6 +1,5 @@
-import type { Actions, CustomActionConfig, NodePlopAPI } from "node-plop";
-import path from "node:path";
-import { getLatestVersionOfLibrary, safeWriteFile } from "../../../utils.js";
+import type { Actions, NodePlopAPI } from "node-plop";
+import { getLatestVersionOfLibrary } from "../../../utils.js";
 import { PACKAGE_MANIFEST_TEMPLATE } from "../../../package/templates/packageManifest.js";
 import { PACKAGE_ICON_TEMPLATE } from "../../../package/templates/packageIcon.js";
 import type { Answers } from "./prompts.js";
@@ -36,28 +35,10 @@ type ActionData = Answers & {
   widgetSDKVersion: string;
 };
 
-const addIconActionName = "addIcon";
-
-const addInitActions = (basePath: string, plop: NodePlopAPI) => {
-  plop.setActionType(addIconActionName, async function (answers, config, plop) {
-    try {
-      await safeWriteFile(
-        path.resolve(basePath, config.path),
-        config.template,
-        {
-          encoding: "base64",
-        },
-      );
-
-      return config.path;
-    } catch (error) {
-      throw error;
-    }
-  });
-};
+const addInitActions = (basePath: string, plop: NodePlopAPI) => {};
 
 const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
-  const packageIconName = "Widget";
+  const packageIconName = "Package";
 
   return [
     //---------------------------------------PACKAGE------------------------------------
@@ -71,10 +52,10 @@ const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
       },
     },
     {
-      type: addIconActionName,
-      path: `package/resources/${packageIconName}.png`,
+      type: "add",
+      path: `package/resources/${packageIconName}.svg`,
       template: PACKAGE_ICON_TEMPLATE,
-    } as CustomActionConfig<typeof addIconActionName>,
+    },
     ...(["ru", "en"] as const).flatMap((language) => [
       {
         type: "add",
