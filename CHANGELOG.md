@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.3](https://github.com/Infomaximum/package-cli/compare/v2.10.2...v2.10.3) (2024-10-04)
+
+
+### Bug Fixes
+
+* иконка пакета svg ([ab59ac9](https://github.com/Infomaximum/package-cli/commit/ab59ac9ee5c9c6159139ae659f6a2f7155d6cf49))
+
 ### [2.10.2](https://github.com/Infomaximum/package-cli/compare/v2.10.1...v2.10.2) (2024-10-02)
 
 
