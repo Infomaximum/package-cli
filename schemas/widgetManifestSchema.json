@@ -36,7 +36,10 @@
       "pattern": ".(svg|png)$",
       "examples": ["_resources/icon.svg"]
     },
-    "default_size_percentage": {
+    "is_beta": {
+      "type": "boolean"
+    },
+    "default_size": {
       "type": "object",
       "title": "Размеры виджета по умолчанию",
       "required": ["min_width", "min_height"],
@@ -50,5 +53,5 @@
       }
     }
   },
-  "required": ["uuid", "name", "min_system_version"]
+  "required": ["uuid", "name"]
 }

@@ -11,11 +11,10 @@ export const WIDGET_MANIFEST_TEMPLATE = `\
     "en": "{{${capitalizeHelperName} packageName}}",
     "ru": "{{${capitalizeHelperName} packageName}}"
   },
-  "default_size_percentage": {
-    "width": 60,
-    "height": 20,
-    "min_width": 8,
-    "min_height": 4
+  "is_beta": false,
+  "default_size": {
+    "min_width": 120,
+    "min_height": 120
   }
 }
 `;
