@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/Infomaximum/package-cli/compare/v2.10.4...v2.11.0) (2024-10-24)
+
+
+### Features
+
+* добавлено поле is_beta в схему манифеста ([543be3e](https://github.com/Infomaximum/package-cli/commit/543be3e75d9adec62587d6de19d167dd9c5904a9))
+
 ### [2.10.4](https://github.com/Infomaximum/package-cli/compare/v2.10.3...v2.10.4) (2024-10-04)
 
 
