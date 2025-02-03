@@ -2,7 +2,7 @@ import type { Actions, NodePlopAPI } from "node-plop";
 import { getLatestVersionOfLibrary } from "../../../utils.js";
 import { PACKAGE_MANIFEST_TEMPLATE } from "../../../package/templates/packageManifest.js";
 import { PACKAGE_ICON_TEMPLATE } from "../../../package/templates/packageIcon.js";
-import type { Answers } from "./prompts.js";
+import type { Answers } from "../../../package/scripts/prompts.js";
 import {
   CUSTOM_PACKAGE_CLI_LIB_NAME,
   MANIFEST_JSON_FILE_NAME,

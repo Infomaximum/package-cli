@@ -1,6 +1,7 @@
 import type { Command } from "commander";
 import { systemRequire } from "./utils.js";
 import { registerWidgetCommands } from "./widget/index.js";
+import { registerIntegrationCommands } from "./integration/index.js";
 
 const packageJson = systemRequire("../package.json");
 
@@ -10,8 +11,10 @@ export const registerCommands = (cli: Command) => {
   cli.version(
     packageJson.version,
     "-v, --version",
-    "текущая версия библиотеки",
+    "текущая версия библиотеки"
   );
 
   registerWidgetCommands(cli);
+
+  registerIntegrationCommands(cli);
 };

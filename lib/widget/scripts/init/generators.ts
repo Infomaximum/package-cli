@@ -1,6 +1,6 @@
 import type { NodePlopAPI } from "node-plop";
 import { getInitWidgetActions } from "./actions.js";
-import { prompts } from "./prompts.js";
+import { prompts } from "../../../package/scripts/prompts.js";
 import { addCommonHelpers } from "../../../plopHelpers.js";
 
 const generateWidgetGeneratorName = "widget-generate";

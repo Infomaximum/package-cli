@@ -1,0 +1,24 @@
+import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
+
+export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
+{
+  "name": "template_integration",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "im-package-cli integration build",
+    "start": "im-package-cli integration start",
+    "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
+    "test": "vitest --run"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.22.0",
+    "vitest": "^3.0.4"
+  }
+}
+`;
