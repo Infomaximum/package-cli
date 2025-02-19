@@ -19,7 +19,7 @@ export function generateWidgetPaths({
   widgetManifest,
   buildDir,
 }: Options) {
-  const globalPaths = generateGlobalPaths({ buildDirPath: buildDir });
+  const globalPaths = generateGlobalPaths({ buildDir });
 
   return {
     ...globalPaths,

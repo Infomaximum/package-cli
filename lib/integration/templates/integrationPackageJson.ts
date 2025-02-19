@@ -12,6 +12,9 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "test": "vitest --run"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-typescript": "^7.26.0",
     "@eslint/js": "^9.19.0",
      "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
     "eslint": "^9.19.0",

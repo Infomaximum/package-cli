@@ -2,6 +2,7 @@ import type { Actions, NodePlopAPI } from "node-plop";
 import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
 import type { Answers } from "../../package/scripts/prompts.js";
 import {
+  INTEGRATION_BABEL_CONFIG,
   INTEGRATION_ESLINTRC,
   INTEGRATION_GITIGNORE,
   INTEGRATION_TSCONFIG_JSON,
@@ -32,6 +33,11 @@ const actions = ({ packageCliVersion }: ActionData) => {
       type: "add",
       path: "tsconfig.json",
       template: INTEGRATION_TSCONFIG_JSON,
+    },
+    {
+      type: "add",
+      path: "babel.config.js",
+      template: INTEGRATION_BABEL_CONFIG,
     },
     {
       type: "add",

@@ -1,9 +1,10 @@
 import ZipPlugin from "zip-webpack-plugin";
 import RemovePlugin from "remove-files-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
+import CopyWebpackPlugin, { type ObjectPattern } from "copy-webpack-plugin";
 import type { Mode } from "../../../paths.js";
 import { JsonModifyWebpackPlugin } from "@infomaximum/json-modify-webpack-plugin";
 import {
+  compact,
   isExist,
   removeServiceFieldsForDevelopment,
   systemRequire,
@@ -23,7 +24,8 @@ type Params = {
   mode: Mode;
   PATHS: PackagePaths;
   isBuildDevMode: boolean;
-  entityArchivePath: string;
+  entityArchivePath?: string;
+  copyFiles?: ObjectPattern[];
 };
 
 export const getPackageBuildConfig = async ({
@@ -31,6 +33,7 @@ export const getPackageBuildConfig = async ({
   PATHS,
   isBuildDevMode,
   entityArchivePath,
+  copyFiles = [],
 }: Params) => {
   const entityVersion = systemRequire(PATHS.appPackageJson).version;
   const manifestPackageName = systemRequire(PATHS.packageManifestPath).name;
@@ -41,17 +44,18 @@ export const getPackageBuildConfig = async ({
 
   assertSimple(
     await isExist(PATHS.packageManifestPath),
-    `File ${PATHS.packageManifestPath} not found`,
+    `File ${PATHS.packageManifestPath} not found`
   );
 
-  assertSimple(
-    await isExist(entityArchivePath),
-    `File ${entityArchivePath} not found`,
-  );
+  entityArchivePath &&
+    assertSimple(
+      await isExist(entityArchivePath),
+      `File ${entityArchivePath} not found`
+    );
 
   return {
     mode,
-    entry: [PATHS.packageManifestPath, entityArchivePath],
+    entry: compact([PATHS.packageManifestPath, entityArchivePath]),
     output: {
       path: PATHS.appBuildPath,
       filename: packageFilename,
@@ -77,7 +81,7 @@ export const getPackageBuildConfig = async ({
     },
     plugins: [
       new CopyWebpackPlugin({
-        patterns: [{ from: PATHS.packagePath }],
+        patterns: [{ from: PATHS.packagePath }, ...copyFiles],
       }),
       new RemovePlugin({
         after: {

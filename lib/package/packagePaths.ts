@@ -1,7 +1,7 @@
 import { _resolveApp, generateGlobalPaths } from "../paths.js";
 
 type PackageOptions = {
-  buildDirPath: string;
+  buildDir: string;
   packageDir: string;
   packageManifest: string;
 };
@@ -11,9 +11,9 @@ export type PackagePaths = ReturnType<typeof generatePackagePaths>;
 export function generatePackagePaths({
   packageDir,
   packageManifest,
-  buildDirPath,
+  buildDir,
 }: PackageOptions) {
-  const globalPaths = generateGlobalPaths({ buildDirPath });
+  const globalPaths = generateGlobalPaths({ buildDir });
   const resolveApp = _resolveApp();
 
   const packagePath = resolveApp(packageDir);

@@ -1,7 +1,4 @@
-import webpack, {
-  type Configuration,
-  type WebpackPluginInstance,
-} from "webpack";
+import { type Configuration, type WebpackPluginInstance } from "webpack";
 import { type Mode } from "../../paths.js";
 import { getPackageBuildConfig } from "../../package/configs/webpack/buildPackage.js";
 import { merge } from "webpack-merge";
@@ -16,6 +13,7 @@ import { generateWidgetPaths } from "../widgetPaths.js";
 import { generatePackagePaths } from "../../package/packagePaths.js";
 import { checkLatestLibsVersion } from "../utils.js";
 import type { MergedBuildOptions } from "../commands/build.js";
+import { runWebpackBuild } from "../../utils.js";
 
 export const runBuild = async (args: MergedBuildOptions) => {
   const mode: Mode = "production";
@@ -61,23 +59,23 @@ export const runBuild = async (args: MergedBuildOptions) => {
 
   const widgetArchivePath = path.resolve(
     WIDGET_PATHS.appBuildPath,
-    WIDGET_ARCHIVE_FULL_NAME,
+    WIDGET_ARCHIVE_FULL_NAME
   );
 
   try {
-    await build(widgetConfig as Configuration);
+    await runWebpackBuild(widgetConfig as Configuration);
     console.log("");
-    await build(
+    await runWebpackBuild(
       await getPackageBuildConfig({
         mode,
         PATHS: generatePackagePaths({
-          buildDirPath: buildDir,
+          buildDir,
           packageDir,
           packageManifest,
         }),
         isBuildDevMode,
         entityArchivePath: widgetArchivePath,
-      }),
+      })
     );
 
     await checkLatestLibsVersion();
@@ -87,31 +85,3 @@ export const runBuild = async (args: MergedBuildOptions) => {
     process.exit(1);
   }
 };
-
-function build(config: webpack.Configuration) {
-  const compiler = webpack(config);
-
-  return new Promise<void>((res, rej) => {
-    compiler.run((err: any, stats) => {
-      if (err) {
-        console.error(err.stack || err);
-
-        if (err?.details) {
-          console.error(err.details);
-        }
-
-        rej();
-      }
-
-      stats &&
-        console.log(
-          stats?.toString({
-            chunks: false,
-            colors: true,
-          }),
-        );
-
-      res();
-    });
-  });
-}

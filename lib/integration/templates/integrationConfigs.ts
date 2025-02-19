@@ -13,6 +13,15 @@ export const INTEGRATION_TSCONFIG_JSON = `\
 }
 `;
 
+export const INTEGRATION_BABEL_CONFIG = `\
+module.exports = {
+  presets: [
+    "@babel/preset-env",
+    "@babel/preset-typescript",
+  ],
+};
+`;
+
 export const INTEGRATION_GITIGNORE = `\
 # dependencies
 /node_modules

@@ -3,33 +3,29 @@ import { assertSimple } from "@infomaximum/assert";
 import { DEFAULT_BUILD_DIR_NAME } from "../../const.js";
 import type { WidgetRCConfig } from "../configs/file.js";
 import type { Command } from "commander";
+import {
+  registerPackageOptions,
+  type InputPackageOptions,
+} from "../../package/commands.js";
 
 export type InputCommonOptions = {
   entry: string;
   widgetManifest?: string;
-  packageManifest?: string;
-  packageDir?: string;
   assetsDir?: string;
-};
+} & InputPackageOptions;
 
 export type MergedCommonOptions = ReturnType<
   typeof configMergeWithOptionsCommon
 >;
 
 export function registerCommonOption(command: Command) {
+  registerPackageOptions(command);
+
   command
     .option("--entry <path>", "путь до entrypoint")
     .option(
       "--assets-dir <assetsDirPath>",
       "путь до директории с ресурсами виджета, которые будут перенесены в архив с виджетом"
-    )
-    .option(
-      "--package-manifest <manifestPath>",
-      "путь до файла манифеста пакета"
-    )
-    .option(
-      "--package-dir <packageDirPath>",
-      "путь до директории с файлами пакета"
     )
     .option(
       "--widget-manifest <manifestPath>",
