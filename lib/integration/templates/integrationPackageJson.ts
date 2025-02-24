@@ -1,4 +1,5 @@
 import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
+import { INTEGRATION_SDK_LIB_NAME } from "../const.js";
 
 export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
 {
@@ -16,7 +17,8 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-typescript": "^7.26.0",
     "@eslint/js": "^9.19.0",
-     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
+    "${INTEGRATION_SDK_LIB_NAME}": "^{{integrationSdkVersion}}",
+    "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "typescript": "^5.7.2",

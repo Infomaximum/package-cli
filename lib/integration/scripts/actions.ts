@@ -1,4 +1,4 @@
-import type { Actions, NodePlopAPI } from "node-plop";
+import type { Actions } from "node-plop";
 import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
 import type { Answers } from "../../package/scripts/prompts.js";
 import {
@@ -12,12 +12,14 @@ import { getPackageActions } from "../../package/scripts/actions.js";
 import { INTEGRATION_INDEX_TEMPLATE } from "../templates/integrationIndex.js";
 import { INTEGRATION_PACKAGE_JSON_TEMPLATE } from "../templates/integrationPackageJson.js";
 import { getLatestVersionOfLibrary } from "../../utils.js";
+import { INTEGRATION_SDK_LIB_NAME } from "../const.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
+  integrationSdkVersion: string;
 };
 
-const actions = ({ packageCliVersion }: ActionData) => {
+const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
   return [
     ...getPackageActions({ packageType: "integration" }),
 
@@ -53,20 +55,22 @@ const actions = ({ packageCliVersion }: ActionData) => {
       type: "add",
       path: "package.json",
       template: INTEGRATION_PACKAGE_JSON_TEMPLATE,
-      data: { packageCliVersion },
+      data: { packageCliVersion, integrationSdkVersion },
     },
   ] satisfies Actions;
 };
 
 const getInitIntegrationActions = async () => {
-  const [packageCliVersion] = await Promise.all([
+  const [packageCliVersion, integrationSdkVersion] = await Promise.all([
     getLatestVersionOfLibrary(CUSTOM_PACKAGE_CLI_LIB_NAME),
+    getLatestVersionOfLibrary(INTEGRATION_SDK_LIB_NAME),
   ]);
 
   return (data: Answers) =>
     actions({
       ...data,
       packageCliVersion,
+      integrationSdkVersion,
     });
 };
 
