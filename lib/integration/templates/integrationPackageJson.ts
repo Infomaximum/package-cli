@@ -8,7 +8,7 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
   "main": "src/index.ts",
   "scripts": {
     "build": "im-package-cli integration build",
-    "start": "im-package-cli integration start",
+    "dev": "im-package-cli integration build --watch",
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "vitest --run"
   },

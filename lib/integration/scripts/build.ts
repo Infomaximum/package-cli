@@ -1,16 +1,17 @@
-import type { Configuration } from "webpack";
-import { runWebpackBuild } from "../../utils.js";
+import webpack, { type Configuration } from "webpack";
+import { handleWebpackCallback, runWebpackBuild } from "../../utils.js";
 import type { InputBuildIntegrationOptions } from "../commands/build.js";
 import { getCommonIntegrationConfig } from "../configs/webpack/common.js";
 import { generateIntegrationPaths } from "../integrationPaths.js";
 import chalk from "chalk";
 import { getPackageBuildConfig } from "../../package/configs/webpack/buildPackage.js";
 import path from "path";
+import { merge } from "webpack-merge";
 
 export const runBuildIntegration = async (
   options: InputBuildIntegrationOptions
 ) => {
-  const { entry, buildDir, packageDir, packageManifest, type } = options;
+  const { entry, buildDir, packageDir, packageManifest, type, watch } = options;
 
   const INTEGRATION_PATHS = generateIntegrationPaths({
     entry,
@@ -21,18 +22,31 @@ export const runBuildIntegration = async (
 
   const mode = "production";
 
-  const config = getCommonIntegrationConfig(mode, INTEGRATION_PATHS);
+  const commonConfig = getCommonIntegrationConfig(mode, INTEGRATION_PATHS);
+
+  const config = merge([
+    commonConfig,
+    watch && {
+      watch: true,
+    },
+  ]);
 
   const integrationScriptPath = path.resolve(
     INTEGRATION_PATHS.appBuildPath,
     INTEGRATION_PATHS.outputFile
   );
 
+  if (watch) {
+    webpack(config, (err, stats) => handleWebpackCallback(err, stats));
+
+    return;
+  }
+
   try {
     await runWebpackBuild(config as Configuration);
 
-    type === "package" &&
-      (await runWebpackBuild(
+    if (type === "package" && !watch) {
+      await runWebpackBuild(
         await getPackageBuildConfig({
           mode,
           PATHS: INTEGRATION_PATHS,
@@ -40,7 +54,8 @@ export const runBuildIntegration = async (
           entityArchivePath: integrationScriptPath,
           copyFiles: [{ from: integrationScriptPath }],
         })
-      ));
+      );
+    }
   } catch (error: any) {
     console.error(chalk.red("\nFailed to compile.\n"));
     console.error(chalk.red(error));

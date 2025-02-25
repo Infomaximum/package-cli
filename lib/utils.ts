@@ -5,7 +5,7 @@ import { spawn, type SpawnOptions, exec } from "node:child_process";
 import util from "node:util";
 import Module from "node:module";
 import { MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT } from "./const.js";
-import webpack, { type Configuration } from "webpack";
+import webpack, { type Configuration, type Stats } from "webpack";
 
 const execPromise = util.promisify(exec);
 
@@ -100,26 +100,37 @@ export function runWebpackBuild(config: Configuration) {
   const compiler = webpack(config);
 
   return new Promise<void>((res, rej) => {
-    compiler.run((err: any, stats) => {
-      if (err) {
-        console.error(err.stack || err);
-
-        if (err?.details) {
-          console.error(err.details);
-        }
-
-        rej();
-      }
-
-      stats &&
-        console.log(
-          stats?.toString({
-            chunks: false,
-            colors: true,
-          })
-        );
-
-      res();
-    });
+    compiler.run((err: any, stats) =>
+      handleWebpackCallback(err, stats, res, rej)
+    );
   });
+}
+
+export function handleWebpackCallback(
+  err?: any | null,
+  stats?: Stats,
+  okCb?: () => void,
+  errCb?: () => void
+) {
+  if (err) {
+    console.error(err.stack || err);
+
+    if (err?.details) {
+      console.error(err.details);
+    }
+
+    errCb?.();
+
+    return;
+  }
+
+  stats &&
+    console.log(
+      stats.toString({
+        chunks: false,
+        colors: true,
+      })
+    );
+
+  okCb?.();
 }

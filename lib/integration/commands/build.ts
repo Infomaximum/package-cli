@@ -9,6 +9,7 @@ export type InputBuildIntegrationOptions = {
   entry: string;
   buildDir: string;
   type: BuildType;
+  watch: boolean;
 } & InputPackageOptions;
 
 export type BuildType = "package" | "script";
@@ -33,6 +34,7 @@ export const registerIntegrationBuildCommand = (
       "тип сборки, <package> - сборка пакета (в архив), <script> - сборка в js файл",
       "package"
     )
+    .option("--watch", "при изменении файлов скрипт будет пересобран", false)
     .action((options: InputBuildIntegrationOptions) =>
       runBuildIntegration(options)
     );
