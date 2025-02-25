@@ -8,7 +8,10 @@ import {
 export type InputBuildIntegrationOptions = {
   entry: string;
   buildDir: string;
+  type: BuildType;
 } & InputPackageOptions;
+
+export type BuildType = "package" | "script";
 
 export const registerIntegrationBuildCommand = (
   integrationCommand: Command
@@ -24,6 +27,11 @@ export const registerIntegrationBuildCommand = (
       "--build-dir <buildDirPath>",
       "путь до директории в которую будет собран пакет",
       "build"
+    )
+    .option(
+      "--type <buildType>",
+      "тип сборки, <package> - сборка пакета (в архив), <script> - сборка в js файл",
+      "package"
     )
     .action((options: InputBuildIntegrationOptions) =>
       runBuildIntegration(options)

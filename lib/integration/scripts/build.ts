@@ -10,7 +10,7 @@ import path from "path";
 export const runBuildIntegration = async (
   options: InputBuildIntegrationOptions
 ) => {
-  const { entry, buildDir, packageDir, packageManifest } = options;
+  const { entry, buildDir, packageDir, packageManifest, type } = options;
 
   const INTEGRATION_PATHS = generateIntegrationPaths({
     entry,
@@ -30,16 +30,17 @@ export const runBuildIntegration = async (
 
   try {
     await runWebpackBuild(config as Configuration);
-    console.log("");
-    await runWebpackBuild(
-      await getPackageBuildConfig({
-        mode,
-        PATHS: INTEGRATION_PATHS,
-        isBuildDevMode: false,
-        entityArchivePath: integrationScriptPath,
-        copyFiles: [{ from: integrationScriptPath }],
-      })
-    );
+
+    type === "package" &&
+      (await runWebpackBuild(
+        await getPackageBuildConfig({
+          mode,
+          PATHS: INTEGRATION_PATHS,
+          isBuildDevMode: false,
+          entityArchivePath: integrationScriptPath,
+          copyFiles: [{ from: integrationScriptPath }],
+        })
+      ));
   } catch (error: any) {
     console.error(chalk.red("\nFailed to compile.\n"));
     console.error(chalk.red(error));
