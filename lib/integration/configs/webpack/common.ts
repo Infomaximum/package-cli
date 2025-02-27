@@ -40,6 +40,9 @@ export const getCommonIntegrationConfig = (
     },
     optimization: {
       minimize: true,
+      concatenateModules: true,
+      splitChunks: false,
+      runtimeChunk: false,
       minimizer: [
         new TerserPlugin({
           terserOptions: {
