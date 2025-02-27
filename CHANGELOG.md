@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/Infomaximum/package-cli/compare/v2.11.0...v2.12.0) (2025-02-27)
+
+
+### Features
+
+* добавлена команда для автопересборки скрипта интеграции ([986f73b](https://github.com/Infomaximum/package-cli/commit/986f73b4eeedc5370fb5eca5ecdee5d6e9769614))
+* добавлена команда инициализации проекта с интеграцией ([f8029a5](https://github.com/Infomaximum/package-cli/commit/f8029a5bfa1d358edaf076c0331687f20f577927))
+* добавлена сборка интеграции ([59e10db](https://github.com/Infomaximum/package-cli/commit/59e10db99bcdee56f64d3e937def4db0fe05cb6d))
+* добавлена сборка скрипта без сборки пакета ([45a95d0](https://github.com/Infomaximum/package-cli/commit/45a95d0d9354bffc308065bd66e390afc20d660f))
+* optimization build ([72afabb](https://github.com/Infomaximum/package-cli/commit/72afabbf0011cf215fc5ff74e40bd87809ba7c51))
+
+
+### Bug Fixes
+
+* актуализация шаблона ([99a2c8a](https://github.com/Infomaximum/package-cli/commit/99a2c8abb22b481a9ecc9c6f74d720c7890990ff))
+* ключ интеграции ([d88502f](https://github.com/Infomaximum/package-cli/commit/d88502fec7abdcda82b01418c2e473995e19e2f8))
+* типы из @infomaximum/integration-sdk ([85256f4](https://github.com/Infomaximum/package-cli/commit/85256f43d1a8d3aa9489c7a6ce48f86577439ccb))
+
 ## [2.11.0](https://github.com/Infomaximum/package-cli/compare/v2.10.4...v2.11.0) (2024-10-24)
 
 
