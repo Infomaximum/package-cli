@@ -18,7 +18,7 @@ export class Definition implements IDefinition<WidgetSettings, IGroupSettings> {
 
   public fillSettings: IFillSettings<WidgetSettings> = fillSettings;
 
-  getLocalMigrateVersions(): string[] {
+  public getLocalMigrateVersions(): string[] {
     return [];
   }
 }
