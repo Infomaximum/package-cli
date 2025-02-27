@@ -6,9 +6,6 @@ import type {
   IFillSettings,
   IGroupSettings,
   IPanelDescriptionCreator,
-  IWidgetDimension,
-  IWidgetDimensionHierarchy,
-  IWidgetMeasure,
 } from "${WIDGET_SDK_LIB_NAME}";
 import { fillSettings, type WidgetSettings } from "./settings";
 import { createPanelDescription } from "./panel";
@@ -21,13 +18,7 @@ export class Definition implements IDefinition<WidgetSettings, IGroupSettings> {
 
   public fillSettings: IFillSettings<WidgetSettings> = fillSettings;
 
-  public getDimensions(
-    settings: WidgetSettings
-  ): (IWidgetDimension | IWidgetDimensionHierarchy)[] {
-    return [];
-  }
-
-  public getMeasures(settings: WidgetSettings): IWidgetMeasure[] {
+  getLocalMigrateVersions(): string[] {
     return [];
   }
 }

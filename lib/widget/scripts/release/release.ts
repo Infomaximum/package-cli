@@ -57,7 +57,7 @@ export const runReleaseWidget = async (options: InputReleaseOptions) => {
   const config = getConfigFromFile();
 
   const globalPaths = generateGlobalPaths({
-    buildDirPath: config?.buildDir ?? DEFAULT_BUILD_DIR_NAME,
+    buildDir: config?.buildDir ?? DEFAULT_BUILD_DIR_NAME,
   });
 
   const changelogFile = path.resolve(globalPaths.appPath, "CHANGELOG.md");

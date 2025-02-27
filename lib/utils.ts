@@ -5,6 +5,7 @@ import { spawn, type SpawnOptions, exec } from "node:child_process";
 import util from "node:util";
 import Module from "node:module";
 import { MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT } from "./const.js";
+import webpack, { type Configuration, type Stats } from "webpack";
 
 const execPromise = util.promisify(exec);
 
@@ -31,7 +32,7 @@ export function capitalizeFirstLetter(str: string = "") {
 export async function safeWriteFile(
   pathToFile: string,
   contents: any,
-  options: WriteFileOptions,
+  options: WriteFileOptions
 ) {
   await fs.mkdir(path.dirname(pathToFile), { recursive: true });
 
@@ -39,13 +40,13 @@ export async function safeWriteFile(
 }
 
 export async function getLatestVersionOfLibrary(
-  libraryName: string,
+  libraryName: string
 ): Promise<string> {
   const { stdout } = await execPromise(
     `npm show -j -p ${libraryName} version`,
     {
       timeout: 10000,
-    },
+    }
   );
 
   return JSON.parse(stdout);
@@ -65,7 +66,7 @@ export async function getLibraryVersionInProject(libraryName: string): Promise<{
 export function spawnCommand(
   command: string,
   args: ReadonlyArray<string>,
-  options: SpawnOptions,
+  options: SpawnOptions
 ) {
   const didSucceed = (code: number | null) => `${code}` === "0";
 
@@ -94,3 +95,42 @@ export function removeServiceFieldsForDevelopment(obj: Record<string, any>) {
 
 export const compact = <T>(items: (T | null | undefined | false | "" | 0)[]) =>
   items.filter(Boolean) as T[];
+
+export function runWebpackBuild(config: Configuration) {
+  const compiler = webpack(config);
+
+  return new Promise<void>((res, rej) => {
+    compiler.run((err: any, stats) =>
+      handleWebpackCallback(err, stats, res, rej)
+    );
+  });
+}
+
+export function handleWebpackCallback(
+  err?: any | null,
+  stats?: Stats,
+  okCb?: () => void,
+  errCb?: () => void
+) {
+  if (err) {
+    console.error(err.stack || err);
+
+    if (err?.details) {
+      console.error(err.details);
+    }
+
+    errCb?.();
+
+    return;
+  }
+
+  stats &&
+    console.log(
+      stats.toString({
+        chunks: false,
+        colors: true,
+      })
+    );
+
+  okCb?.();
+}

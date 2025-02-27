@@ -5,7 +5,7 @@ import chalk from "chalk";
 
 export type TGeneratePathsArgs = {
   cwd?: string;
-  buildDirPath: string;
+  buildDir: string;
 };
 
 export type Mode = "development" | "production";
@@ -31,7 +31,7 @@ export const generateIndexPath = (entryPath?: string) => {
 
   try {
     const mainIndexPath = resolveApp(
-      systemRequire(resolveApp("package.json"))?.main,
+      systemRequire(resolveApp("package.json"))?.main
     );
 
     if (mainIndexPath && fs.existsSync(mainIndexPath)) {
@@ -46,13 +46,13 @@ export const generateIndexPath = (entryPath?: string) => {
 };
 
 export const generateGlobalPaths = (args: TGeneratePathsArgs) => {
-  const { cwd, buildDirPath } = args || {};
+  const { cwd, buildDir } = args || {};
 
   const resolveApp = _resolveApp(cwd);
 
   return {
     appPath: resolveApp("."),
-    appBuildPath: resolveApp(buildDirPath),
+    appBuildPath: resolveApp(buildDir),
     appPackageJson: resolveApp("package.json"),
     appTsConfig: resolveApp("tsconfig.json"),
     appNodeModules: resolveApp("node_modules"),

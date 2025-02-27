@@ -1,12 +1,17 @@
 import type { Command } from "commander";
-import { runInitWidget } from "../scripts/init/init.js";
+import { runInitEntityScript } from "../../plopHelpers.js";
+import { getInitWidgetActions } from "../scripts/init/actions.js";
 
 export const registerWidgetInitCommand = (widgetCommand: Command) => {
   const widgetInitCommand = widgetCommand.command("init <project-directory>");
 
   widgetInitCommand
     .description("Инициализация проекта виджета")
-    .action((dirName: string) => {
-      runInitWidget(dirName);
+    .action(async (dirName: string) => {
+      runInitEntityScript({
+        dirName,
+        entity: "widget",
+        actions: await getInitWidgetActions(),
+      });
     });
 };

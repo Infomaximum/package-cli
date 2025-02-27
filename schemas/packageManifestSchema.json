@@ -21,7 +21,7 @@
       "title": "Имя пакета"
     },
     "type": {
-      "enum": ["widget", "application", "workspace"]
+      "enum": ["widget", "application", "workspace", "integration"]
     },
     "version": {
       "type": "string",

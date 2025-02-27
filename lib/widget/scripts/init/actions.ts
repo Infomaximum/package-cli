@@ -2,7 +2,7 @@ import type { Actions, NodePlopAPI } from "node-plop";
 import { getLatestVersionOfLibrary } from "../../../utils.js";
 import { PACKAGE_MANIFEST_TEMPLATE } from "../../../package/templates/packageManifest.js";
 import { PACKAGE_ICON_TEMPLATE } from "../../../package/templates/packageIcon.js";
-import type { Answers } from "./prompts.js";
+import type { Answers } from "../../../package/scripts/prompts.js";
 import {
   CUSTOM_PACKAGE_CLI_LIB_NAME,
   MANIFEST_JSON_FILE_NAME,
@@ -34,8 +34,6 @@ type ActionData = Answers & {
   packageCliVersion: string;
   widgetSDKVersion: string;
 };
-
-const addInitActions = (basePath: string, plop: NodePlopAPI) => {};
 
 const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
   const packageIconName = "Widget";
@@ -151,9 +149,7 @@ const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
   ] satisfies Actions;
 };
 
-const getInitWidgetActions = async (basePath: string, plop: NodePlopAPI) => {
-  addInitActions(basePath, plop);
-
+const getInitWidgetActions = async () => {
   const [packageCliVersion, widgetSDKVersion] = await Promise.all([
     getLatestVersionOfLibrary(CUSTOM_PACKAGE_CLI_LIB_NAME),
     getLatestVersionOfLibrary(WIDGET_SDK_LIB_NAME),
