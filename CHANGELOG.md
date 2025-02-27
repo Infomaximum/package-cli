@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/Infomaximum/package-cli/compare/v2.12.0...v2.13.0) (2025-02-27)
+
+
+### Features
+
+* добавлен скрипт по сборке интеграции в js файл ([4ea5bc6](https://github.com/Infomaximum/package-cli/commit/4ea5bc6eb19fc80433de349c9d977fffe1c47eb4))
+
+
+### Bug Fixes
+
+* **template:** модификатор доступа ([95e9190](https://github.com/Infomaximum/package-cli/commit/95e91903c73a92e7e27f1507dd832a530a75a5a5))
+
 ## [2.12.0](https://github.com/Infomaximum/package-cli/compare/v2.11.0...v2.12.0) (2025-02-27)
 
 
