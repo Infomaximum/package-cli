@@ -1,6 +1,6 @@
 # @infomaximum/package-cli
 
-@infomaximum/package-cli - предоставляет разработчикам набор команд и функций для сборки пакетов, запуска пакетов в режиме разработки и создания шаблонного кода для виджетов и приложений.
+@infomaximum/package-cli - предоставляет разработчикам набор команд и функций для сборки пакетов, запуска пакетов в режиме разработки и создания шаблонного кода для виджетов, приложений и интеграций.
 
 <a href="https://www.npmjs.com/package/@infomaximum/package-cli">
     <img alt="npm" src="https://img.shields.io/npm/v/@infomaximum/package-cli?style=for-the-badge">
