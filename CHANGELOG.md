@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.14.0](https://github.com/Infomaximum/package-cli/compare/v2.13.1...v2.14.0) (2025-02-28)
+
+
+### Features
+
+* добавлен флаг для копирования скрипта в буфер обмена ([8b6eaab](https://github.com/Infomaximum/package-cli/commit/8b6eaab11a11bcabca5bae72074ecc356e069d97))
+
 ### [2.13.1](https://github.com/Infomaximum/package-cli/compare/v2.13.0...v2.13.1) (2025-02-28)
 
 
