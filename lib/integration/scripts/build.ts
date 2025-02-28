@@ -7,11 +7,13 @@ import chalk from "chalk";
 import { getPackageBuildConfig } from "../../package/configs/webpack/buildPackage.js";
 import path from "path";
 import { merge } from "webpack-merge";
+import { CopyToClipboardPlugin } from "../configs/webpack/CopyToClipboardPlugin.js";
 
 export const runBuildIntegration = async (
   options: InputBuildIntegrationOptions
 ) => {
-  const { entry, buildDir, packageDir, packageManifest, type, watch } = options;
+  const { entry, buildDir, packageDir, packageManifest, type, watch, copy } =
+    options;
 
   const INTEGRATION_PATHS = generateIntegrationPaths({
     entry,
@@ -29,6 +31,8 @@ export const runBuildIntegration = async (
     watch && {
       watch: true,
     },
+
+    copy && { plugins: [new CopyToClipboardPlugin()] },
   ]);
 
   const integrationScriptPath = path.resolve(

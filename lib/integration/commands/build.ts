@@ -10,6 +10,7 @@ export type InputBuildIntegrationOptions = {
   buildDir: string;
   type: BuildType;
   watch: boolean;
+  copy: boolean;
 } & InputPackageOptions;
 
 export type BuildType = "package" | "script";
@@ -35,6 +36,7 @@ export const registerIntegrationBuildCommand = (
       "package"
     )
     .option("--watch", "при изменении файлов скрипт будет пересобран", false)
+    .option("--copy", "копирование скрипта интеграции в буфер обмена", false)
     .action((options: InputBuildIntegrationOptions) =>
       runBuildIntegration(options)
     );
