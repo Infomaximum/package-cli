@@ -45,7 +45,12 @@ export const getCommonIntegrationConfig = (
       runtimeChunk: false,
       minimizer: [
         new TerserPlugin({
+          parallel: true,
+          extractComments: false,
           terserOptions: {
+            format: {
+              comments: false,
+            },
             compress: {
               booleans: false,
             },
