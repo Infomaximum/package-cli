@@ -34,6 +34,9 @@ export const INTEGRATION_GITIGNORE = `\
 # production
 /dist
 
+#documentation
+/docs
+
 # misc
 .DS_Store
 .env.local
@@ -69,3 +72,19 @@ export default tseslint.config(
   }
 );
 `;
+
+export const INTEGRATION_VITEST_CONFIG = `\
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    coverage: {
+        provider:'v8',
+      exclude: [
+        '**/*.config.*',
+        'src/index.ts',
+      ],
+    },
+  },
+});
+`
