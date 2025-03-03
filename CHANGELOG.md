@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.15.0](https://github.com/Infomaximum/package-cli/compare/v2.14.0...v2.15.0) (2025-03-03)
+
+
+### Features
+
+* "Обновление конфигураций " ([59148c1](https://github.com/Infomaximum/package-cli/commit/59148c1413ce67af8efa0a74a9776b7f7974a84a))
+
 ## [2.14.0](https://github.com/Infomaximum/package-cli/compare/v2.13.1...v2.14.0) (2025-02-28)
 
 
