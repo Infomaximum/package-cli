@@ -6,6 +6,7 @@ import {
   INTEGRATION_ESLINTRC,
   INTEGRATION_GITIGNORE,
   INTEGRATION_TSCONFIG_JSON,
+  INTEGRATION_VITEST_CONFIG
 } from "../templates/integrationConfigs.js";
 
 import { getPackageActions } from "../../package/scripts/actions.js";
@@ -50,6 +51,11 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       type: "add",
       path: "eslint.config.js",
       template: INTEGRATION_ESLINTRC,
+    },
+    {
+      type: "add",
+      path: "vitest.config.js",
+      template: INTEGRATION_VITEST_CONFIG,
     },
     {
       type: "add",
