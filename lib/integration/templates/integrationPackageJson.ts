@@ -28,7 +28,7 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "typescript-eslint": "^8.22.0",
     "vitest": "^3.0.4",
     "@vitest/coverage-v8": "3.0.7",
-    "@vitest/ui": "3.0.7",
+    "@vitest/ui": "3.0.7"
   }
 }
 `;
