@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.16.0](https://github.com/Infomaximum/package-cli/compare/v2.15.1...v2.16.0) (2025-03-04)
+
+
+### Features
+
+* добавлено генерирование и поддержка .browserslistrc ([2aaa870](https://github.com/Infomaximum/package-cli/commit/2aaa870613a5e3ed944ed184b7a34922fe7bd1c7))
+
 ### [2.15.1](https://github.com/Infomaximum/package-cli/compare/v2.15.0...v2.15.1) (2025-03-03)
 
 ## [2.15.0](https://github.com/Infomaximum/package-cli/compare/v2.14.0...v2.15.0) (2025-03-03)
