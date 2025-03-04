@@ -22,6 +22,7 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "@eslint/js": "^9.19.0",
     "${INTEGRATION_SDK_LIB_NAME}": "^{{integrationSdkVersion}}",
     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
+    "core-js": "^3.41.0",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "typescript": "^5.7.2",

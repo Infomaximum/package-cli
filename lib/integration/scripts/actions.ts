@@ -3,10 +3,11 @@ import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
 import type { Answers } from "../../package/scripts/prompts.js";
 import {
   INTEGRATION_BABEL_CONFIG,
+  INTEGRATION_BROWSERLIST_CONFIG,
   INTEGRATION_ESLINTRC,
   INTEGRATION_GITIGNORE,
   INTEGRATION_TSCONFIG_JSON,
-  INTEGRATION_VITEST_CONFIG
+  INTEGRATION_VITEST_CONFIG,
 } from "../templates/integrationConfigs.js";
 
 import { getPackageActions } from "../../package/scripts/actions.js";
@@ -41,6 +42,11 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       type: "add",
       path: "babel.config.js",
       template: INTEGRATION_BABEL_CONFIG,
+    },
+    {
+      type: "add",
+      path: ".browserslistrc",
+      template: INTEGRATION_BROWSERLIST_CONFIG,
     },
     {
       type: "add",

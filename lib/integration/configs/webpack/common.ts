@@ -10,12 +10,15 @@ export const getCommonIntegrationConfig = (
 ): Configuration => {
   return {
     mode,
+    target: "browserslist",
     entry: PATHS.moduleIndex,
     output: {
       filename: PATHS.outputFile,
       path: PATHS.appBuildPath,
       clean: true,
       libraryTarget: "module",
+      chunkFormat: false,
+      asyncChunks: false,
     },
     experiments: {
       outputModule: true,
