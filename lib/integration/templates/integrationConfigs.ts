@@ -30,7 +30,7 @@ module.exports = {
 `;
 
 export const INTEGRATION_BROWSERLIST_CONFIG = `\
-node 0.5
+node >=14
 `;
 
 export const INTEGRATION_GITIGNORE = `\
@@ -98,4 +98,4 @@ export default defineConfig({
     },
   },
 });
-`
+`;
