@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.16.1](https://github.com/Infomaximum/package-cli/compare/v2.16.0...v2.16.1) (2025-03-05)
+
+
+### Bug Fixes
+
+* node version ([9b6a174](https://github.com/Infomaximum/package-cli/commit/9b6a174e5b33f223656d6b8bde70209cea6d1a93))
+* **template:** версия типов nodejs ([b0ed826](https://github.com/Infomaximum/package-cli/commit/b0ed82654fd3abe0a52d8083df033a1071540d5c))
+
 ## [2.16.0](https://github.com/Infomaximum/package-cli/compare/v2.15.1...v2.16.0) (2025-03-04)
 
 
