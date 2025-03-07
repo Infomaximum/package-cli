@@ -10,6 +10,7 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "build": "im-package-cli integration build",
     "build:script": "im-package-cli integration build --type=script",
     "dev": "im-package-cli integration build --watch",
+    "serve": "im-package-cli integration build --watch --fetchToServer"
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
@@ -24,6 +25,7 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
     "@types/node": "^0",
     "core-js": "^3.41.0",
+    "dotenv": "^16.4.7",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "typescript": "^5.7.2",

@@ -8,9 +8,12 @@ import { getPackageBuildConfig } from "../../package/configs/webpack/buildPackag
 import path from "path";
 import { merge } from "webpack-merge";
 import { CopyToClipboardPlugin } from "../configs/webpack/CopyToClipboardPlugin.js";
+import type { IntegrationRCConfig } from "../configs/file.js";
+import { FetchCodeToServerPlugin } from "../configs/webpack/FetchCodeToServerPlugin.js";
 
 export const runBuildIntegration = async (
-  options: InputBuildIntegrationOptions
+  options: InputBuildIntegrationOptions,
+  rcConfig: IntegrationRCConfig | undefined
 ) => {
   const { entry, buildDir, packageDir, packageManifest, type, watch, copy } =
     options;
@@ -26,13 +29,25 @@ export const runBuildIntegration = async (
 
   const commonConfig = getCommonIntegrationConfig(mode, INTEGRATION_PATHS);
 
+  const fetcherFromConfig = rcConfig?.fetcher;
+
   const config = merge([
     commonConfig,
     watch && {
       watch: true,
     },
 
-    copy && { plugins: [new CopyToClipboardPlugin()] },
+    {
+      plugins: [
+        copy && new CopyToClipboardPlugin(),
+
+        options.fetchToServer &&
+          typeof fetcherFromConfig === "function" &&
+          new FetchCodeToServerPlugin({
+            fetcher: fetcherFromConfig,
+          }),
+      ],
+    },
   ]);
 
   const integrationScriptPath = path.resolve(

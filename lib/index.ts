@@ -10,3 +10,9 @@ process.title = "im-package-cli";
 registerCommands(cli);
 
 cli.parse(process.argv);
+
+export type {
+  IntegrationRCConfig,
+  IntegrationFetcherReturnType,
+  IntegrationFetcher,
+} from "./integration/configs/file.js";

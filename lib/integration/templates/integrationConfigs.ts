@@ -50,6 +50,7 @@ export const INTEGRATION_GITIGNORE = `\
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -98,4 +99,41 @@ export default defineConfig({
     },
   },
 });
+`;
+
+export const INTEGRATION_RC_CONFIG = `\
+require("dotenv").config();
+
+const query = \`
+mutation UpdateIntegration($id: Long!, $js_code: String) {
+    automation {
+        integration {
+          update(id: $id, js_code: $js_code) {
+              id
+          }
+        }
+    }
+}\`;
+
+/**
+ *  @type {import("@infomaximum/package-cli").IntegrationRCConfig}
+ */
+module.exports = {
+  fetcher: (integrationCode) => {
+    return {
+      graphqlUrl: process.env.GRAPHQL_URL,
+      apiKey: process.env.API_KEY,
+      query,
+      variables: {
+        id: 0,
+        js_code: integrationCode,
+      },
+    };
+  },
+};
+`;
+
+export const INTEGRATION_ENV_EXAMPLE_CONFIG = `\
+API_KEY=123456789qwertyuiop
+GRAPHQL_URL=https://example.com/graphql
 `;

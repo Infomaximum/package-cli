@@ -4,8 +4,10 @@ import type { Answers } from "../../package/scripts/prompts.js";
 import {
   INTEGRATION_BABEL_CONFIG,
   INTEGRATION_BROWSERLIST_CONFIG,
+  INTEGRATION_ENV_EXAMPLE_CONFIG,
   INTEGRATION_ESLINTRC,
   INTEGRATION_GITIGNORE,
+  INTEGRATION_RC_CONFIG,
   INTEGRATION_TSCONFIG_JSON,
   INTEGRATION_VITEST_CONFIG,
 } from "../templates/integrationConfigs.js";
@@ -14,7 +16,11 @@ import { getPackageActions } from "../../package/scripts/actions.js";
 import { INTEGRATION_INDEX_TEMPLATE } from "../templates/integrationIndex.js";
 import { INTEGRATION_PACKAGE_JSON_TEMPLATE } from "../templates/integrationPackageJson.js";
 import { getLatestVersionOfLibrary } from "../../utils.js";
-import { INTEGRATION_SDK_LIB_NAME } from "../const.js";
+import {
+  INTEGRATION_CONFIG_RC_FILE_NAME,
+  INTEGRATION_CONFIG_RC_EXT,
+  INTEGRATION_SDK_LIB_NAME,
+} from "../const.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -62,6 +68,16 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       type: "add",
       path: "vitest.config.js",
       template: INTEGRATION_VITEST_CONFIG,
+    },
+    {
+      type: "add",
+      path: `${INTEGRATION_CONFIG_RC_FILE_NAME}${INTEGRATION_CONFIG_RC_EXT}`,
+      template: INTEGRATION_RC_CONFIG,
+    },
+    {
+      type: "add",
+      path: `.env_example`,
+      template: INTEGRATION_ENV_EXAMPLE_CONFIG,
     },
     {
       type: "add",
