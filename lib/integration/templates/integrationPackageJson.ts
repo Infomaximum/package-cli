@@ -10,7 +10,7 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "build": "im-package-cli integration build",
     "build:script": "im-package-cli integration build --type=script",
     "dev": "im-package-cli integration build --watch",
-    "serve": "im-package-cli integration build --watch --fetchToServer"
+    "serve": "im-package-cli integration build --watch --fetchToServer",
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
