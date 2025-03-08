@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.18.0](https://github.com/Infomaximum/package-cli/compare/v2.17.2...v2.18.0) (2025-03-08)
+
+
+### Features
+
+* id интеграции перенесен в переменную окружения ([fbfe5c8](https://github.com/Infomaximum/package-cli/commit/fbfe5c82e702c13241be8499bdf6b8b323ce099f))
+
 ### [2.17.2](https://github.com/Infomaximum/package-cli/compare/v2.17.1...v2.17.2) (2025-03-07)
 
 ### [2.17.1](https://github.com/Infomaximum/package-cli/compare/v2.17.0...v2.17.1) (2025-03-07)
