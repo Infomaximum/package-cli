@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.19.1](https://github.com/Infomaximum/package-cli/compare/v2.19.0...v2.19.1) (2025-03-08)
+
+
+### Bug Fixes
+
+* integration template ([e639188](https://github.com/Infomaximum/package-cli/commit/e639188794cfd3f2eb7af6fe3d54c7710116c69d))
+
 ## [2.19.0](https://github.com/Infomaximum/package-cli/compare/v2.18.0...v2.19.0) (2025-03-08)
 
 
