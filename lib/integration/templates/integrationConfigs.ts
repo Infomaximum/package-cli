@@ -125,7 +125,7 @@ module.exports = {
       apiKey: process.env.API_KEY,
       query,
       variables: {
-        id: 0,
+        id: process.env.INTEGRATION_ID,
         js_code: integrationCode,
       },
     };
@@ -134,6 +134,7 @@ module.exports = {
 `;
 
 export const INTEGRATION_ENV_EXAMPLE_CONFIG = `\
-API_KEY=123456789qwertyuiop
+INTEGRATION_ID=0
 GRAPHQL_URL=https://example.com/graphql
+API_KEY=123456789qwertyuiop
 `;
