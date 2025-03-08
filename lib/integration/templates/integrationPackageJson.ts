@@ -17,9 +17,6 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "test:ui": "vitest --ui"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.9",
-    "@babel/preset-env": "^7.26.9",
-    "@babel/preset-typescript": "^7.26.0",
     "@eslint/js": "^9.19.0",
     "${INTEGRATION_SDK_LIB_NAME}": "^{{integrationSdkVersion}}",
     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",

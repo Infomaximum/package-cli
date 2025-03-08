@@ -13,26 +13,6 @@ export const INTEGRATION_TSCONFIG_JSON = `\
 }
 `;
 
-export const INTEGRATION_BABEL_CONFIG = `\
-module.exports = {
-  sourceType: "unambiguous",
-  presets: [
-    [
-      "@babel/preset-env",
-      {
-        useBuiltIns: "usage",
-        corejs: "3.41",
-      },
-    ],
-    "@babel/preset-typescript",
-  ],
-};
-`;
-
-export const INTEGRATION_BROWSERLIST_CONFIG = `\
-node >=14
-`;
-
 export const INTEGRATION_GITIGNORE = `\
 # dependencies
 /node_modules
