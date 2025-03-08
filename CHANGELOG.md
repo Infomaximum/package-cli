@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.19.0](https://github.com/Infomaximum/package-cli/compare/v2.18.0...v2.19.0) (2025-03-08)
+
+
+### Features
+
+* использован ts-loader вместо babel-loader ([98a8a47](https://github.com/Infomaximum/package-cli/commit/98a8a4716fcea8e44b5440bcb53c3903367f7ea0))
+
 ## [2.18.0](https://github.com/Infomaximum/package-cli/compare/v2.17.2...v2.18.0) (2025-03-08)
 
 
