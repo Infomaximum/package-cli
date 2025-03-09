@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.20.1](https://github.com/Infomaximum/package-cli/compare/v2.20.0...v2.20.1) (2025-03-09)
+
+
+### Bug Fixes
+
+* target es6 ([eef3785](https://github.com/Infomaximum/package-cli/commit/eef3785afb7b736b49dbb214e7525235b8fe5723))
+
 ## [2.20.0](https://github.com/Infomaximum/package-cli/compare/v2.19.1...v2.20.0) (2025-03-09)
 
 
