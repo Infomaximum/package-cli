@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.20.0](https://github.com/Infomaximum/package-cli/compare/v2.19.1...v2.20.0) (2025-03-09)
+
+
+### Features
+
+* использован babel-loader, флаг по форматированию собранного кода ([59a4244](https://github.com/Infomaximum/package-cli/commit/59a4244dfdf85fae97b714f0fbc77de4dc0e6f28))
+
 ### [2.19.1](https://github.com/Infomaximum/package-cli/compare/v2.19.0...v2.19.1) (2025-03-08)
 
 
