@@ -4,10 +4,18 @@ import type { IntegrationPaths } from "../../integrationPaths.js";
 import TerserPlugin from "terser-webpack-plugin";
 import { systemRequire } from "../../../utils.js";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-export const getCommonIntegrationConfig = (
-  mode: Mode,
-  PATHS: IntegrationPaths
-): Configuration => {
+
+type CommonBuildIntegrationParams = {
+  mode: Mode;
+  PATHS: IntegrationPaths;
+  isBeautifyCode: boolean;
+};
+
+export const getCommonIntegrationConfig = ({
+  PATHS,
+  mode,
+  isBeautifyCode,
+}: CommonBuildIntegrationParams): Configuration => {
   return {
     mode,
     target: "es5",
@@ -31,10 +39,15 @@ export const getCommonIntegrationConfig = (
         {
           test: /\.(js|ts|jsx|tsx)$/i,
           exclude: ["/node_modules/"],
-          loader: systemRequire.resolve("ts-loader"),
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            { loader: systemRequire.resolve("babel-loader") },
+            {
+              loader: systemRequire.resolve("ts-loader"),
+              options: {
+                transpileOnly: true,
+              },
+            },
+          ],
         },
       ],
     },
@@ -62,6 +75,7 @@ export const getCommonIntegrationConfig = (
           terserOptions: {
             format: {
               comments: false,
+              beautify: isBeautifyCode,
             },
             compress: {
               booleans: false,

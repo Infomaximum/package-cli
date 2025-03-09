@@ -17,6 +17,7 @@ export type InputBuildIntegrationOptions = {
   watch: boolean;
   copy: boolean;
   fetchToServer: boolean;
+  beautify: boolean;
 } & InputPackageOptions;
 
 export type BuildType = "package" | "script";
@@ -50,6 +51,7 @@ export const registerIntegrationBuildCommand = (
       `отправка изменений на сервер (должен быть настроен файл ${INTEGRATION_CONFIG_RC_FILE_NAME}${INTEGRATION_CONFIG_RC_EXT})`,
       false
     )
+    .option("--beautify", `отформатировать код после сборки`, false)
     .action((options: InputBuildIntegrationOptions) => {
       if (options.fetchToServer && typeof config?.fetcher !== "function") {
         throw new Error("Не настроен конфиг или нет функции fetcher в конфиге");

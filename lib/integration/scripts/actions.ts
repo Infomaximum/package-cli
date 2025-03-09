@@ -2,6 +2,7 @@ import type { Actions } from "node-plop";
 import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
 import type { Answers } from "../../package/scripts/prompts.js";
 import {
+  INTEGRATION_BABEL_CONFIG,
   INTEGRATION_ENV_EXAMPLE_CONFIG,
   INTEGRATION_ESLINTRC,
   INTEGRATION_GITIGNORE,
@@ -51,6 +52,11 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       type: "add",
       path: "eslint.config.js",
       template: INTEGRATION_ESLINTRC,
+    },
+    {
+      type: "add",
+      path: "babel.config.js",
+      template: INTEGRATION_BABEL_CONFIG,
     },
     {
       type: "add",

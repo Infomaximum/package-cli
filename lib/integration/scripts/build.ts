@@ -15,8 +15,16 @@ export const runBuildIntegration = async (
   options: InputBuildIntegrationOptions,
   rcConfig: IntegrationRCConfig | undefined
 ) => {
-  const { entry, buildDir, packageDir, packageManifest, type, watch, copy } =
-    options;
+  const {
+    entry,
+    buildDir,
+    packageDir,
+    packageManifest,
+    type,
+    watch,
+    copy,
+    beautify: isBeautifyCode,
+  } = options;
 
   const INTEGRATION_PATHS = generateIntegrationPaths({
     entry,
@@ -27,7 +35,11 @@ export const runBuildIntegration = async (
 
   const mode = "production";
 
-  const commonConfig = getCommonIntegrationConfig(mode, INTEGRATION_PATHS);
+  const commonConfig = getCommonIntegrationConfig({
+    mode,
+    isBeautifyCode,
+    PATHS: INTEGRATION_PATHS,
+  });
 
   const fetcherFromConfig = rcConfig?.fetcher;
 

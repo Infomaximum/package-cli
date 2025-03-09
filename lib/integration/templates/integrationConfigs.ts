@@ -45,6 +45,14 @@ yarn-error.log*
 *.tsbuildinfo
 `;
 
+export const INTEGRATION_BABEL_CONFIG = `\
+module.exports = {
+  sourceType: "unambiguous",
+  presets: [],
+  plugins: ["@babel/plugin-transform-block-scoping"],
+};
+`;
+
 export const INTEGRATION_ESLINTRC = `\
 import js from "@eslint/js";
 import globals from "globals";

@@ -8,15 +8,16 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
   "main": "src/index.ts",
   "scripts": {
     "build": "im-package-cli integration build",
-    "build:script": "im-package-cli integration build --type=script",
-    "dev": "im-package-cli integration build --watch",
-    "serve": "im-package-cli integration build --watch --fetchToServer",
+    "build:script": "im-package-cli integration build --type=script --beautify",
+    "dev": "im-package-cli integration build --watch --beautify",
+    "serve": "im-package-cli integration build --watch --fetchToServer --beautify",
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
     "test:ui": "vitest --ui"
   },
   "devDependencies": {
+    "@babel/plugin-transform-block-scoping": "^7.25.9",
     "@eslint/js": "^9.19.0",
     "${INTEGRATION_SDK_LIB_NAME}": "^{{integrationSdkVersion}}",
     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
