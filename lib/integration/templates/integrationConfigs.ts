@@ -1,7 +1,7 @@
 export const INTEGRATION_TSCONFIG_JSON = `\
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES2015",
     "module": "Preserve",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
