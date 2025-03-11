@@ -1,5 +1,6 @@
 import { generatePackagePaths } from "../package/packagePaths.js";
 import { generateIndexPath } from "../paths.js";
+import { INTEGRATION_OUTPUT_FILE } from "./const.js";
 
 export type IntegrationPaths = ReturnType<typeof generateIntegrationPaths>;
 
@@ -24,7 +25,7 @@ export function generateIntegrationPaths({
 
   return {
     ...packagePaths,
-    outputFile: "integration.js",
+    outputFile: INTEGRATION_OUTPUT_FILE,
     get moduleIndex() {
       return generateIndexPath(entry);
     },
