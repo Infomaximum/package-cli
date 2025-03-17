@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.21.0](https://github.com/Infomaximum/package-cli/compare/v2.20.1...v2.21.0) (2025-03-17)
+
+
+### Features
+
+* добавлен флаг для активации трансформаций ([9518e19](https://github.com/Infomaximum/package-cli/commit/9518e19c36c566497b613fe24a5f3eab310fc31b))
+* преобразование кода интеграции ([539c42d](https://github.com/Infomaximum/package-cli/commit/539c42dbd935d8c746d123c502553fb5d25de611))
+
 ### [2.20.1](https://github.com/Infomaximum/package-cli/compare/v2.20.0...v2.20.1) (2025-03-09)
 
 
