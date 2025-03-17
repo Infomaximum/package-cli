@@ -53,7 +53,6 @@ export const getCommonIntegrationConfig = ({
       ],
     },
     plugins: [
-      new ASTIntegrationPreamblePlugin(),
       new ForkTsCheckerWebpackPlugin({
         async: true,
         typescript: {
