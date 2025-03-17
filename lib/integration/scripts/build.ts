@@ -10,6 +10,7 @@ import { merge } from "webpack-merge";
 import { CopyToClipboardPlugin } from "../configs/webpack/CopyToClipboardPlugin.js";
 import type { IntegrationRCConfig } from "../configs/file.js";
 import { FetchCodeToServerPlugin } from "../configs/webpack/FetchCodeToServerPlugin.js";
+import { ASTIntegrationPreamblePlugin } from "../configs/webpack/ASTIntegrationPreamblePlugin.js";
 
 export const runBuildIntegration = async (
   options: InputBuildIntegrationOptions,
@@ -24,6 +25,7 @@ export const runBuildIntegration = async (
     watch,
     copy,
     beautify: isBeautifyCode,
+    experimentalTransform,
   } = options;
 
   const INTEGRATION_PATHS = generateIntegrationPaths({
@@ -52,7 +54,7 @@ export const runBuildIntegration = async (
     {
       plugins: [
         copy && new CopyToClipboardPlugin(),
-
+        experimentalTransform && new ASTIntegrationPreamblePlugin(),
         options.fetchToServer &&
           typeof fetcherFromConfig === "function" &&
           new FetchCodeToServerPlugin({

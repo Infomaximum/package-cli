@@ -5,7 +5,11 @@ import { spawn, type SpawnOptions, exec } from "node:child_process";
 import util from "node:util";
 import Module from "node:module";
 import { MANIFEST_SERVICE_FIELDS_FOR_DEVELOPMENT } from "./const.js";
-import webpack, { type Configuration, type Stats } from "webpack";
+import webpack, {
+  type Configuration,
+  type MultiStats,
+  type Stats,
+} from "webpack";
 
 const execPromise = util.promisify(exec);
 
