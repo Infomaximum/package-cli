@@ -4,7 +4,6 @@ import type { IntegrationPaths } from "../../integrationPaths.js";
 import TerserPlugin from "terser-webpack-plugin";
 import { systemRequire } from "../../../utils.js";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-import { ASTIntegrationPreamblePlugin } from "./ASTIntegrationPreamblePlugin.js";
 
 type CommonBuildIntegrationParams = {
   mode: Mode;
@@ -74,12 +73,17 @@ export const getCommonIntegrationConfig = ({
           parallel: true,
           extractComments: false,
           terserOptions: {
+            nameCache: {},
+            mangle: false,
+            toplevel: false,
             format: {
               comments: false,
               beautify: isBeautifyCode,
             },
             compress: {
               booleans: false,
+              keep_fnames: false,
+              toplevel: true,
             },
           },
         }),
