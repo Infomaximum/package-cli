@@ -54,7 +54,8 @@ export const runBuildIntegration = async (
     {
       plugins: [
         copy && new CopyToClipboardPlugin(),
-        experimentalTransform && new ASTIntegrationPreamblePlugin(),
+        experimentalTransform &&
+          new ASTIntegrationPreamblePlugin({ isBeautifyCode }),
         options.fetchToServer &&
           typeof fetcherFromConfig === "function" &&
           new FetchCodeToServerPlugin({
