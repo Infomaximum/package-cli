@@ -9,10 +9,10 @@ export const TERSER_OPTIONS = (isBeautifyCode: boolean) =>
     toplevel: false,
     format: {
       comments: false,
-      beautify: true,
+      beautify: isBeautifyCode,
     },
     compress: {
-      booleans: isBeautifyCode,
+      booleans: false,
       keep_fnames: false,
       toplevel: true,
     },

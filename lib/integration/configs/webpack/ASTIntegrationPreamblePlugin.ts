@@ -39,8 +39,6 @@ export class ASTIntegrationPreamblePlugin {
           },
           async (assets) => {
             for await (const [filename, source] of Object.entries(assets)) {
-              console.warn(source.source().toString());
-
               if (!filename.endsWith(".js")) return;
 
               const { RawSource } = compiler.webpack.sources;
