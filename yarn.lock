@@ -1460,12 +1460,11 @@
   resolved "https://registry.yarnpkg.com/@infomaximum/assert/-/assert-1.1.3.tgz#b4eb30914b7a27dbee51171733a3ffd4ada931f8"
   integrity sha512-dxMNhHZjGV0ylOU772tWkZ4fH+O+bLUA8xt6BgxOGMTC01VvUeOnCzgnChtAyifF/Bi9T+cISdwvJwf0jfLDLw==
 
-"@infomaximum/integration-debugger@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@infomaximum/integration-debugger/-/integration-debugger-1.2.0.tgz#8b679125a7d05a461542bee16ead364caf75ef21"
-  integrity sha512-3Gwv2fgaLmculq33esLoo9heFMmLZ8B2zu9ic/AvTa2WvrRBugQ2dDcDgU5/b9+ksMK8hj4XOlyHlpJwd78wBw==
+"@infomaximum/integration-debugger@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@infomaximum/integration-debugger/-/integration-debugger-1.2.1.tgz#449ca23e45f57bb62a2b113dd1287f5447c2bee1"
+  integrity sha512-KnBwCCJCk4XEKOWZiI9HclfU9+xXFcgSztN71yHFQeNG6aFlXhKk10b2+4dnNL8KgvC48B00QE1KF4/ROnryiA==
   dependencies:
-    minimist "^1.2.8"
     xmlhttprequest "^1.8.0"
 
 "@infomaximum/integration-sdk@^1.3.0":
@@ -5016,7 +5015,7 @@ minimist-options@4.1.0:
     is-plain-obj "^1.1.0"
     kind-of "^6.0.3"
 
-minimist@^1.2.5, minimist@^1.2.6, minimist@^1.2.8:
+minimist@^1.2.5, minimist@^1.2.6:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
