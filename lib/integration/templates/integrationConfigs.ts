@@ -90,6 +90,8 @@ export default defineConfig({
 `;
 
 export const INTEGRATION_RC_CONFIG = `\
+//@ts-check
+
 require("dotenv").config();
 
 const query = \`
@@ -106,7 +108,8 @@ mutation UpdateIntegration($id: Long!, $js_code: String) {
 /**
  *  @type {import("@infomaximum/package-cli").IntegrationRCConfig}
  */
-module.exports = {
+const config = {
+  entry: "src/index.ts",
   fetcher: (integrationCode) => {
     return {
       graphqlUrl: process.env.GRAPHQL_URL,
@@ -119,6 +122,8 @@ module.exports = {
     };
   },
 };
+
+module.exports = config;
 `;
 
 export const INTEGRATION_ENV_EXAMPLE_CONFIG = `\

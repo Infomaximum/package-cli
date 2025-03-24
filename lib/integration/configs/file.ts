@@ -3,6 +3,7 @@ import {
   INTEGRATION_CONFIG_RC_EXT,
   INTEGRATION_CONFIG_RC_FILE_NAME,
 } from "../const.js";
+import type { DebuggingConfig } from "@infomaximum/integration-debugger";
 
 export type IntegrationFetcher = (
   integrationCode: string
@@ -19,6 +20,7 @@ export type IntegrationFetcherReturnType = {
 export type IntegrationRCConfig = {
   entry: string;
   fetcher?: IntegrationFetcher;
+  debugging: DebuggingConfig;
 };
 
 export const getConfigIntegrationFromFile = () => {

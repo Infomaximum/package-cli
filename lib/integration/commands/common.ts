@@ -8,7 +8,7 @@ export type CommonIntegrationOptions = {
 };
 
 export const registerCommonIntegrationOptions = (command: Command) => {
-  command.option("--entry <path>", "путь до entrypoint", "src/index.ts");
+  command.option("--entry <path>", "путь до entrypoint");
 };
 
 export function mergeConfigIntegrationWithOptionsCommon(
