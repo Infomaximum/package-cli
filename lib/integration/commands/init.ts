@@ -1,6 +1,6 @@
 import type { Command } from "commander";
 import { runInitEntityScript } from "../../plopHelpers.js";
-import { getInitIntegrationActions } from "../scripts/actions.js";
+import { getInitIntegrationActions } from "../scripts/init.js";
 
 export const registerIntegrationInitCommand = (integrationCommand: Command) => {
   const widgetInitCommand = integrationCommand.command(
