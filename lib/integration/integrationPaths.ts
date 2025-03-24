@@ -4,12 +4,23 @@ import { INTEGRATION_OUTPUT_FILE } from "./const.js";
 
 export type IntegrationPaths = ReturnType<typeof generateIntegrationPaths>;
 
-type Options = {
+type CommonOptions = {
   entry: string;
+};
+
+type Options = {
   buildDir: string;
   packageDir: string;
   packageManifest: string;
-};
+} & CommonOptions;
+
+export function generateCommonIntegrationPaths({ entry }: CommonOptions) {
+  return {
+    get moduleIndex() {
+      return generateIndexPath(entry);
+    },
+  };
+}
 
 export function generateIntegrationPaths({
   entry,
@@ -26,8 +37,6 @@ export function generateIntegrationPaths({
   return {
     ...packagePaths,
     outputFile: INTEGRATION_OUTPUT_FILE,
-    get moduleIndex() {
-      return generateIndexPath(entry);
-    },
+    ...generateCommonIntegrationPaths({ entry }),
   };
 }

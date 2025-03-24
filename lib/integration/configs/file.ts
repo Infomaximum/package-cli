@@ -17,6 +17,7 @@ export type IntegrationFetcherReturnType = {
 };
 
 export type IntegrationRCConfig = {
+  entry: string;
   fetcher?: IntegrationFetcher;
 };
 
