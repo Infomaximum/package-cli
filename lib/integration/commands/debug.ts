@@ -7,10 +7,10 @@ import {
   type CommonIntegrationOptions,
 } from "./common.js";
 
-export type DebugType = "integration" | "block";
+export type DebugType = "integration" | "entity";
 
 export type InputDebugIntegrationOptions = {
-  blockId?: string;
+  entityKey?: string;
   debugType: DebugType;
 } & CommonIntegrationOptions;
 
@@ -23,11 +23,14 @@ export const registerIntegrationDebugCommand = (
 
   widgetDebugCommand
     .description("Отладка проекта интеграции")
-    .option("--blockId <key>", "Ключ блока для которого запускается отладка")
+    .option(
+      "--entityKey <key>",
+      "Ключ сущности для которой запускается отладка"
+    )
     .addOption(
       new Option("--debugType <type>", "тип отладки").choices([
         "integration",
-        "block",
+        "entity",
       ])
     )
     .action((options: InputDebugIntegrationOptions) => {

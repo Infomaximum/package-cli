@@ -12,7 +12,7 @@ const runDebug = (
   options: InputDebugIntegrationOptions,
   rcConfig: IntegrationRCConfig | undefined
 ) => {
-  const { debugType, blockId } = options;
+  const { debugType, entityKey } = options;
 
   if (!debugType) {
     return;
@@ -32,14 +32,14 @@ const runDebug = (
       type: debugType,
       debuggingConfig,
     });
-  } else if (debugType === "block") {
-    if (!blockId) {
-      throw new Error("Не передан blockId");
+  } else if (debugType === "entity") {
+    if (!entityKey) {
+      throw new Error("Не передан entityKey");
     }
 
     executor = new IntegrationExecutor(globalThis.integration, {
       type: debugType,
-      blockId,
+      entityKey,
       debuggingConfig,
     });
   }
