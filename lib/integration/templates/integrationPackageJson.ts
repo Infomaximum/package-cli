@@ -25,6 +25,7 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "dotenv": "^16.4.7",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.22.0",
     "vitest": "^3.0.4",

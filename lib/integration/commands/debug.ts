@@ -1,4 +1,5 @@
 import { Option, type Command } from "commander";
+import type { Debugging } from "@infomaximum/integration-sdk";
 import { runDebugIntegration } from "../scripts/debugger.js";
 import { getConfigIntegrationFromFile } from "../configs/file.js";
 import {
@@ -9,10 +10,8 @@ import {
 
 export type DebugType = "integration" | "entity";
 
-export type InputDebugIntegrationOptions = {
-  entityKey?: string;
-  debugType: DebugType;
-} & CommonIntegrationOptions;
+export type InputDebugIntegrationOptions = Debugging.DebugIntegrationOptions &
+  CommonIntegrationOptions;
 
 export const registerIntegrationDebugCommand = (
   integrationCommand: Command
@@ -27,12 +26,7 @@ export const registerIntegrationDebugCommand = (
       "--entityKey <key>",
       "Ключ сущности для которой запускается отладка"
     )
-    .addOption(
-      new Option("--debugType <type>", "тип отладки").choices([
-        "integration",
-        "entity",
-      ])
-    )
+    .option("--series", "Выполняет серию запусков отладки сущности", false)
     .action((options: InputDebugIntegrationOptions) => {
       const config = getConfigIntegrationFromFile();
 

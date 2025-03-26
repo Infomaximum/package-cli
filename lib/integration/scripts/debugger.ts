@@ -12,11 +12,7 @@ const runDebug = (
   options: InputDebugIntegrationOptions,
   rcConfig: IntegrationRCConfig | undefined
 ) => {
-  const { debugType, entityKey } = options;
-
-  if (!debugType) {
-    return;
-  }
+  const { entityKey, series } = options;
 
   const debuggingConfig = rcConfig?.debugging;
 
@@ -25,24 +21,11 @@ const runDebug = (
     `Не задана конфигурация для отладки в файле: ${INTEGRATION_CONFIG_RC_FILE_NAME}${INTEGRATION_CONFIG_RC_EXT}`
   );
 
-  let executor: IntegrationExecutor | undefined;
-
-  if (debugType === "integration") {
-    executor = new IntegrationExecutor(globalThis.integration, {
-      type: debugType,
-      debuggingConfig,
-    });
-  } else if (debugType === "entity") {
-    if (!entityKey) {
-      throw new Error("Не передан entityKey");
-    }
-
-    executor = new IntegrationExecutor(globalThis.integration, {
-      type: debugType,
-      entityKey,
-      debuggingConfig,
-    });
-  }
+  const executor = new IntegrationExecutor(globalThis.integration, {
+    entityKey,
+    debuggingConfig,
+    series,
+  });
 
   try {
     executor?.execute();

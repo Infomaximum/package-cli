@@ -1,3 +1,5 @@
+import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
+
 export const INTEGRATION_TSCONFIG_JSON = `\
 {
   "compilerOptions": {
@@ -130,4 +132,48 @@ export const INTEGRATION_ENV_EXAMPLE_CONFIG = `\
 INTEGRATION_ID=0
 GRAPHQL_URL=https://example.com/graphql
 API_KEY=123456789qwertyuiop
+`;
+
+export const INTEGRATION_VSCODE_LAUNCH = `\
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Integration",
+      "skipFiles": ["<node_internals>/**"],
+
+      "runtimeExecutable": "tsx",
+      "runtimeArgs": ["--preserve-symlinks"],
+      "args": [
+        "\${workspaceFolder}/node_modules/${CUSTOM_PACKAGE_CLI_LIB_NAME}/dist/index.js",
+        "integration",
+        "debug"
+      ],
+      "sourceMaps": true,
+      "resolveSourceMapLocations": [
+        "\${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}
+`;
+
+export const INTEGRATION_VSCODE_SETTINGS = `\
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "integration-debugger.isEnabled": true,
+  "integration-debugger.debugConfigurationName": "Debug Integration",
+  "integration-debugger.functionNames": ["executePagination"]
+}
+`;
+
+export const INTEGRATION_VSCODE_EXTENSIONS = `\
+{
+  "recommendations": ["Jokerok.integration-debugger"]
+}
 `;

@@ -9,6 +9,9 @@ import {
   INTEGRATION_RC_CONFIG,
   INTEGRATION_TSCONFIG_JSON,
   INTEGRATION_VITEST_CONFIG,
+  INTEGRATION_VSCODE_EXTENSIONS,
+  INTEGRATION_VSCODE_LAUNCH,
+  INTEGRATION_VSCODE_SETTINGS,
 } from "../templates/integrationConfigs.js";
 
 import { getPackageActions } from "../../package/scripts/actions.js";
@@ -78,6 +81,22 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       path: "package.json",
       template: INTEGRATION_PACKAGE_JSON_TEMPLATE,
       data: { packageCliVersion, integrationSdkVersion },
+    },
+
+    {
+      type: "add",
+      path: ".vscode/launch.json",
+      template: INTEGRATION_VSCODE_LAUNCH,
+    },
+    {
+      type: "add",
+      path: ".vscode/settings.json",
+      template: INTEGRATION_VSCODE_SETTINGS,
+    },
+    {
+      type: "add",
+      path: ".vscode/extensions.json",
+      template: INTEGRATION_VSCODE_EXTENSIONS,
     },
   ] satisfies Actions;
 };
