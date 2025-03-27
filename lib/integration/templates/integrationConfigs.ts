@@ -45,6 +45,8 @@ yarn-error.log*
 /build
 .ultra.cache.json
 *.tsbuildinfo
+.node-xmlhttprequest-content-*
+.node-xmlhttprequest-sync-*
 `;
 
 export const INTEGRATION_BABEL_CONFIG = `\
@@ -108,7 +110,7 @@ mutation UpdateIntegration($id: Long!, $js_code: String) {
 }\`;
 
 /**
- *  @type {import("@infomaximum/package-cli").IntegrationRCConfig}
+ *  @type {import("${CUSTOM_PACKAGE_CLI_LIB_NAME}").IntegrationRCConfig}
  */
 const config = {
   entry: "src/index.ts",
@@ -122,6 +124,12 @@ const config = {
         js_code: integrationCode,
       },
     };
+  },
+
+  debugging: {
+    seriesIterations: 3,
+    blocks: {},
+    connections: {},
   },
 };
 

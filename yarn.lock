@@ -1460,17 +1460,17 @@
   resolved "https://registry.yarnpkg.com/@infomaximum/assert/-/assert-1.1.3.tgz#b4eb30914b7a27dbee51171733a3ffd4ada931f8"
   integrity sha512-dxMNhHZjGV0ylOU772tWkZ4fH+O+bLUA8xt6BgxOGMTC01VvUeOnCzgnChtAyifF/Bi9T+cISdwvJwf0jfLDLw==
 
-"@infomaximum/integration-debugger@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@infomaximum/integration-debugger/-/integration-debugger-1.4.1.tgz#e554955d76266eda896423032f9a2e84ef9c9b51"
-  integrity sha512-4Tu/oyYPXM0BYyWgpZQ8r/goCqVrnySSZfFeJEOEfheompEvUxtFSUJxmOMOIOp7fHa1ZHwJL/guS5DxZgPGiA==
+"@infomaximum/integration-debugger@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@infomaximum/integration-debugger/-/integration-debugger-1.5.0.tgz#c3ac0801ad0a5657b7d9c18a775a8e32233ba998"
+  integrity sha512-Othpm0aolUYF9iG6WEkDQg1cKAvuGwqij5bOxYMaTRmxSl+WF6gEgi7f35/aVh/bq/sa1RBG9NV/CzX0s/r8aA==
   dependencies:
     xmlhttprequest "^1.8.0"
 
-"@infomaximum/integration-sdk@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@infomaximum/integration-sdk/-/integration-sdk-1.4.1.tgz#9009da9ce1ad5242487934c7a853d455da050422"
-  integrity sha512-GjwZk3F3UkhNx4fuaXss9R/o1Y5Hv5uun6BkuiPbgOvhvgAfthMdKB+inN0dCrhiQI5aS/u7p/8uxbVFUhTcvw==
+"@infomaximum/integration-sdk@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@infomaximum/integration-sdk/-/integration-sdk-1.4.2.tgz#518ad3207c69b01d842adf8833ab79f32ec152f7"
+  integrity sha512-i9q44MpUlP0/r190aWo23TSWs84W1DuA7b1g6UwWwYgQAe7Rd6h1bkTFQOK30uUpSpZCjbpl6RYcYd9PrFJUmw==
 
 "@infomaximum/json-modify-webpack-plugin@^1.1.0":
   version "1.1.0"
