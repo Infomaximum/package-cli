@@ -1,9 +1,12 @@
 import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
+import { INTEGRATION_SDK_LIB_NAME } from "../const.js";
 
 export const INTEGRATION_TSCONFIG_JSON = `\
 {
   "compilerOptions": {
     "target": "ES2015",
+    "lib": ["ES2015"],
+    "types": ["${INTEGRATION_SDK_LIB_NAME}"],
     "module": "Preserve",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
