@@ -44,6 +44,8 @@ export const runDebugIntegration = async (
     entry,
   });
 
+  globalThis.integration = globalThis.integration || {};
+
   import(INTEGRATION_PATHS.moduleIndex).then(() => {
     runDebug(options, rcConfig);
   });
