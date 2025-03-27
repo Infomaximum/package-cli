@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.22.0-0](https://github.com/Infomaximum/package-cli/compare/v2.21.0...v2.22.0-0) (2025-03-27)
+
+
+### Features
+
+* добавлена обработка флага серий запусков ([7f5d7ec](https://github.com/Infomaximum/package-cli/commit/7f5d7ecc33fa232d5e3aed0489993837d2f5b3b0))
+* начальная реализация отладки интеграции ([9a32dd8](https://github.com/Infomaximum/package-cli/commit/9a32dd838db34a9dc904c1430330d983ba7926c6))
+* передача конфига отладки в библиотеку по отладке интеграций ([1afd19e](https://github.com/Infomaximum/package-cli/commit/1afd19eefa08e1a05114675434d03d4db7b6b377))
+* повторная минификация кода после модификации ([dc0a9c8](https://github.com/Infomaximum/package-cli/commit/dc0a9c856da8381c258ebee041986d34d8214b0e))
+
+
+### Bug Fixes
+
+* исправлено форматирование ([cac04c3](https://github.com/Infomaximum/package-cli/commit/cac04c359e0f655bc4b2e69544addbb601a1a1ac))
+* исправлены параметры ([60c38c3](https://github.com/Infomaximum/package-cli/commit/60c38c3539a87787e0e8c12c63b06a8bc9b6a4ea))
+* убрана минификация имен переменных ([aaed573](https://github.com/Infomaximum/package-cli/commit/aaed57316455cf3634cf3100fc4bf88bc4d371f4))
+* шаблон integrationrc ([bed299a](https://github.com/Infomaximum/package-cli/commit/bed299a0a431ab73c8796bd0ba25e922f1133e79))
+
 ## [2.21.0](https://github.com/Infomaximum/package-cli/compare/v2.20.1...v2.21.0) (2025-03-17)
 
 
