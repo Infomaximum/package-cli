@@ -179,7 +179,10 @@ export const INTEGRATION_VSCODE_SETTINGS = `\
   "typescript.tsdk": "node_modules/typescript/lib",
   "integration-debugger.isEnabled": true,
   "integration-debugger.debugConfigurationName": "Debug Integration",
-  "integration-debugger.functionNames": ["executePagination"]
+  "integration-debugger.functionNames": {
+      "single": ["executePagination", "execute"],
+      "series": ["executePagination"]
+    }
 }
 `;
 
