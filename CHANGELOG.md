@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.22.0-2](https://github.com/Infomaximum/package-cli/compare/v2.22.0-1...v2.22.0-2) (2025-03-28)
+
+
+### Bug Fixes
+
+* инициализация package-cli с той версией которая и создаёт проект ([fed9d2b](https://github.com/Infomaximum/package-cli/commit/fed9d2bfcc6e3ab66a647e44804b3069aae0511f))
+* используемые библиотеки с типами ([9da35be](https://github.com/Infomaximum/package-cli/commit/9da35be63b0f8e8eb7554585df85f4c7e04131b9))
+* template ([a1cb787](https://github.com/Infomaximum/package-cli/commit/a1cb787b43505e8d922f6b625873d9ab6cf983a9))
+
 ## [2.22.0-1](https://github.com/Infomaximum/package-cli/compare/v2.22.0-0...v2.22.0-1) (2025-03-27)
 
 
