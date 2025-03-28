@@ -1,12 +1,9 @@
-import type { Actions, NodePlopAPI } from "node-plop";
-import { getLatestVersionOfLibrary } from "../../../utils.js";
+import type { Actions } from "node-plop";
+import { getLatestVersionOfLibrary, packageJson } from "../../../utils.js";
 import { PACKAGE_MANIFEST_TEMPLATE } from "../../../package/templates/packageManifest.js";
 import { PACKAGE_ICON_TEMPLATE } from "../../../package/templates/packageIcon.js";
 import type { Answers } from "../../../package/scripts/prompts.js";
-import {
-  CUSTOM_PACKAGE_CLI_LIB_NAME,
-  MANIFEST_JSON_FILE_NAME,
-} from "../../../const.js";
+import { MANIFEST_JSON_FILE_NAME } from "../../../const.js";
 import {
   GET_CHANGELOG_MD,
   GET_DOC_MD,
@@ -150,16 +147,15 @@ const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
 };
 
 const getInitWidgetActions = async () => {
-  const [packageCliVersion, widgetSDKVersion] = await Promise.all([
-    getLatestVersionOfLibrary(CUSTOM_PACKAGE_CLI_LIB_NAME),
+  const [widgetSDKVersion] = await Promise.all([
     getLatestVersionOfLibrary(WIDGET_SDK_LIB_NAME),
   ]);
 
   return (data: Answers) =>
     actions({
       ...data,
-      packageCliVersion,
       widgetSDKVersion,
+      packageCliVersion: packageJson.version,
     });
 };
 

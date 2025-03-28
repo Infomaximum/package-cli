@@ -1,5 +1,4 @@
 import type { Actions } from "node-plop";
-import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
 import type { Answers } from "../../package/scripts/prompts.js";
 import {
   INTEGRATION_BABEL_CONFIG,
@@ -9,12 +8,15 @@ import {
   INTEGRATION_RC_CONFIG,
   INTEGRATION_TSCONFIG_JSON,
   INTEGRATION_VITEST_CONFIG,
+  INTEGRATION_VSCODE_EXTENSIONS,
+  INTEGRATION_VSCODE_LAUNCH,
+  INTEGRATION_VSCODE_SETTINGS,
 } from "../templates/integrationConfigs.js";
 
 import { getPackageActions } from "../../package/scripts/actions.js";
 import { INTEGRATION_INDEX_TEMPLATE } from "../templates/integrationIndex.js";
 import { INTEGRATION_PACKAGE_JSON_TEMPLATE } from "../templates/integrationPackageJson.js";
-import { getLatestVersionOfLibrary } from "../../utils.js";
+import { getLatestVersionOfLibrary, packageJson } from "../../utils.js";
 import {
   INTEGRATION_CONFIG_RC_FILE_NAME,
   INTEGRATION_CONFIG_RC_EXT,
@@ -79,19 +81,34 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       template: INTEGRATION_PACKAGE_JSON_TEMPLATE,
       data: { packageCliVersion, integrationSdkVersion },
     },
+
+    {
+      type: "add",
+      path: ".vscode/launch.json",
+      template: INTEGRATION_VSCODE_LAUNCH,
+    },
+    {
+      type: "add",
+      path: ".vscode/settings.json",
+      template: INTEGRATION_VSCODE_SETTINGS,
+    },
+    {
+      type: "add",
+      path: ".vscode/extensions.json",
+      template: INTEGRATION_VSCODE_EXTENSIONS,
+    },
   ] satisfies Actions;
 };
 
 const getInitIntegrationActions = async () => {
-  const [packageCliVersion, integrationSdkVersion] = await Promise.all([
-    getLatestVersionOfLibrary(CUSTOM_PACKAGE_CLI_LIB_NAME),
+  const [integrationSdkVersion] = await Promise.all([
     getLatestVersionOfLibrary(INTEGRATION_SDK_LIB_NAME),
   ]);
 
   return (data: Answers) =>
     actions({
       ...data,
-      packageCliVersion,
+      packageCliVersion: packageJson.version,
       integrationSdkVersion,
     });
 };

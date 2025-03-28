@@ -9,9 +9,13 @@ import {
   INTEGRATION_CONFIG_RC_EXT,
   INTEGRATION_CONFIG_RC_FILE_NAME,
 } from "../const.js";
+import {
+  mergeConfigIntegrationWithOptionsCommon,
+  registerCommonIntegrationOptions,
+  type CommonIntegrationOptions,
+} from "./common.js";
 
 export type InputBuildIntegrationOptions = {
-  entry: string;
   buildDir: string;
   type: BuildType;
   watch: boolean;
@@ -19,7 +23,8 @@ export type InputBuildIntegrationOptions = {
   fetchToServer: boolean;
   beautify: boolean;
   experimentalTransform: boolean;
-} & InputPackageOptions;
+} & CommonIntegrationOptions &
+  InputPackageOptions;
 
 export type BuildType = "package" | "script";
 
@@ -29,12 +34,12 @@ export const registerIntegrationBuildCommand = (
   const integrationBuildCommand = integrationCommand.command("build");
 
   registerPackageOptions(integrationBuildCommand);
+  registerCommonIntegrationOptions(integrationBuildCommand);
 
   const config = getConfigIntegrationFromFile();
 
   integrationBuildCommand
     .description("Выполняет сборку пакета c интеграцией")
-    .option("--entry <path>", "путь до entrypoint", "src/index.ts")
     .option(
       "--build-dir <buildDirPath>",
       "путь до директории в которую будет собран пакет",
@@ -63,6 +68,11 @@ export const registerIntegrationBuildCommand = (
         throw new Error("Не настроен конфиг или нет функции fetcher в конфиге");
       }
 
-      runBuildIntegration(options, config);
+      const mergedOptions = mergeConfigIntegrationWithOptionsCommon(
+        config,
+        options
+      );
+
+      runBuildIntegration({ ...options, ...mergedOptions }, config);
     });
 };
