@@ -29,6 +29,8 @@ type Dependency = {
 
 export const systemRequire = Module.createRequire(import.meta.url);
 
+export const packageJson = systemRequire("../package.json");
+
 export function capitalizeFirstLetter(str: string = "") {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }

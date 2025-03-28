@@ -1,9 +1,7 @@
 import type { Command } from "commander";
-import { systemRequire } from "./utils.js";
+import { packageJson } from "./utils.js";
 import { registerWidgetCommands } from "./widget/index.js";
 import { registerIntegrationCommands } from "./integration/index.js";
-
-const packageJson = systemRequire("../package.json");
 
 export const registerCommands = (cli: Command) => {
   cli.helpOption("-h", "отображает помощь по командам");
