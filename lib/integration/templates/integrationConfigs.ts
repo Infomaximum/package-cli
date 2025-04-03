@@ -131,6 +131,9 @@ const config = {
 
   debugging: {
     seriesIterations: 3,
+    commonAuthData: {
+      BASE_URL: process.env.WEBHOOK_URL
+    },
     blocks: {},
     connections: {},
   },
@@ -143,6 +146,7 @@ export const INTEGRATION_ENV_EXAMPLE_CONFIG = `\
 INTEGRATION_ID=0
 GRAPHQL_URL=https://example.com/graphql
 API_KEY=123456789qwertyuiop
+WEBHOOK_URL=https://example.com/webhook
 `;
 
 export const INTEGRATION_VSCODE_LAUNCH = `\
