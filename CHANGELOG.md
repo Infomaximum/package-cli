@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.22.6](https://github.com/Infomaximum/package-cli/compare/v2.22.5...v2.22.6) (2025-04-04)
+
+
+### Bug Fixes
+
+* исправлена работа eslint в шаблоне ([3ce5faf](https://github.com/Infomaximum/package-cli/commit/3ce5faf22ec97d6071af2b9790560864af7d6149))
+
 ### [2.22.5](https://github.com/Infomaximum/package-cli/compare/v2.22.4...v2.22.5) (2025-04-04)
 
 ### [2.22.4](https://github.com/Infomaximum/package-cli/compare/v2.22.3...v2.22.4) (2025-04-04)
