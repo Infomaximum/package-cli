@@ -61,12 +61,12 @@ module.exports = {
 `;
 
 export const INTEGRATION_ESLINTRC = `\
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
+const js = require("@eslint/js");
+const globals = require("globals");
+const tseslint = require("typescript-eslint");
 
-export default tseslint.config(
-  { ignores: ["dist", "build"] },
+module.exports = tseslint.config(
+  { ignores: ["dist", "build", "node_modules"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
@@ -75,7 +75,9 @@ export default tseslint.config(
       globals: globals.browser,
     },
     plugins: {},
-    rules: {},
+    rules: {
+      "@typescript-eslint/no-explicit-any": "warn",
+    },
   }
 );
 `;
