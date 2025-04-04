@@ -149,6 +149,8 @@ API_KEY=123456789qwertyuiop
 WEBHOOK_URL=https://example.com/webhook
 `;
 
+const splitLibName = CUSTOM_PACKAGE_CLI_LIB_NAME.split("/");
+
 export const INTEGRATION_VSCODE_LAUNCH = `\
 {
   "version": "0.2.0",
@@ -158,14 +160,10 @@ export const INTEGRATION_VSCODE_LAUNCH = `\
       "request": "launch",
       "name": "Debug Integration",
       "skipFiles": ["<node_internals>/**"],
-
-      "runtimeExecutable": "tsx",
-      "runtimeArgs": ["--preserve-symlinks"],
-      "args": [
-        "\${workspaceFolder}/node_modules/${CUSTOM_PACKAGE_CLI_LIB_NAME}/dist/index.js",
-        "integration",
-        "debug"
-      ],
+ 
+      "runtimeArgs": ["--preserve-symlinks", "--import", "tsx"],
+      "program": "\${workspaceFolder}\${pathSeparator}node_modules\${pathSeparator}${splitLibName.at(0)}\${pathSeparator}${splitLibName.at(1)}\${pathSeparator}dist\${pathSeparator}index.js",
+      "args": ["integration", "debug"],
       "sourceMaps": true,
       "resolveSourceMapLocations": [
         "\${workspaceFolder}/**",

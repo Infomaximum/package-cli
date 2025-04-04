@@ -7,6 +7,7 @@ import {
   INTEGRATION_CONFIG_RC_EXT,
   INTEGRATION_CONFIG_RC_FILE_NAME,
 } from "../const.js";
+import { systemRequire } from "../../utils.js";
 
 const runDebug = (
   options: InputDebugIntegrationOptions,
@@ -46,7 +47,7 @@ export const runDebugIntegration = async (
 
   globalThis.integration = globalThis.integration || {};
 
-  import(INTEGRATION_PATHS.moduleIndex).then(() => {
-    runDebug(options, rcConfig);
-  });
+  systemRequire(INTEGRATION_PATHS.moduleIndex);
+
+  runDebug(options, rcConfig);
 };
