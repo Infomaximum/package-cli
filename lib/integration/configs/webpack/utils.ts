@@ -10,10 +10,20 @@ export const TERSER_OPTIONS = (isBeautifyCode: boolean) =>
     format: {
       comments: false,
       beautify: isBeautifyCode,
+      keep_numbers: true,
+      braces: true,
     },
     compress: {
       booleans: false,
       keep_fnames: false,
       toplevel: true,
+      join_vars: false,
+      sequences: false,
+      unsafe_undefined: false,
+      hoist_vars: false,
+      hoist_funs: false,
+      hoist_props: false,
+      typeofs: false,
+      arrows: false,
     },
   }) satisfies MinifyOptions;
