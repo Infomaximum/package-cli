@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.23.0](https://github.com/Infomaximum/package-cli/compare/v2.22.6...v2.23.0) (2025-04-09)
+
+
+### Features
+
+* добавлен флаг для генерации схемы ([576b9a4](https://github.com/Infomaximum/package-cli/commit/576b9a4798f717941520b73084924672d6428715))
+
+
+### Bug Fixes
+
+* arrows ([32b11ab](https://github.com/Infomaximum/package-cli/commit/32b11abf760c7113df187ef87498616fa6237527))
+* исправлены преобразования кода ([56796ad](https://github.com/Infomaximum/package-cli/commit/56796adc51fed92620b5b6b8f7cfb254e3da2b80))
+
 ### [2.22.6](https://github.com/Infomaximum/package-cli/compare/v2.22.5...v2.22.6) (2025-04-04)
 
 
