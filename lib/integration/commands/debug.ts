@@ -26,6 +26,11 @@ export const registerIntegrationDebugCommand = (
       "--entityKey <key>",
       "Ключ сущности для которой запускается отладка"
     )
+    .option(
+      "--isGenerateSchema",
+      "Сгенерировать output_variables по output",
+      false
+    )
     .option("--series", "Выполняет серию запусков отладки сущности", false)
     .action((options: InputDebugIntegrationOptions) => {
       const config = getConfigIntegrationFromFile();

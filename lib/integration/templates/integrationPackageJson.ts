@@ -14,7 +14,8 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "debug": "node --import tsx ./node_modules/.bin/im-package-cli integration debug"
   },
   "devDependencies": {
     "@babel/plugin-transform-block-scoping": "^7.25.9",

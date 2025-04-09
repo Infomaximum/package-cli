@@ -1467,10 +1467,10 @@
   dependencies:
     xmlhttprequest "^1.8.0"
 
-"@infomaximum/integration-sdk@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@infomaximum/integration-sdk/-/integration-sdk-2.0.0.tgz#b6fa2e61969fced136dda8a51b2027373725a439"
-  integrity sha512-uBE7qNly8vCILgw2xOqsz2JWurk2kB+i76dtLt6sxNae7NFIyYELymDsfnJHtfowQIKqcTicubpQ3gfzozRNPw==
+"@infomaximum/integration-sdk@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@infomaximum/integration-sdk/-/integration-sdk-2.3.0.tgz#8f82257d2e132d1be93e9cb4300fb0e2495b0baf"
+  integrity sha512-NHVf4mxukfxlwIdPHE/Wns3n2NkPcvdaU0aEsAC9195nNh8BZCtCq4GQWsm8ZEZRf68FThSw8zBEDmUdHmpYKQ==
 
 "@infomaximum/json-modify-webpack-plugin@^1.1.0":
   version "1.1.0"

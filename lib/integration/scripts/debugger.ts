@@ -13,7 +13,7 @@ const runDebug = (
   options: InputDebugIntegrationOptions,
   rcConfig: IntegrationRCConfig | undefined
 ) => {
-  const { entityKey, series } = options;
+  const { entityKey, series, isGenerateSchema } = options;
 
   const debuggingConfig = rcConfig?.debugging;
 
@@ -26,6 +26,7 @@ const runDebug = (
     entityKey,
     debuggingConfig,
     series,
+    isGenerateSchema,
   });
 
   try {
