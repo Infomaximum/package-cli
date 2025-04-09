@@ -24,6 +24,6 @@ export const TERSER_OPTIONS = (isBeautifyCode: boolean) =>
       hoist_funs: false,
       hoist_props: false,
       typeofs: false,
-      arrows: false,
+      arrows: true,
     },
   }) satisfies MinifyOptions;
