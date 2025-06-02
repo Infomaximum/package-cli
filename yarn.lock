@@ -1616,11 +1616,6 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@saneksa/babel-plugin-function-transform@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@saneksa/babel-plugin-function-transform/-/babel-plugin-function-transform-1.0.0.tgz#0426eeeb869056f7f5e877686f60173bdb1427f5"
-  integrity sha512-aFqhlz9CqalGdd14Q6vqvGnqyk32vvDFzKBda/b/nl9uBxyOA5Y0f2JmElQ9cOs27dzqbclw/oaRlsq5P/a2mQ==
-
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
