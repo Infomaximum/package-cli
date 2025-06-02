@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.23.1](https://github.com/Infomaximum/package-cli/compare/v2.23.0...v2.23.1) (2025-06-02)
+
+
+### Bug Fixes
+
+* Изменение структуры ПИ, отключение флага experementa-transform ([1505f16](https://github.com/Infomaximum/package-cli/commit/1505f165cf8cfb1afc284f07543b0104724f014f))
+
 ## [2.23.0](https://github.com/Infomaximum/package-cli/compare/v2.22.6...v2.23.0) (2025-04-09)
 
 
