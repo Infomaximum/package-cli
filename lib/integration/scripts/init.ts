@@ -5,6 +5,8 @@ import {
   INTEGRATION_ENV_EXAMPLE_CONFIG,
   INTEGRATION_ESLINTRC,
   INTEGRATION_GITIGNORE,
+  INTEGRATION_HUSKY_COMMITMSG,
+  INTEGRATION_HUSKY_PRECOMMIT,
   INTEGRATION_RC_CONFIG,
   INTEGRATION_TSCONFIG_JSON,
   INTEGRATION_VITEST_CONFIG,
@@ -39,7 +41,26 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       path: "src/index.ts",
       template: INTEGRATION_INDEX_TEMPLATE,
     },
-
+    {
+      type: "add",
+      path: "src/types/common.d.ts",
+      template:undefined
+    },
+    {
+      type: "add",
+      path: "src/utils/index.ts",
+      template:""
+    },
+    {
+      type: "add",
+      path: "src/modules/template.ts",
+      template:""
+    },
+    {
+      type: "add",
+      path: "src/connections/base.ts",
+      template:""
+    },
     {
       type: "add",
       path: "tsconfig.json",
@@ -96,6 +117,16 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       type: "add",
       path: ".vscode/extensions.json",
       template: INTEGRATION_VSCODE_EXTENSIONS,
+    },
+    {
+      type: "add",
+      path: ".husky/commit-msg",
+      template: INTEGRATION_HUSKY_COMMITMSG,
+    },
+    {
+      type: "add",
+      path: ".husky/pre-commit",
+      template: INTEGRATION_HUSKY_PRECOMMIT,
     },
   ] satisfies Actions;
 };

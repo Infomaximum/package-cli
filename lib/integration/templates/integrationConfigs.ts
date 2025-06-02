@@ -4,8 +4,8 @@ import { INTEGRATION_SDK_LIB_NAME } from "../const.js";
 export const INTEGRATION_TSCONFIG_JSON = `\
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "lib": ["ES2015"],
+    "target": "ES2024",
+    "lib": ["ES2024","DOM"],
     "types": ["${INTEGRATION_SDK_LIB_NAME}"],
     "module": "Preserve",
     "esModuleInterop": true,
@@ -32,6 +32,9 @@ export const INTEGRATION_GITIGNORE = `\
 
 #documentation
 /docs
+
+#package
+/package
 
 # misc
 .DS_Store
@@ -195,3 +198,11 @@ export const INTEGRATION_VSCODE_EXTENSIONS = `\
   "recommendations": ["Jokerok.integration-debugger"]
 }
 `;
+
+export const INTEGRATION_HUSKY_PRECOMMIT = `\
+yarn lint
+`
+
+export const INTEGRATION_HUSKY_COMMITMSG = `\
+yarn commitlint --edit $1
+`
