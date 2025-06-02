@@ -58,11 +58,6 @@ export const registerIntegrationBuildCommand = (
       false
     )
     .option("--beautify", `отформатировать код после сборки`, false)
-    .option(
-      "--experimental-transform",
-      `эксперементальная функция по переносу общего кода в функции executePagination'`,
-      false
-    )
     .action((options: InputBuildIntegrationOptions) => {
       if (options.fetchToServer && typeof config?.fetcher !== "function") {
         throw new Error("Не настроен конфиг или нет функции fetcher в конфиге");

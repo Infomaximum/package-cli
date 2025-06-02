@@ -1,12 +1,10 @@
 export const INTEGRATION_INDEX_TEMPLATE = `\
-integration = {
+const app = {
   schema: 1,
-  meta: {
-    key: "integrationKey",
-    name: "",
-    description: "",
-  },
-  blocks: [],
-  connections: [],
+  version:"0.0.1",
+  label:"Integration_template",
+  description:"",
+  blocks: {},
+  connections: {},
 };
 `;

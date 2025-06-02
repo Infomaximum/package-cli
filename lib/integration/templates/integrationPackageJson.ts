@@ -15,7 +15,8 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
     "test:ui": "vitest --ui",
-    "debug": "node --import tsx ./node_modules/.bin/im-package-cli integration debug"
+    "debug": "node --import tsx ./node_modules/.bin/im-package-cli integration debug",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@babel/plugin-transform-block-scoping": "^7.25.9",
@@ -31,7 +32,8 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "typescript-eslint": "^8.29.0",
     "vitest": "^3.0.4",
     "@vitest/coverage-v8": "3.0.7",
-    "@vitest/ui": "3.0.7"
+    "@vitest/ui": "3.0.7",
+    "husky": "^9.1.7"
   }
 }
 `;
