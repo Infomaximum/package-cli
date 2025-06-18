@@ -1,0 +1,39 @@
+import { type Configuration } from "webpack";
+import { type Mode } from "../../paths.js";
+import { merge } from "webpack-merge";
+import chalk from "chalk";
+import { getCommonWidgetConfig } from "../configs/webpack/common.js";
+import { getMinimizer } from "../configs/webpack/sections/plugins/minimizer.js";
+import { generateWidgetPaths } from "../widgetPaths.js";
+import { runWebpackBuild } from "../../utils.js";
+import type { MergedBuildScriptOptions } from "../commands/build_script.js";
+import { WIDGET_OUTPUT_FULL_FILE_NAME } from "../const.js";
+
+export const runBuildScript = async (args: MergedBuildScriptOptions) => {
+  const mode: Mode = "production";
+
+  const WIDGET_PATHS = generateWidgetPaths(args);
+
+  const sections = {
+    entry: WIDGET_PATHS.moduleIndex,
+    output: {
+      filename: WIDGET_OUTPUT_FULL_FILE_NAME,
+    },
+  } satisfies Configuration;
+
+  const configSections = [
+    getCommonWidgetConfig(mode, WIDGET_PATHS),
+    sections,
+    getMinimizer(),
+  ] as const;
+
+  const widgetConfig = merge(configSections);
+
+  try {
+    await runWebpackBuild(widgetConfig as Configuration);
+  } catch (error: any) {
+    console.error(chalk.red("\nFailed to compile.\n"));
+    console.error(chalk.red(error));
+    process.exit(1);
+  }
+};

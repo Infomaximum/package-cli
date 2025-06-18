@@ -1,20 +1,28 @@
-import { CUSTOM_PACKAGE_CLI_LIB_NAME } from "../../const.js";
-import { WIDGET_SDK_LIB_NAME } from "../const.js";
+import {
+  CUSTOM_PACKAGE_CLI_LIB_NAME,
+  DEFAULT_BUILD_DIR_NAME,
+} from "../../const.js";
+import { WIDGET_OUTPUT_FULL_FILE_NAME, WIDGET_SDK_LIB_NAME } from "../const.js";
 
 export const WIDGET_PACKAGE_JSON_TEMPLATE = `\
 {
   "name": "template_widget",
   "version": "1.0.0",
-  "private": true,
-  "main": "src/index.tsx",
+  "main": "${DEFAULT_BUILD_DIR_NAME}/${WIDGET_OUTPUT_FULL_FILE_NAME}",
+  "files": [
+    "build",
+    "manifest.json"
+  ],
   "scripts": {
     "build": "im-package-cli widget build",
+    "build:script": "im-package-cli widget build-script",
     "build:dev": "im-package-cli widget build --dev",
     "start": "im-package-cli widget start",
     "lint": "tsc --noEmit && eslint src/ --ext .ts,.tsx --quiet",
     "test": "jest --passWithNoTests",
     "release": "im-package-cli widget release",
-    "changelog":"im-package-cli widget release --dry-run"
+    "changelog":"im-package-cli widget release --dry-run",
+    "prepublishOnly": "npm run build:script"
   },
   "dependencies": {
     "${WIDGET_SDK_LIB_NAME}": "{{widgetSDKVersion}}",
