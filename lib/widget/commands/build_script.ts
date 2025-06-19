@@ -29,6 +29,6 @@ export const registerWidgetBuildScriptCommand = (widgetCommand: Command) => {
       "путь до директории в которую будет собран пакет"
     )
     .action((options: InputBuildScriptOptions) =>
-      runBuildScript(configMergeWithOptionsCommon(config, options))
+      runBuildScript(configMergeWithOptionsCommon(config, options), config)
     );
 };

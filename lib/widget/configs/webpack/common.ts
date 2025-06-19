@@ -19,7 +19,7 @@ const isDevelopment = (mode: Mode) => mode === "development";
 
 export const getCommonWidgetConfig = (
   mode: Mode,
-  PATHS: WidgetPaths,
+  PATHS: WidgetPaths
 ): Configuration => {
   const manifestEntry = systemRequire(PATHS.widgetManifestJsonPath).entry;
 

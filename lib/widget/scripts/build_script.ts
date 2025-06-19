@@ -8,8 +8,12 @@ import { generateWidgetPaths } from "../widgetPaths.js";
 import { runWebpackBuild } from "../../utils.js";
 import type { MergedBuildScriptOptions } from "../commands/build_script.js";
 import { WIDGET_OUTPUT_FULL_FILE_NAME } from "../const.js";
+import type { WidgetRCConfig } from "../configs/file.js";
 
-export const runBuildScript = async (args: MergedBuildScriptOptions) => {
+export const runBuildScript = async (
+  args: MergedBuildScriptOptions,
+  config: WidgetRCConfig | undefined
+) => {
   const mode: Mode = "production";
 
   const WIDGET_PATHS = generateWidgetPaths(args);
@@ -23,9 +27,13 @@ export const runBuildScript = async (args: MergedBuildScriptOptions) => {
 
   const configSections = [
     getCommonWidgetConfig(mode, WIDGET_PATHS),
+    {
+      externals: config?.externals ?? {},
+      externalsType: "window",
+    },
     sections,
     getMinimizer(),
-  ] as const;
+  ] satisfies Configuration[];
 
   const widgetConfig = merge(configSections);
 

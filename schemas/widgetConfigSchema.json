@@ -39,6 +39,11 @@
     "host": {
       "type": "string",
       "description": "хост по которому будет доступен сервер разработки"
+    },
+    "externals": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "исключает указанные зависимости из сборки, предполагая их наличие в окружении. Используется для уменьшения размера бандла. Актуально только при сборке скрипта. (https://webpack.js.org/configuration/externals/)"
     }
   },
   "required": [

@@ -104,7 +104,7 @@ const actions = ({ widgetSDKVersion, packageCliVersion }: ActionData) => {
 
     {
       type: "add",
-      path: "widgetrc.json",
+      path: "widgetrc.js",
       template: WIDGET_RC_CONFIG,
     },
     {
