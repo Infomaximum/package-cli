@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/package-cli",
-  "version": "2.24.0-0",
+  "version": "2.24.0-1",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
