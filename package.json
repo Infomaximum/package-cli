@@ -18,9 +18,11 @@
     "dev": "tsc",
     "dev:w": "npm run dev -- -w",
     "build": "rimraf dist && npm run dev",
-    "release": "tsc --noEmit && standard-version && npm run build",
+    "release": "tsc --noEmit && standard-version",
+    "release:rc": "standard-version -p",
     "lint": "tsc --noEmit",
-    "prettier": "prettier --find-config-path --write 'lib/**/*'"
+    "prettier": "prettier --find-config-path --write 'lib/**/*'",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.23.6",
