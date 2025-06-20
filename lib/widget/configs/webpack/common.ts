@@ -19,7 +19,8 @@ const isDevelopment = (mode: Mode) => mode === "development";
 
 export const getCommonWidgetConfig = (
   mode: Mode,
-  PATHS: WidgetPaths
+  PATHS: WidgetPaths,
+  isCopyResources = true
 ): Configuration => {
   const manifestEntry = systemRequire(PATHS.widgetManifestJsonPath).entry;
 
@@ -48,7 +49,8 @@ export const getCommonWidgetConfig = (
         },
       }),
 
-      PATHS.widgetResourcesPath &&
+      isCopyResources &&
+        PATHS.widgetResourcesPath &&
         PATHS.widgetResourcesDirName &&
         new CopyWebpackPlugin({
           patterns: [
@@ -129,11 +131,8 @@ export const getCommonWidgetConfig = (
               resourceQuery: /url/, // *.svg?url
               parser: {
                 dataUrlCondition: {
-                  maxSize: 64 * 1024, // 64kb
+                  maxSize: Infinity,
                 },
-              },
-              generator: {
-                filename: "build/static/[hash][ext][query]",
               },
             },
             {
