@@ -16,14 +16,14 @@ export type MergedBuildScriptOptions = ReturnType<
 >;
 
 export const registerWidgetBuildScriptCommand = (widgetCommand: Command) => {
-  const widgetBuildCommand = widgetCommand.command("build-script");
+  const widgetBuildScriptCommand = widgetCommand.command("build-script");
 
   const config = getConfigFromFile();
 
-  registerCommonOption(widgetBuildCommand);
+  registerCommonOption(widgetBuildScriptCommand);
 
-  widgetBuildCommand
-    .description("Выполняет сборку скрипта")
+  widgetBuildScriptCommand
+    .description("Выполняет сборку js файла виджета для публикации")
     .option(
       "--build-dir <buildDirPath>",
       "путь до директории в которую будет собран пакет"
