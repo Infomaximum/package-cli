@@ -16,7 +16,7 @@ export type WidgetRCConfig = {
    * Не работает в режиме сборки пакета
    * @link (https://webpack.js.org/configuration/externals/)
    */
-  externals?: Partial<SystemWidgetExternals>;
+  externalsLib?: Partial<SystemWidgetExternals>;
 };
 
 export const getConfigFromFile = () => {

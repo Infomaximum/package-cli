@@ -28,7 +28,7 @@ export const runBuildScript = async (
   const configSections = [
     getCommonWidgetConfig(mode, WIDGET_PATHS, false),
     {
-      externals: config?.externals ?? {},
+      externals: config?.externalsLib ?? {},
       externalsType: "window",
     },
     sections,
