@@ -16,3 +16,5 @@ export type {
   IntegrationFetcherReturnType,
   IntegrationFetcher,
 } from "./integration/configs/file.js";
+
+export type { WidgetRCConfig } from "./widget/configs/file.js";

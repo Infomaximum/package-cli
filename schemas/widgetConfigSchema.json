@@ -39,6 +39,22 @@
     "host": {
       "type": "string",
       "description": "хост по которому будет доступен сервер разработки"
+    },
+    "externalsLib": {
+      "type": "object",
+      "properties": {
+        "react": {
+          "const": "React"
+        },
+        "react-dom": {
+          "const": "ReactDOM"
+        },
+        "react-dom/client": {
+          "const": "ReactDOMClient"
+        }
+      },
+      "additionalProperties": true,
+      "description": "исключает указанные зависимости из сборки, предполагая их наличие в окружении. Не работает в режиме сборки пакета. (https://webpack.js.org/configuration/externals/)"
     }
   },
   "required": [
