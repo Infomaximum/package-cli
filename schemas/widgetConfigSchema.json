@@ -48,6 +48,9 @@
         },
         "react-dom": {
           "const": "ReactDOM"
+        },
+        "react-dom/client": {
+          "const": "ReactDOMClient"
         }
       },
       "additionalProperties": true,
