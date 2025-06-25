@@ -20,7 +20,10 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
   },
   "devDependencies": {
     "@babel/plugin-transform-block-scoping": "^7.25.9",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.23.0",
+    "@infomaximum/config": "^2.7.0",
     "${INTEGRATION_SDK_LIB_NAME}": "^{{integrationSdkVersion}}",
     "${CUSTOM_PACKAGE_CLI_LIB_NAME}": "^{{packageCliVersion}}",
     "@types/node": "^0",
