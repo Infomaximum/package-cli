@@ -2,7 +2,6 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
-import { cssLoaders } from "./sections/loaders/cssLoaders.js";
 import type { Mode } from "../../../paths.js";
 import { compact, systemRequire } from "../../../utils.js";
 import { MANIFEST_REG_EXP } from "../../../const.js";
@@ -77,40 +76,6 @@ export const getCommonWidgetConfig = (
                 systemRequire.resolve("react-refresh/babel"),
             ].filter(Boolean),
           },
-        },
-        {
-          test: /\.css$/i,
-          use: cssLoaders,
-        },
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            ...cssLoaders,
-            {
-              loader: systemRequire.resolve("sass-loader"),
-              options: {
-                implementation: systemRequire("sass"),
-                sassOptions: {
-                  fiber: false,
-                },
-              },
-            },
-          ],
-        },
-        {
-          test: /\.less$/i,
-          use: [
-            ...cssLoaders,
-            {
-              loader: systemRequire.resolve("less-loader"),
-              options: {
-                sourceMap: isDevelopment(mode),
-                lessOptions: {
-                  javascriptEnabled: true,
-                },
-              },
-            },
-          ],
         },
         {
           test: /\.(eot|ttf|woff|woff2|png|jpg|jpeg|webp|gif)$/i,

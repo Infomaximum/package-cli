@@ -10,6 +10,7 @@ import { getDevServerConfig } from "../configs/webpack/sections/devServer.js";
 import { generateWidgetPaths, type WidgetPaths } from "../widgetPaths.js";
 import { checkLatestLibsVersion } from "../utils.js";
 import type { MergedStartOptions } from "../commands/start.js";
+import { getStyleLoaders } from "../configs/webpack/sections/loaders/cssLoaders.js";
 
 const { webpack } = _webpack;
 
@@ -48,6 +49,7 @@ const run = async (WIDGET_PATHS: WidgetPaths, options: MergedStartOptions) => {
     getCommonWidgetConfig(mode, WIDGET_PATHS),
     pluginsSection,
     devtoolSection,
+    getStyleLoaders({ mode }),
   ];
 
   const compiler = webpack(merge(configWebpack));

@@ -5,10 +5,12 @@ import chalk from "chalk";
 import { getCommonWidgetConfig } from "../configs/webpack/common.js";
 import { getMinimizer } from "../configs/webpack/sections/plugins/minimizer.js";
 import { generateWidgetPaths } from "../widgetPaths.js";
-import { runWebpackBuild } from "../../utils.js";
+import { runWebpackBuild, systemRequire } from "../../utils.js";
 import type { MergedBuildScriptOptions } from "../commands/build_script.js";
 import { WIDGET_OUTPUT_FULL_FILE_NAME } from "../const.js";
 import type { WidgetRCConfig } from "../configs/file.js";
+import { getStyleLoaders } from "../configs/webpack/sections/loaders/cssLoaders.js";
+import type { IWidgetManifest } from "@infomaximum/widget-sdk";
 
 export const runBuildScript = async (
   args: MergedBuildScriptOptions,
@@ -17,6 +19,10 @@ export const runBuildScript = async (
   const mode: Mode = "production";
 
   const WIDGET_PATHS = generateWidgetPaths(args);
+
+  const widgetManifest = systemRequire(
+    WIDGET_PATHS.widgetManifestJsonPath
+  ) as IWidgetManifest;
 
   const sections = {
     entry: WIDGET_PATHS.moduleIndex,
@@ -32,6 +38,7 @@ export const runBuildScript = async (
       externalsType: "window",
     },
     sections,
+    getStyleLoaders({ mode, uuidWidget: widgetManifest.uuid }),
     getMinimizer(),
   ] satisfies Configuration[];
 

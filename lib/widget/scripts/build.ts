@@ -14,6 +14,7 @@ import { generatePackagePaths } from "../../package/packagePaths.js";
 import { checkLatestLibsVersion } from "../utils.js";
 import type { MergedBuildOptions } from "../commands/build.js";
 import { runWebpackBuild } from "../../utils.js";
+import { getStyleLoaders } from "../configs/webpack/sections/loaders/cssLoaders.js";
 
 export const runBuild = async (args: MergedBuildOptions) => {
   const mode: Mode = "production";
@@ -52,6 +53,7 @@ export const runBuild = async (args: MergedBuildOptions) => {
   const configSections = [
     getCommonWidgetConfig(mode, WIDGET_PATHS),
     sections,
+    getStyleLoaders({ mode }),
     getMinimizer(),
   ] as const;
 
