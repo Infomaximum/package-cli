@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.24.0-2](https://github.com/Infomaximum/package-cli/compare/v2.24.0-1...v2.24.0-2) (2025-06-20)
+
+## [2.24.0-1](https://github.com/Infomaximum/package-cli/compare/v2.24.0-0...v2.24.0-1) (2025-06-20)
+
+
+### Bug Fixes
+
+* убрано копирование ресурсов при сборке скрипта ([9084cab](https://github.com/Infomaximum/package-cli/commit/9084cab37462fadf4ad15169ea7d701a18698199))
+
+## [2.24.0-0](https://github.com/Infomaximum/package-cli/compare/v2.23.1...v2.24.0-0) (2025-06-20)
+
+
+### Features
+
+* добавлена команда по сборки скрипта виджета ([2810b69](https://github.com/Infomaximum/package-cli/commit/2810b69d7637947f1b143eec064439338057f508))
+* добавлена поддержка externals ([897eb0c](https://github.com/Infomaximum/package-cli/commit/897eb0cba2b3921f47c6d10d02de860b50d4c151))
+
 ### [2.23.1](https://github.com/Infomaximum/package-cli/compare/v2.23.0...v2.23.1) (2025-06-02)
 
 

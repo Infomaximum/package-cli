@@ -10,6 +10,9 @@ import { getDevServerConfig } from "../configs/webpack/sections/devServer.js";
 import { generateWidgetPaths, type WidgetPaths } from "../widgetPaths.js";
 import { checkLatestLibsVersion } from "../utils.js";
 import type { MergedStartOptions } from "../commands/start.js";
+import { getStyleLoaders } from "../configs/webpack/sections/loaders/cssLoaders.js";
+import { systemRequire } from "../../utils.js";
+import type { IWidgetManifest } from "@infomaximum/widget-sdk";
 
 const { webpack } = _webpack;
 
@@ -44,10 +47,22 @@ const run = async (WIDGET_PATHS: WidgetPaths, options: MergedStartOptions) => {
     ],
   } satisfies Configuration;
 
+  const widgetManifest = systemRequire(
+    WIDGET_PATHS.widgetManifestJsonPath
+  ) as IWidgetManifest;
+
+  const publicPath = `http://${options.host}:${options.port}/`;
+
   const configWebpack = [
-    getCommonWidgetConfig(mode, WIDGET_PATHS),
+    getCommonWidgetConfig({
+      mode,
+      PATHS: WIDGET_PATHS,
+      uuid: widgetManifest.uuid,
+      publicPath,
+    }),
     pluginsSection,
     devtoolSection,
+    getStyleLoaders({ mode, uuidWidget: widgetManifest.uuid }),
   ];
 
   const compiler = webpack(merge(configWebpack));

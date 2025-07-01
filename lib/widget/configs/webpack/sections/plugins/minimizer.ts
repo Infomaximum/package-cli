@@ -5,7 +5,7 @@ export const getMinimizer = () => {
   return {
     optimization: {
       minimize: true,
-      splitChunks: false,
+      splitChunks: false as const,
       minimizer: [
         new TerserWebpackPlugin({
           minify: TerserWebpackPlugin.terserMinify,

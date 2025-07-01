@@ -20,6 +20,13 @@ export const getDevServerConfig = ({ host, port }: DevServerParams) => {
     allowedHosts: "all",
     client: {
       logging: "error",
+      overlay: false,
+    },
+    webSocketServer: {
+      type: "ws",
+      options: {
+        path: "/widget-ws-server",
+      },
     },
   } satisfies Configuration;
 };

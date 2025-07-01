@@ -2,7 +2,6 @@ import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import webpack, { type Configuration } from "webpack";
-import { cssLoaders } from "./sections/loaders/cssLoaders.js";
 import type { Mode } from "../../../paths.js";
 import { compact, systemRequire } from "../../../utils.js";
 import { MANIFEST_REG_EXP } from "../../../const.js";
@@ -17,10 +16,21 @@ const { ProgressPlugin } = webpack;
 const isProduction = (mode: Mode) => mode === "production";
 const isDevelopment = (mode: Mode) => mode === "development";
 
-export const getCommonWidgetConfig = (
-  mode: Mode,
-  PATHS: WidgetPaths,
-): Configuration => {
+type CommonWidgetConfigParams = {
+  mode: Mode;
+  PATHS: WidgetPaths;
+  isCopyResources?: boolean;
+  uuid?: string;
+  publicPath?: string;
+};
+
+export const getCommonWidgetConfig = ({
+  mode,
+  PATHS,
+  isCopyResources = true,
+  uuid,
+  publicPath,
+}: CommonWidgetConfigParams): Configuration => {
   const manifestEntry = systemRequire(PATHS.widgetManifestJsonPath).entry;
 
   const filename = isProduction(mode)
@@ -34,6 +44,8 @@ export const getCommonWidgetConfig = (
       path: PATHS.appBuildPath,
       filename: manifestEntry ?? filename,
       asyncChunks: false,
+      uniqueName: uuid ?? undefined,
+      publicPath,
       clean: true,
     },
     plugins: compact([
@@ -48,7 +60,8 @@ export const getCommonWidgetConfig = (
         },
       }),
 
-      PATHS.widgetResourcesPath &&
+      isCopyResources &&
+        PATHS.widgetResourcesPath &&
         PATHS.widgetResourcesDirName &&
         new CopyWebpackPlugin({
           patterns: [
@@ -77,40 +90,6 @@ export const getCommonWidgetConfig = (
           },
         },
         {
-          test: /\.css$/i,
-          use: cssLoaders,
-        },
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            ...cssLoaders,
-            {
-              loader: systemRequire.resolve("sass-loader"),
-              options: {
-                implementation: systemRequire("sass"),
-                sassOptions: {
-                  fiber: false,
-                },
-              },
-            },
-          ],
-        },
-        {
-          test: /\.less$/i,
-          use: [
-            ...cssLoaders,
-            {
-              loader: systemRequire.resolve("less-loader"),
-              options: {
-                sourceMap: isDevelopment(mode),
-                lessOptions: {
-                  javascriptEnabled: true,
-                },
-              },
-            },
-          ],
-        },
-        {
           test: /\.(eot|ttf|woff|woff2|png|jpg|jpeg|webp|gif)$/i,
           type: "asset/inline",
         },
@@ -129,11 +108,8 @@ export const getCommonWidgetConfig = (
               resourceQuery: /url/, // *.svg?url
               parser: {
                 dataUrlCondition: {
-                  maxSize: 64 * 1024, // 64kb
+                  maxSize: Infinity,
                 },
-              },
-              generator: {
-                filename: "build/static/[hash][ext][query]",
               },
             },
             {

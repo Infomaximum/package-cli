@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/package-cli",
-  "version": "2.23.1",
+  "version": "2.24.0-2",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -18,9 +18,11 @@
     "dev": "tsc",
     "dev:w": "npm run dev -- -w",
     "build": "rimraf dist && npm run dev",
-    "release": "tsc --noEmit && standard-version && npm run build",
+    "release": "tsc --noEmit && standard-version",
+    "release:rc": "standard-version -p",
     "lint": "tsc --noEmit",
-    "prettier": "prettier --find-config-path --write 'lib/**/*'"
+    "prettier": "prettier --find-config-path --write 'lib/**/*'",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.23.6",
@@ -28,7 +30,7 @@
     "@infomaximum/assert": "^1.1.3",
     "@infomaximum/integration-debugger": "^1.7.0",
     "@infomaximum/json-modify-webpack-plugin": "^1.1.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
     "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10.4.16",
     "babel-loader": "^9.1.3",
@@ -53,14 +55,14 @@
     "postcss-loader": "^7.3.3",
     "postcss-preset-env": "^9.3.0",
     "rc-config-loader": "^4.1.3",
-    "react-refresh": "^0.14.0",
+    "react-refresh": "^0.17.0",
     "remove-files-webpack-plugin": "^1.5.0",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "semver": "^7.6.3",
     "standard-version": "=9.5.0",
     "stringify-package": "^1.0.1",
-    "style-loader": "^3.3.3",
+    "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.9",
     "ts-loader": "^9.5.2",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
@@ -69,8 +71,12 @@
     "webpack-merge": "^5.10.0",
     "zip-webpack-plugin": "^4.0.1"
   },
+  "peerDependencies": {
+    "@infomaximum/widget-sdk": "^5.27.0"
+  },
   "devDependencies": {
     "@infomaximum/integration-sdk": "^2.3.0",
+    "@infomaximum/widget-sdk": "5.27.0-0",
     "@types/babel__core": "^7.20.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.9.0",
