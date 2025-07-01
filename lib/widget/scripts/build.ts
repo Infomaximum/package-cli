@@ -13,8 +13,9 @@ import { generateWidgetPaths } from "../widgetPaths.js";
 import { generatePackagePaths } from "../../package/packagePaths.js";
 import { checkLatestLibsVersion } from "../utils.js";
 import type { MergedBuildOptions } from "../commands/build.js";
-import { runWebpackBuild } from "../../utils.js";
+import { runWebpackBuild, systemRequire } from "../../utils.js";
 import { getStyleLoaders } from "../configs/webpack/sections/loaders/cssLoaders.js";
+import type { IWidgetManifest } from "@infomaximum/widget-sdk";
 
 export const runBuild = async (args: MergedBuildOptions) => {
   const mode: Mode = "production";
@@ -29,6 +30,10 @@ export const runBuild = async (args: MergedBuildOptions) => {
   } = args;
 
   const WIDGET_PATHS = generateWidgetPaths(args);
+
+  const widgetManifest = systemRequire(
+    WIDGET_PATHS.widgetManifestJsonPath
+  ) as IWidgetManifest;
 
   const sections = {
     plugins: [
@@ -51,9 +56,9 @@ export const runBuild = async (args: MergedBuildOptions) => {
   }
 
   const configSections = [
-    getCommonWidgetConfig(mode, WIDGET_PATHS),
+    getCommonWidgetConfig({ mode, PATHS: WIDGET_PATHS }),
     sections,
-    getStyleLoaders({ mode }),
+    getStyleLoaders({ mode, uuidWidget: widgetManifest.uuid }),
     getMinimizer(),
   ] as const;
 

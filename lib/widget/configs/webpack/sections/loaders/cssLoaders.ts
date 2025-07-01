@@ -1,6 +1,9 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import type { Mode } from "../../../../../paths.js";
 import { systemRequire } from "../../../../../utils.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export type StyleLoadersParams = {
   mode: Mode;
@@ -14,11 +17,9 @@ const getCSSLoaders = (uuidWidget: string | undefined) => [
       attributes: {
         uuid: uuidWidget || "",
       },
+      injectType: "singletonStyleTag",
       insert: uuidWidget
-        ? systemRequire.resolve(
-            //@ts-expect-error
-            path.resolve(import.meta.dirname, "insertFunction.js")
-          )
+        ? systemRequire.resolve(path.resolve(__dirname, "insertFunction.js"))
         : "head",
     },
   },

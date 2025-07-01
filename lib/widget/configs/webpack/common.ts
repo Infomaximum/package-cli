@@ -16,11 +16,21 @@ const { ProgressPlugin } = webpack;
 const isProduction = (mode: Mode) => mode === "production";
 const isDevelopment = (mode: Mode) => mode === "development";
 
-export const getCommonWidgetConfig = (
-  mode: Mode,
-  PATHS: WidgetPaths,
-  isCopyResources = true
-): Configuration => {
+type CommonWidgetConfigParams = {
+  mode: Mode;
+  PATHS: WidgetPaths;
+  isCopyResources?: boolean;
+  uuid?: string;
+  publicPath?: string;
+};
+
+export const getCommonWidgetConfig = ({
+  mode,
+  PATHS,
+  isCopyResources = true,
+  uuid,
+  publicPath,
+}: CommonWidgetConfigParams): Configuration => {
   const manifestEntry = systemRequire(PATHS.widgetManifestJsonPath).entry;
 
   const filename = isProduction(mode)
@@ -34,6 +44,8 @@ export const getCommonWidgetConfig = (
       path: PATHS.appBuildPath,
       filename: manifestEntry ?? filename,
       asyncChunks: false,
+      uniqueName: uuid ?? undefined,
+      publicPath,
       clean: true,
     },
     plugins: compact([
