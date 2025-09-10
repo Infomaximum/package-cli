@@ -206,3 +206,9 @@ yarn lint
 export const INTEGRATION_HUSKY_COMMITMSG = `\
 yarn commitlint --edit $1
 `
+
+export const INTEGRATION_COMMITLINT_CONFIG = `\
+{
+  "extends": ["@commitlint/config-conventional"]
+}
+`

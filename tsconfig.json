@@ -16,7 +16,8 @@
     "strictFunctionTypes": false,
     "exactOptionalPropertyTypes": false,
     "downlevelIteration": true,
-    "lib": ["ESNext"]
+    "lib": ["ESNext"],
+    "types": ["conventional-commits-parser"]
   },
   "include": ["lib"]
 }
