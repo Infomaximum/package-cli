@@ -9,19 +9,20 @@ type FetchCodeToServerPluginParams = {
 };
 
 export class FetchCodeToServerPlugin {
+  name = "FetchCodeToServerPlugin";
   private fetcher: IntegrationFetcher;
 
   constructor({ fetcher }: FetchCodeToServerPluginParams) {
     this.fetcher = fetcher;
   }
   apply(compiler: Compiler) {
-    compiler.hooks.afterEmit.tap("FetchCodeToServerPlugin", () => {
+    compiler.hooks.afterEmit.tap(FetchCodeToServerPlugin.name, () => {
       const outputPath = compiler.options.output.path || "";
       let filename = compiler.options.output.filename;
 
       if (typeof filename !== "string") {
         console.warn(
-          "⚠️ [FetchCodeToServerPlugin] Dynamic file names are not supported."
+          `⚠️ [${FetchCodeToServerPlugin.name}] Динамические имена файлов не поддерживаются.`
         );
         return;
       }
@@ -63,7 +64,7 @@ export class FetchCodeToServerPlugin {
           });
       } else {
         console.warn(
-          `⚠️ [FetchCodeToServerPlugin] File ${filename} was not found.`
+          `⚠️ [${FetchCodeToServerPlugin.name}] Файл ${filename} не найден.`
         );
       }
     });

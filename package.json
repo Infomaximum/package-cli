@@ -1,6 +1,6 @@
 {
   "name": "@infomaximum/package-cli",
-  "version": "2.23.0",
+  "version": "2.23.1",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -30,7 +30,6 @@
     "@infomaximum/integration-debugger": "^1.7.0",
     "@infomaximum/json-modify-webpack-plugin": "^1.1.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
-    "@saneksa/babel-plugin-function-transform": "^1.0.0",
     "@svgr/webpack": "^8.1.0",
     "@types/conventional-commits-parser": "^5.0.1",
     "autoprefixer": "^10.4.16",
