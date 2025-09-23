@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.24.0](https://github.com/Infomaximum/package-cli/compare/v2.23.1...v2.24.0) (2025-09-23)
+
+
+### Features
+
+* updated eslint config and add commitlint rules ([c3b94d8](https://github.com/Infomaximum/package-cli/commit/c3b94d8ed29a27b3146e758a212ef44d4f9ef9d1))
+
 ### [2.23.1](https://github.com/Infomaximum/package-cli/compare/v2.23.0...v2.23.1) (2025-06-02)
 
 
