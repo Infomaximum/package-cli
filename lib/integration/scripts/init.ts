@@ -2,6 +2,7 @@ import type { Actions } from "node-plop";
 import type { Answers } from "../../package/scripts/prompts.js";
 import {
   INTEGRATION_BABEL_CONFIG,
+  INTEGRATION_COMMITLINT_CONFIG,
   INTEGRATION_ENV_EXAMPLE_CONFIG,
   INTEGRATION_ESLINTRC,
   INTEGRATION_GITIGNORE,
@@ -44,22 +45,22 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
     {
       type: "add",
       path: "src/types/common.d.ts",
-      template:undefined
+      template: "",
     },
     {
       type: "add",
       path: "src/utils/index.ts",
-      template:""
+      template: "",
     },
     {
       type: "add",
       path: "src/modules/template.ts",
-      template:""
+      template: "",
     },
     {
       type: "add",
       path: "src/connections/base.ts",
-      template:""
+      template: "",
     },
     {
       type: "add",
@@ -102,7 +103,11 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       template: INTEGRATION_PACKAGE_JSON_TEMPLATE,
       data: { packageCliVersion, integrationSdkVersion },
     },
-
+    {
+      type: "add",
+      path: ".commitlintrc.json",
+      template: INTEGRATION_COMMITLINT_CONFIG,
+    },
     {
       type: "add",
       path: ".vscode/launch.json",

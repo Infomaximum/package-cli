@@ -33,8 +33,6 @@ export const INTEGRATION_GITIGNORE = `\
 #documentation
 /docs
 
-#package
-/package
 
 # misc
 .DS_Store
@@ -64,24 +62,136 @@ module.exports = {
 `;
 
 export const INTEGRATION_ESLINTRC = `\
-const js = require("@eslint/js");
-const globals = require("globals");
-const tseslint = require("typescript-eslint");
+import eslint from "@eslint/js";
+import { defineConfig } from "eslint/config";
+import tseslint from "typescript-eslint";
+import fp from "eslint-plugin-fp";
+import sonarPlugin from "eslint-plugin-sonarjs";
+export default defineConfig(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  tseslint.configs.strict,
+  tseslint.configs.stylistic,
 
-module.exports = tseslint.config(
-  { ignores: ["dist", "build", "node_modules"] },
-  {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["**/*.{ts,tsx}"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+  [
+    {
+      ignores: [
+        "**/dist/**",
+        "**/build/**",
+        "**/node_modules/**",
+        "**/*.config.js",
+        "**/*.config.cjs",
+        "**/*.config.mjs",
+      ],
+      files: ["**/*.ts", "**/*.tsx"],
+      languageOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        parserOptions: {
+          project: "./tsconfig.json",
+        },
+      },
+      plugins: {
+        "@typescript-eslint": tseslint.plugin,
+        fp,
+        sonarjs: sonarPlugin,
+      },
+      rules: {
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            argsIgnorePattern: "^_",
+            varsIgnorePattern: "^_",
+          },
+        ],
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/consistent-type-definitions": [
+          "error",
+          "interface",
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            allowExpressions: true,
+            allowTypedFunctionExpressions: true,
+          },
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            selector: ["variable", "function"],
+            format: ["camelCase"],
+            leadingUnderscore: "allow",
+            trailingUnderscore: "forbid",
+          },
+
+          {
+            selector: ["typeLike", "class"],
+            format: ["PascalCase"],
+          },
+          {
+            selector: "interface",
+            format: ["PascalCase"],
+            custom: {
+              regex: "^I[A-Z]",
+              match: true,
+            },
+          },
+          {
+            selector: "typeAlias",
+            format: ["PascalCase"],
+            custom: {
+              regex: "^T[A-Z]",
+              match: true,
+            },
+          },
+          {
+            selector: "enum",
+            format: ["PascalCase"],
+            custom: {
+              regex: "^E[A-Z]",
+              match: true,
+            },
+          },
+          {
+            selector: "enumMember",
+            format: ["PascalCase"],
+          },
+          {
+            selector: "method",
+            format: ["camelCase"],
+          },
+          {
+            selector: "parameter",
+            format: ["camelCase"],
+            leadingUnderscore: "allow",
+          },
+        ],
+        "@typescript-eslint/prefer-for-of": "error",
+        "prefer-const": "error",
+        "no-var": "error",
+        "prefer-arrow-callback": "error",
+
+        eqeqeq: ["error", "always"],
+        yoda: "error",
+        "no-lonely-if": "error",
+        curly: "error",
+        // Ограчичение на количество строк в функции, чтобы поощрять более мелкие, более управляемые функции.
+        "max-lines-per-function": [
+          "error",
+          { max: 100, skipComments: true, skipBlankLines: true },
+        ],
+        "max-depth": ["error", { max: 3 }],
+
+        "no-param-reassign": ["error", { props: true }],
+        //sonarjs правила
+        "sonarjs/cognitive-complexity": ["error", 10],
+        "sonarjs/no-identical-expressions": "error",
+        "sonarjs/no-ignored-return": "error",
+        "sonarjs/no-redundant-boolean": "error",
+      },
     },
-    plugins: {},
-    rules: {
-      "@typescript-eslint/no-explicit-any": "warn",
-    },
-  }
+  ]
 );
 `;
 
@@ -201,8 +311,14 @@ export const INTEGRATION_VSCODE_EXTENSIONS = `\
 
 export const INTEGRATION_HUSKY_PRECOMMIT = `\
 yarn lint
-`
+`;
 
 export const INTEGRATION_HUSKY_COMMITMSG = `\
 yarn commitlint --edit $1
-`
+`;
+
+export const INTEGRATION_COMMITLINT_CONFIG = `\
+{
+  "extends": ["@commitlint/config-conventional"]
+}
+`;
