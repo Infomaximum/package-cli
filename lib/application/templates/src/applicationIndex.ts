@@ -3,7 +3,7 @@ import { APPLICATION_SDK_LIB_NAME } from "../../const.js";
 
 export const APPLICATION_INDEX_TEMPLATE = `\
 import { Root, createRoot } from "react-dom/client";
-import Content from "./App";
+import Content from "./Content";
 import { IApplication } from "${APPLICATION_SDK_LIB_NAME}";
 import manifest from "../${MANIFEST_JSON_FILE_NAME}";
 

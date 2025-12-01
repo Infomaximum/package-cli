@@ -24,7 +24,7 @@ export const APPLICATION_PACKAGE_JSON_TEMPLATE = `\
     "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",
     "prettier": "3.7.3",
-    "typescript": "5.9.3",
+    "typescript": "5.9.3"
   },
   "browserslist": [
     "defaults and supports es6-module"

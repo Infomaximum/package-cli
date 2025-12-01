@@ -10,6 +10,7 @@ import type { Answers } from "../../package/scripts/prompts.js";
 import { APPLICATION_INDEX_TEMPLATE } from "../templates/src/applicationIndex.js";
 import { APPLICATION_CONTENT_TEMPLATE } from "../templates/src/applicationContent.js";
 import { APPLICATION_PACKAGE_JSON_TEMPLATE } from "../templates/applicationPackageJson.js";
+import { APPLICATION_MANIFEST_TEMPLATE } from "../templates/applicationManifest.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -52,6 +53,11 @@ const actions = ({ packageCliVersion }: ActionData) => {
       path: "package.json",
       template: APPLICATION_PACKAGE_JSON_TEMPLATE,
       data: { packageCliVersion },
+    },
+    {
+      type: "add",
+      path: "manifest.json",
+      template: APPLICATION_MANIFEST_TEMPLATE,
     },
   ] satisfies Actions;
 };
