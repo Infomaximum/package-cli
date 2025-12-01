@@ -2,6 +2,7 @@ import type { Command } from "commander";
 import { packageJson } from "./utils.js";
 import { registerWidgetCommands } from "./widget/index.js";
 import { registerIntegrationCommands } from "./integration/index.js";
+import { registerApplicationCommands } from "./application/index.js";
 
 export const registerCommands = (cli: Command) => {
   cli.helpOption("-h", "отображает помощь по командам");
@@ -15,4 +16,6 @@ export const registerCommands = (cli: Command) => {
   registerWidgetCommands(cli);
 
   registerIntegrationCommands(cli);
+
+  registerApplicationCommands(cli);
 };
