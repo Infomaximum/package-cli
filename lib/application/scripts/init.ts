@@ -19,7 +19,7 @@ const actions = ({ packageCliVersion }: ActionData) => {
   return [
     ...getPackageActions({ packageType: "application" }),
 
-    //---------------------------------------INTEGRATION------------------------------------
+    //---------------------------------------APPLICATION------------------------------------
 
     {
       type: "add",
