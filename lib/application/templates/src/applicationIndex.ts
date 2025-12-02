@@ -5,7 +5,7 @@ export const APPLICATION_INDEX_TEMPLATE = `\
 import { Root, createRoot } from "react-dom/client";
 import Content from "./Content";
 import { IApplication } from "${APPLICATION_SDK_LIB_NAME}";
-import manifest from "../${MANIFEST_JSON_FILE_NAME}";
+import packageManifest from "../package/${MANIFEST_JSON_FILE_NAME}";
 
 class Application implements IApplication {
   public root: Root | null = null;
@@ -31,5 +31,5 @@ class Application implements IApplication {
   }
 }
 
-window.im.defineApplication(manifest.uuid, Application);
+window.im.defineApplication(packageManifest.guid, Application);
 `;

@@ -11,6 +11,8 @@ import { APPLICATION_INDEX_TEMPLATE } from "../templates/src/applicationIndex.js
 import { APPLICATION_CONTENT_TEMPLATE } from "../templates/src/applicationContent.js";
 import { APPLICATION_PACKAGE_JSON_TEMPLATE } from "../templates/applicationPackageJson.js";
 import { APPLICATION_MANIFEST_TEMPLATE } from "../templates/applicationManifest.js";
+import { APPLICATION_RC_CONFIG } from "../templates/applicationRCConfig.js";
+import { APPLICATION_CONFIG_FILE_NAME } from "../const.js";
 
 type ActionData = Answers & {
   packageCliVersion: string;
@@ -58,6 +60,11 @@ const actions = ({ packageCliVersion }: ActionData) => {
       type: "add",
       path: "manifest.json",
       template: APPLICATION_MANIFEST_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: `${APPLICATION_CONFIG_FILE_NAME}.json`,
+      template: APPLICATION_RC_CONFIG,
     },
   ] satisfies Actions;
 };

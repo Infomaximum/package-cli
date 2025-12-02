@@ -1,0 +1,24 @@
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TerserWebpackPlugin from "terser-webpack-plugin";
+
+export const getApplicationMinimizer = () => {
+  return {
+    optimization: {
+      minimize: true,
+      splitChunks: false,
+      minimizer: [
+        new TerserWebpackPlugin({
+          minify: TerserWebpackPlugin.terserMinify,
+          parallel: true,
+          extractComments: false,
+          terserOptions: {
+            format: {
+              comments: false,
+            },
+          },
+        }),
+        new CssMinimizerPlugin(),
+      ],
+    },
+  };
+};
