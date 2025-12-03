@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.25.0](https://github.com/Infomaximum/package-cli/compare/v2.24.0...v2.25.0) (2025-12-03)
+
+
+### Features
+
+*  добавлен запуск приложения для разработки ([77822ce](https://github.com/Infomaximum/package-cli/commit/77822cec943be8739838dd90c35fa0e9ae1c7132))
+*  добавлена сборка приложений ([3d3a04d](https://github.com/Infomaximum/package-cli/commit/3d3a04d0f112c53a1faafb0fb8f077894bab5652))
+* добавлен манифест ([9afec05](https://github.com/Infomaximum/package-cli/commit/9afec056ee319319c006ab8d1c7e64a492633b15))
+* добавлена возможность инициализировать проект приложения ([2d76102](https://github.com/Infomaximum/package-cli/commit/2d7610224e86f031d488aecb312b7587c63ec828))
+
 ## [2.24.0](https://github.com/Infomaximum/package-cli/compare/v2.23.1...v2.24.0) (2025-09-23)
 
 
