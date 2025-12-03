@@ -11,8 +11,8 @@ export const APPLICATION_PACKAGE_JSON_TEMPLATE = `\
   "main": "src/index.tsx",
   "scripts": {
     "build": "im-package-cli application build",
-    "build:dev": "im-package-cli widget build --dev",
-    "start": "im-package-cli widget start"
+    "build:dev": "im-package-cli application build --dev",
+    "start": "im-package-cli application start"
   },
    "dependencies": {
     "react": "18.2.0",

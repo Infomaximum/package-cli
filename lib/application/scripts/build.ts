@@ -12,7 +12,7 @@ import { runWebpackBuild } from "../../utils.js";
 import { getZipApplicationPlugin } from "../configs/webpack/sections/plugins/zipApplication.js";
 import { getApplicationMinimizer } from "../configs/webpack/sections/plugins/minimizer.js";
 import { getCommonApplicationWebpackConfig } from "../configs/webpack/common.js";
-import { getModifyManifestApplicationPlugin } from "../configs/webpack/sections/plugins/modifyManifestWidget.js";
+import { getModifyManifestApplicationPlugin } from "../configs/webpack/sections/plugins/modifyManifestApplication.js";
 
 export const runApplicationBuild = async (
   args: MergedApplicationBuildOptions
@@ -56,7 +56,7 @@ export const runApplicationBuild = async (
     getApplicationMinimizer(),
   ] as const;
 
-  const widgetConfig = merge(configSections);
+  const applicationConfig = merge(configSections);
 
   const applicationArchivePath = path.resolve(
     APPLICATION_PATHS.appBuildPath,
@@ -64,7 +64,7 @@ export const runApplicationBuild = async (
   );
 
   try {
-    await runWebpackBuild(widgetConfig as Configuration);
+    await runWebpackBuild(applicationConfig as Configuration);
     console.log("");
     await runWebpackBuild(
       await getPackageBuildConfig({

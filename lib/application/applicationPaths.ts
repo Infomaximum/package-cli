@@ -5,13 +5,13 @@ import {
   generateIndexPath,
 } from "../paths.js";
 import type { MergedApplicationBuildOptions } from "./commands/build.js";
-// import type { MergedStartOptions } from "./commands/start.js";
+import type { MergedApplicationStartOptions } from "./commands/start.js";
 
 const resolveApp = _resolveApp();
 
 export type ApplicationPaths = ReturnType<typeof generateApplicationPaths>;
 
-type Options = MergedApplicationBuildOptions; //| MergedStartOptions;
+type Options = MergedApplicationBuildOptions | MergedApplicationStartOptions;
 
 export function generateApplicationPaths({
   entry,
