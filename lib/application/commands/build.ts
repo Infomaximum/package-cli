@@ -43,8 +43,8 @@ export const registerApplicationBuildCommand = (
       "путь до директории в которую будет собран пакет"
     )
     .option("--dev", "собрать пакет для разработки", false)
-    .option("--host <host>", "хост который будет указан в манифесте виджета")
-    .option("--port <port>", "порт который будет указан в манифесте виджета")
+    .option("--host <host>", "хост который будет указан в манифесте приложения")
+    .option("--port <port>", "порт который будет указан в манифесте приложения")
     .action((options: InputBuildOptions) =>
       runApplicationBuild(mergeApplicationWithOptionsBuild(options))
     );
