@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "entry": {
+      "type": "string",
+      "title": "Имя файла в который будет собрано приложение",
+      "description": "Если не задан, то будет сгенерирован application.[contenthash].js",
+      "pattern": "\\w+\\.js$",
+      "examples": ["index.js", "main.js"]
+    },
+    "name": {
+      "type": "object",
+      "title": "Локализованное имя приложения",
+      "required": ["ru", "en"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ru": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "required": ["name"]
+}

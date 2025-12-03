@@ -1,1 +1,1 @@
-export type PackageType = "widget" | "integration";
+export type PackageType = "widget" | "integration" | "application";
