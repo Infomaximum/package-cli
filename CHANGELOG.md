@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.26.1](https://github.com/Infomaximum/package-cli/compare/v2.26.0...v2.26.1) (2026-01-22)
+
 ## [2.26.0](https://github.com/Infomaximum/package-cli/compare/v2.25.0...v2.26.0) (2026-01-22)
 
 
