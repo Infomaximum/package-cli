@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.26.0](https://github.com/Infomaximum/package-cli/compare/v2.25.0...v2.26.0) (2026-01-22)
+
+
+### Features
+
+* **integration:** добавлены полифилы для util, stream, zlib ([fea4d28](https://github.com/Infomaximum/package-cli/commit/fea4d2864b863486872c75d27b2ce3bfd3d7d324))
+
 ## [2.25.0](https://github.com/Infomaximum/package-cli/compare/v2.24.0...v2.25.0) (2025-12-03)
 
 
