@@ -5,6 +5,7 @@ type PackageManager = "npm" | "yarn";
 
 type Answers = {
   packageName: string;
+  className: string;
   author: string;
   widgetName: string;
   packageDescription?: string;
@@ -18,6 +19,14 @@ const prompts = [
     message: "Enter the name of the package: ",
     type: "input",
     name: "packageName",
+    validate: notEmptyValidator,
+  },
+  {
+    message: "Enter the main class name: ",
+    type: "input",
+    name: "className",
+    default: (answers: { packageName?: string }) =>
+      toPascalCase(answers.packageName ?? ""),
     validate: notEmptyValidator,
   },
   {
@@ -52,3 +61,18 @@ const prompts = [
 
 export { prompts };
 export type { Answers, PackageManager };
+
+function toPascalCase(input: string): string {
+  const cleaned = input
+    .replace(/^@[^/]+\//, "")
+    .replace(/[^a-zA-Z0-9]+/g, " ")
+    .trim();
+
+  if (!cleaned) return "App";
+
+  return cleaned
+    .split(/\s+/g)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}

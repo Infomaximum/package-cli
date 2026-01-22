@@ -14,7 +14,7 @@ import {
   DEV_POSTFIX,
   MANIFEST_REG_EXP,
 } from "../../../const.js";
-import type { Configuration } from "webpack";
+import type { Configuration, WebpackPluginInstance } from "webpack";
 import { assertSimple } from "@infomaximum/assert";
 import type { PackagePaths } from "../../packagePaths.js";
 
@@ -82,7 +82,7 @@ export const getPackageBuildConfig = async ({
     plugins: [
       new CopyWebpackPlugin({
         patterns: [{ from: PATHS.packagePath }, ...copyFiles],
-      }),
+      }) as unknown as WebpackPluginInstance,
       new RemovePlugin({
         after: {
           log: false,
@@ -96,12 +96,12 @@ export const getPackageBuildConfig = async ({
           ],
           exclude: [`${entityPackageName}.${BUILD_ARCHIVE_EXT}`],
         },
-      }),
+      }) as unknown as WebpackPluginInstance,
       new ZipPlugin({
         filename: entityPackageName,
         extension: BUILD_ARCHIVE_EXT,
         exclude: [packageFilename],
-      }),
+      }) as unknown as WebpackPluginInstance,
       new JsonModifyWebpackPlugin({
         matchers: [
           {
@@ -123,7 +123,7 @@ export const getPackageBuildConfig = async ({
             },
           },
         ],
-      }),
+      }) as unknown as WebpackPluginInstance,
     ],
   } satisfies Configuration;
 };
