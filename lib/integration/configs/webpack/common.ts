@@ -35,9 +35,9 @@ export const getCommonIntegrationConfig = ({
     resolve: {
       extensions: [".ts", ".js", ".json"],
       fallback: {
-        stream: require.resolve("stream-browserify"),
-        util: require.resolve("util"),
-        zlib: require.resolve("browserify-zlib"),
+        stream: systemRequire.resolve("stream-browserify"),
+        util: systemRequire.resolve("util"),
+        zlib: systemRequire.resolve("browserify-zlib"),
       },
     },
     module: {
