@@ -119,7 +119,7 @@ export default defineConfig(
         "@typescript-eslint/naming-convention": [
           "error",
           {
-            selector: ["variable", "function"],
+            selector: ["function"],
             format: ["camelCase"],
             leadingUnderscore: "allow",
             trailingUnderscore: "forbid",
