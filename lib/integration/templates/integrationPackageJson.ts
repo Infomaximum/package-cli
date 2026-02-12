@@ -40,6 +40,9 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "@commitlint/config-conventional": "^19.8.1",
     "@infomaximum/config": "^2.7.0",
     "commitlint": "^19.8.1"
+  },
+  "dependencies": {
+    "i18next": "^25.8.5"
   }
 }
 `;

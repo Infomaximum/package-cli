@@ -8,6 +8,9 @@ import {
   INTEGRATION_GITIGNORE,
   INTEGRATION_HUSKY_COMMITMSG,
   INTEGRATION_HUSKY_PRECOMMIT,
+  INTEGRATION_I18NEXT_CONFIG,
+  INTEGRATION_I18NEXT_LOCALE_TEMPLATE,
+  INTEGRATION_I18NEXT_REG_NAMESPACES,
   INTEGRATION_RC_CONFIG,
   INTEGRATION_TSCONFIG_JSON,
   INTEGRATION_VITEST_CONFIG,
@@ -44,8 +47,28 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
     },
     {
       type: "add",
+      path: "src/i18n.ts",
+      template: INTEGRATION_I18NEXT_CONFIG,
+    },
+    {
+      type: "add",
+      path: "src/const.ts",
+      template: "",
+    },
+    {
+      type: "add",
       path: "src/types/common.d.ts",
       template: "",
+    },
+    {
+      type: "add",
+      path: "src/types/i18n.d.ts",
+      template: INTEGRATION_I18NEXT_REG_NAMESPACES,
+    },
+    {
+      type: "add",
+      path: "src/locales/ru.json",
+      template: INTEGRATION_I18NEXT_LOCALE_TEMPLATE,
     },
     {
       type: "add",
