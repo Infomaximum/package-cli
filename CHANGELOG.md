@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.27.0](https://github.com/Infomaximum/package-cli/compare/v2.26.3...v2.27.0) (2026-02-13)
+
+
+### Features
+
+* add package for semver ([1299345](https://github.com/Infomaximum/package-cli/commit/1299345b70085609574a556252f26a3abfdb421b))
+* added i18n localization ([d1c7ecf](https://github.com/Infomaximum/package-cli/commit/d1c7ecf618595512176757287e73f415b345a7fd))
+
 ### [2.26.3](https://github.com/Infomaximum/package-cli/compare/v2.26.2...v2.26.3) (2026-01-29)
 
 
