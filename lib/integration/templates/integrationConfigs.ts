@@ -12,7 +12,8 @@ export const INTEGRATION_TSCONFIG_JSON = `\
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "isolatedModules": false
+    "isolatedModules": false,
+    "resolveJsonModule": true
   },
   "include": ["src"]
 }
@@ -196,15 +197,22 @@ export default defineConfig(
 `;
 
 export const INTEGRATION_VITEST_CONFIG = `\
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
     coverage: {
-        provider:'v8',
+      provider: "v8",
       exclude: [
-        '**/*.config.*',
-        'src/index.ts',
+        "**/*.config.*",
+        "src/index.ts",
+        "**/*.types.ts",
+        "**/types/*",
+        "**/*.d.ts",
+        "**/const.ts",
+        "**/i18n.ts",
+        "**/*.js",
+        "**/connections/*",
       ],
     },
   },
@@ -297,15 +305,23 @@ export const INTEGRATION_VSCODE_SETTINGS = `\
   "integration-debugger.isEnabled": true,
   "integration-debugger.debugConfigurationName": "Debug Integration",
   "integration-debugger.functionNames": {
-      "single": ["executePagination", "execute"],
-      "series": ["executePagination"]
-    }
+    "single": ["executePagination", "execute"],
+    "series": ["executePagination"]
+  },
+  "i18n-ally.localesPaths": ["src/locales"],
+  "i18n-ally.sourceLanguage": "ru",
+  "i18n-ally.displayLanguage": "ru",
+  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.pathMatcher": "{locale}.json",
+  "i18n-ally.namespace": true,
+  "i18n-ally.extract.autoDetect": true
 }
 `;
 
 export const INTEGRATION_VSCODE_EXTENSIONS = `\
 {
-  "recommendations": ["Jokerok.integration-debugger"]
+  "recommendations": ["Jokerok.integration-debugger","lokalise.i18n-ally"]
 }
 `;
 
@@ -320,5 +336,55 @@ yarn commitlint --edit $1
 export const INTEGRATION_COMMITLINT_CONFIG = `\
 {
   "extends": ["@commitlint/config-conventional"]
+}
+`;
+
+export const INTEGRATION_I18NEXT_CONFIG = `\
+import i18next from "i18next";
+import ruLocale from "./locales/ru.json";
+
+i18next.init({
+  lng: "ru",
+  fallbackLng: "ru",
+  ns: ["ru", "templates"],
+  defaultNS: "ru",
+  resources: {
+    ru: {
+      ru: ruLocale,
+    },
+  },
+});
+
+export default i18next;
+`;
+
+export const INTEGRATION_I18NEXT_REG_NAMESPACES = `\
+import "i18next";
+import ruLocale from "../locales/ru.json";
+
+declare module "i18next" {
+  interface CustomTypeOptions {
+    defaultNS: "ru";
+    resources: {
+      ru: typeof ruLocale; // Неймспейс "ru"
+    };
+  }
+}
+`;
+
+export const INTEGRATION_I18NEXT_LOCALE_TEMPLATE = `\
+{
+  "blocks": {
+    "template": {
+      "blockname": "Базовый блок",
+      "blockdescription": "Подробное описание функциональности блока",
+      "fields": {
+        "base_url": {
+          "label": "Введите url",
+          "hint": "Начинается с https"
+        }
+      }
+    }
+  }
 }
 `;

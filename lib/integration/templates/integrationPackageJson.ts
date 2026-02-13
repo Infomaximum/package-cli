@@ -34,12 +34,16 @@ export const INTEGRATION_PACKAGE_JSON_TEMPLATE = `\
     "@vitest/coverage-v8": "3.0.7",
     "@vitest/ui": "3.0.7",
     "husky": "^9.1.7",
+    "standard-version": "^9.5.0",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-sonarjs": "^3.0.5",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@infomaximum/config": "^2.7.0",
     "commitlint": "^19.8.1"
+  },
+  "dependencies": {
+    "i18next": "^25.8.5"
   }
 }
 `;
