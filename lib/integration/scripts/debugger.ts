@@ -11,7 +11,7 @@ import { systemRequire } from "../../utils.js";
 
 const runDebug = (
   options: InputDebugIntegrationOptions,
-  rcConfig: IntegrationRCConfig | undefined
+  rcConfig: IntegrationRCConfig | undefined,
 ) => {
   const { entityKey, series, isGenerateSchema } = options;
 
@@ -19,10 +19,10 @@ const runDebug = (
 
   assertSimple(
     !!debuggingConfig,
-    `Не задана конфигурация для отладки в файле: ${INTEGRATION_CONFIG_RC_FILE_NAME}${INTEGRATION_CONFIG_RC_EXT}`
+    `Не задана конфигурация для отладки в файле: ${INTEGRATION_CONFIG_RC_FILE_NAME}${INTEGRATION_CONFIG_RC_EXT}`,
   );
 
-  const executor = new IntegrationExecutor(globalThis.integration, {
+  const executor = new IntegrationExecutor(globalThis.app, {
     entityKey,
     debuggingConfig,
     series,
@@ -38,7 +38,7 @@ const runDebug = (
 
 export const runDebugIntegration = async (
   options: InputDebugIntegrationOptions,
-  rcConfig: IntegrationRCConfig | undefined
+  rcConfig: IntegrationRCConfig | undefined,
 ) => {
   const { entry } = options;
 
@@ -46,7 +46,7 @@ export const runDebugIntegration = async (
     entry,
   });
 
-  globalThis.integration = globalThis.integration || {};
+  globalThis.app = globalThis.app || {};
 
   systemRequire(INTEGRATION_PATHS.moduleIndex);
 

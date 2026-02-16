@@ -1468,10 +1468,10 @@
     chalk "^4"
     xmlhttprequest "^1.8.0"
 
-"@infomaximum/integration-sdk@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@infomaximum/integration-sdk/-/integration-sdk-2.3.0.tgz#8f82257d2e132d1be93e9cb4300fb0e2495b0baf"
-  integrity sha512-NHVf4mxukfxlwIdPHE/Wns3n2NkPcvdaU0aEsAC9195nNh8BZCtCq4GQWsm8ZEZRf68FThSw8zBEDmUdHmpYKQ==
+"@infomaximum/integration-sdk@^3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@infomaximum/integration-sdk/-/integration-sdk-3.4.1.tgz#ba82111a5210ce9dd729419f1472787c0d55652f"
+  integrity sha512-Axp0HkUTqv1r0tiDX15fHjJO4RJldDGTHe8T4Wv1eUmLg5manqsvdQlFx7wCJLPc9c+tm8E82LPz9Xmi6d4NZw==
 
 "@infomaximum/json-modify-webpack-plugin@^1.1.0":
   version "1.1.0"
