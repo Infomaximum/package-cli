@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.28.0](https://github.com/Infomaximum/package-cli/compare/v2.27.2...v2.28.0) (2026-02-18)
+
+
+### Features
+
+* добавлены полифиллы для vm-browserify crypto-browserify buffer ([4af7437](https://github.com/Infomaximum/package-cli/commit/4af74378a88476e4ef1ca744d6d2e426fd902432))
+
 ### [2.27.2](https://github.com/Infomaximum/package-cli/compare/v2.27.1...v2.27.2) (2026-02-16)
 
 ### [2.27.1](https://github.com/Infomaximum/package-cli/compare/v2.27.0...v2.27.1) (2026-02-16)
