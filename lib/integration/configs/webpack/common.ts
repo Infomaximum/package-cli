@@ -38,6 +38,9 @@ export const getCommonIntegrationConfig = ({
         stream: systemRequire.resolve("stream-browserify"),
         util: systemRequire.resolve("util"),
         zlib: systemRequire.resolve("browserify-zlib"),
+        vm: systemRequire.resolve("vm-browserify"),
+        crypto: systemRequire.resolve("crypto-browserify"),
+        buffer: systemRequire.resolve("buffer/"),
       },
     },
     module: {
