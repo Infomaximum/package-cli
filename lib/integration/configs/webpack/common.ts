@@ -1,3 +1,4 @@
+import webpack from "webpack";
 import type { Configuration } from "webpack";
 import type { Mode } from "../../../paths.js";
 import type { IntegrationPaths } from "../../integrationPaths.js";
@@ -17,15 +18,19 @@ export const getCommonIntegrationConfig = ({
   mode,
   isBeautifyCode,
 }: CommonBuildIntegrationParams): Configuration => {
+  const isDev = mode === "development";
+
   return {
     mode,
-    target: "es5",
+    target: ["web", "es5"],
     entry: PATHS.moduleIndex,
     output: {
       filename: PATHS.outputFile,
       path: PATHS.appBuildPath,
       clean: true,
-      libraryTarget: "module",
+      library: {
+        type: "module",
+      },
       chunkFormat: false,
       asyncChunks: false,
     },
@@ -33,27 +38,37 @@ export const getCommonIntegrationConfig = ({
       outputModule: true,
     },
     resolve: {
-      extensions: [".ts", ".js", ".json"],
+      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
       fallback: {
         stream: systemRequire.resolve("stream-browserify"),
-        util: systemRequire.resolve("util"),
+        util: systemRequire.resolve("util/"),
         zlib: systemRequire.resolve("browserify-zlib"),
         vm: systemRequire.resolve("vm-browserify"),
         crypto: systemRequire.resolve("crypto-browserify"),
         buffer: systemRequire.resolve("buffer/"),
+        process: systemRequire.resolve("process/browser"),
+        assert: systemRequire.resolve("assert/"),
+        path: false,
+        fs: false,
       },
     },
     module: {
       rules: [
         {
           test: /\.(js|ts|jsx|tsx)$/i,
-          exclude: ["/node_modules/"],
+          exclude: /node_modules/,
           use: [
-            { loader: systemRequire.resolve("babel-loader") },
+            {
+              loader: systemRequire.resolve("babel-loader"),
+              options: {
+                cacheDirectory: true,
+              },
+            },
             {
               loader: systemRequire.resolve("ts-loader"),
               options: {
                 transpileOnly: true,
+                happyPackMode: true,
               },
             },
           ],
@@ -61,8 +76,15 @@ export const getCommonIntegrationConfig = ({
       ],
     },
     plugins: [
+      new webpack.ProvidePlugin({
+        process: systemRequire.resolve("process/browser"),
+        Buffer: [systemRequire.resolve("buffer/"), "Buffer"],
+      }),
+      new webpack.DefinePlugin({
+        "process.env.NODE_ENV": JSON.stringify(mode),
+      }),
       new ForkTsCheckerWebpackPlugin({
-        async: true,
+        async: isDev,
         typescript: {
           memoryLimit: 2048,
           diagnosticOptions: {
@@ -73,7 +95,7 @@ export const getCommonIntegrationConfig = ({
       }),
     ],
     optimization: {
-      minimize: true,
+      minimize: !isDev || !isBeautifyCode,
       concatenateModules: true,
       splitChunks: false,
       runtimeChunk: false,
@@ -84,6 +106,10 @@ export const getCommonIntegrationConfig = ({
           terserOptions: TERSER_OPTIONS(isBeautifyCode),
         }),
       ],
+    },
+    stats: isDev ? "errors-warnings" : "normal",
+    performance: {
+      hints: isDev ? false : "warning",
     },
   };
 };
