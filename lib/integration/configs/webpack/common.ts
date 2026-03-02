@@ -38,7 +38,7 @@ export const getCommonIntegrationConfig = ({
       outputModule: true,
     },
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      extensions: [".ts", ".js", ".json"],
       fallback: {
         stream: systemRequire.resolve("stream-browserify"),
         util: systemRequire.resolve("util/"),
