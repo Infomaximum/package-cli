@@ -22,7 +22,7 @@ export const getCommonIntegrationConfig = ({
 
   return {
     mode,
-    target: ["web", "es5"],
+    target: ["es5"],
     entry: PATHS.moduleIndex,
     output: {
       filename: PATHS.outputFile,
