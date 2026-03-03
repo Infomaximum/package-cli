@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.29.0](https://github.com/Infomaximum/package-cli/compare/v2.28.0...v2.29.0) (2026-03-03)
+
+
+### Features
+
+* add new polyfills ([4d9e33b](https://github.com/Infomaximum/package-cli/commit/4d9e33b8530763f4425285577cc270678689f8c6))
+
+
+### Bug Fixes
+
+* remove test file extensions ([28eb1a7](https://github.com/Infomaximum/package-cli/commit/28eb1a78432e9565d20192bc926c1119c66a83fe))
+* remove unused target ([9fdc634](https://github.com/Infomaximum/package-cli/commit/9fdc6342a924b079c6a3df1bd4f74cca6d188900))
+
 ## [2.28.0](https://github.com/Infomaximum/package-cli/compare/v2.27.2...v2.28.0) (2026-02-18)
 
 
