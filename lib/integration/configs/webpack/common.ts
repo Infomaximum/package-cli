@@ -36,6 +36,8 @@ export const getCommonIntegrationConfig = ({
     },
     experiments: {
       outputModule: true,
+      syncWebAssembly: true,
+      asyncWebAssembly: false,
     },
     resolve: {
       extensions: [".ts", ".js", ".json"],
@@ -50,10 +52,16 @@ export const getCommonIntegrationConfig = ({
         assert: systemRequire.resolve("assert/"),
         path: false,
         fs: false,
+        module: false,
+        events: systemRequire.resolve("events/"),
       },
     },
     module: {
       rules: [
+        {
+          test: /\.wasm$/,
+          type: "asset/inline",
+        },
         {
           test: /\.(js|ts|jsx|tsx)$/i,
           exclude: /node_modules/,
@@ -82,6 +90,12 @@ export const getCommonIntegrationConfig = ({
       }),
       new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(mode),
+      }),
+      new webpack.BannerPlugin({
+        banner:
+          "var console = { log: function(){}, warn: function(){}, error: function(){}, info: function(){}, debug: function(){}, trace: function(){} };",
+        raw: true,
+        entryOnly: true,
       }),
       new ForkTsCheckerWebpackPlugin({
         async: isDev,
