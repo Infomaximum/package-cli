@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.30.0](https://github.com/Infomaximum/package-cli/compare/v2.29.0...v2.30.0) (2026-03-30)
+
+
+### Features
+
+* added support wasm ([d1e02d3](https://github.com/Infomaximum/package-cli/commit/d1e02d3eb30c53d6ba95ca01c07c20ee7330cbac))
+
 ## [2.29.0](https://github.com/Infomaximum/package-cli/compare/v2.28.0...v2.29.0) (2026-03-03)
 
 
