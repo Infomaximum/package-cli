@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.30.1](https://github.com/Infomaximum/package-cli/compare/v2.30.0...v2.30.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* added i18n to eslint ignore, optimization version intgt,tempate for vitest ([859716a](https://github.com/Infomaximum/package-cli/commit/859716a3311afb5db3ac7962338ba9f8a027febf))
+
 ## [2.30.0](https://github.com/Infomaximum/package-cli/compare/v2.29.0...v2.30.0) (2026-03-30)
 
 
