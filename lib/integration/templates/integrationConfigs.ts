@@ -83,6 +83,7 @@ export default defineConfig(
         "**/*.config.js",
         "**/*.config.cjs",
         "**/*.config.mjs",
+        "**/i18n.d.ts"
       ],
       files: ["**/*.ts", "**/*.tsx"],
       languageOptions: {
@@ -346,7 +347,7 @@ import ruLocale from "./locales/ru.json";
 i18next.init({
   lng: "ru",
   fallbackLng: "ru",
-  ns: ["ru", "templates"],
+  ns: ["ru"],
   defaultNS: "ru",
   resources: {
     ru: {
@@ -387,4 +388,11 @@ export const INTEGRATION_I18NEXT_LOCALE_TEMPLATE = `\
     }
   }
 }
+`;
+
+export const INTEGRATION_VITEST_EXAMPLE = `\
+import { test, expect } from "vitest";
+test("Сумма чисел", () => {
+  expect(1 + 2).toBe(3);
+});
 `;

@@ -14,6 +14,7 @@ import {
   INTEGRATION_RC_CONFIG,
   INTEGRATION_TSCONFIG_JSON,
   INTEGRATION_VITEST_CONFIG,
+  INTEGRATION_VITEST_EXAMPLE,
   INTEGRATION_VSCODE_EXTENSIONS,
   INTEGRATION_VSCODE_LAUNCH,
   INTEGRATION_VSCODE_SETTINGS,
@@ -64,6 +65,11 @@ const actions = ({ packageCliVersion, integrationSdkVersion }: ActionData) => {
       type: "add",
       path: "src/types/i18n.d.ts",
       template: INTEGRATION_I18NEXT_REG_NAMESPACES,
+    },
+    {
+      type: "add",
+      path: "src/tests/simpleTest.test.ts",
+      template: INTEGRATION_VITEST_EXAMPLE,
     },
     {
       type: "add",
