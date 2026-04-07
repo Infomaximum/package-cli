@@ -26,22 +26,26 @@ export const runApplicationBuild = async (
     dev: isBuildDevMode,
     packageDir,
     packageManifest,
+    type = "package",
   } = args;
 
   const APPLICATION_PATHS = generateApplicationPaths(args);
 
+  const isScriptBuild = type === "script";
+
+  const plugins = isScriptBuild ? [] : [      
+        getZipApplicationPlugin({
+          isOnlyManifest: isBuildDevMode,
+        }),
+        getModifyManifestApplicationPlugin({
+          isBuildDevMode,
+          host,
+          port,
+          APPLICATION_PATHS,
+        }),]
+
   const sections = {
-    plugins: [
-      getZipApplicationPlugin({
-        isOnlyManifest: isBuildDevMode,
-      }),
-      getModifyManifestApplicationPlugin({
-        isBuildDevMode,
-        host,
-        port,
-        APPLICATION_PATHS,
-      }),
-    ] as WebpackPluginInstance[],
+    plugins
   } satisfies Configuration;
 
   if (isBuildDevMode) {
@@ -51,7 +55,7 @@ export const runApplicationBuild = async (
   }
 
   const configSections = [
-    getCommonApplicationWebpackConfig(mode, APPLICATION_PATHS),
+    getCommonApplicationWebpackConfig(mode, APPLICATION_PATHS, isScriptBuild),
     sections,
     getApplicationMinimizer(),
   ] as const;
@@ -65,19 +69,22 @@ export const runApplicationBuild = async (
 
   try {
     await runWebpackBuild(applicationConfig as Configuration);
-    console.log("");
-    await runWebpackBuild(
-      await getPackageBuildConfig({
-        mode,
-        PATHS: generatePackagePaths({
-          buildDir,
-          packageDir,
-          packageManifest,
-        }),
-        isBuildDevMode,
-        entityArchivePath: applicationArchivePath,
-      })
-    );
+
+    if (!isScriptBuild) {
+      console.log("");
+      await runWebpackBuild(
+        await getPackageBuildConfig({
+          mode,
+          PATHS: generatePackagePaths({
+            buildDir,
+            packageDir,
+            packageManifest,
+          }),
+          isBuildDevMode,
+          entityArchivePath: applicationArchivePath,
+        })
+      );
+    }
   } catch (error: any) {
     console.error(chalk.red("\nFailed to compile.\n"));
     console.error(chalk.red(error));

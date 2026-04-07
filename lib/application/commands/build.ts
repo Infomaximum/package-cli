@@ -12,7 +12,10 @@ export type InputBuildOptions = {
   port?: string | number;
   host?: string;
   buildDir?: string;
+  type?: BuildType;
 } & InputApplicationCommonOptions;
+
+export type BuildType = "package" | "script";
 
 export type MergedApplicationBuildOptions = ReturnType<
   typeof mergeApplicationWithOptionsBuild
@@ -25,6 +28,7 @@ function mergeApplicationWithOptionsBuild(options: InputBuildOptions) {
     host: options.host || config?.host,
     port: options.port || config?.port,
     dev: options.dev,
+    type: options.type,
     ...mergeApplicationConfigWithOptionsCommon(config, options),
   };
 }
@@ -45,6 +49,11 @@ export const registerApplicationBuildCommand = (
     .option("--dev", "собрать пакет для разработки", false)
     .option("--host <host>", "хост который будет указан в манифесте приложения")
     .option("--port <port>", "порт который будет указан в манифесте приложения")
+    .option(
+      "--type <buildType>",
+      "тип сборки, <package> - сборка пакета (в архив), <script> - сборка в js файл",
+      "package",
+    )
     .action((options: InputBuildOptions) =>
       runApplicationBuild(mergeApplicationWithOptionsBuild(options))
     );
