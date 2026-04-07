@@ -18,7 +18,8 @@ const isDevelopment = (mode: Mode) => mode === "development";
 
 export const getCommonApplicationWebpackConfig = (
   mode: Mode,
-  PATHS: ApplicationPaths
+  PATHS: ApplicationPaths,
+  isScriptBuild = false,
 ): Configuration => {
   const manifestEntry = systemRequire(PATHS.applicationManifestJsonPath).entry;
 
@@ -28,10 +29,14 @@ export const getCommonApplicationWebpackConfig = (
 
   return {
     mode,
-    entry: [PATHS.moduleIndex, PATHS.applicationManifestJsonPath],
+    entry: isScriptBuild
+      ? [PATHS.moduleIndex]
+      : [PATHS.moduleIndex, PATHS.applicationManifestJsonPath],
     output: {
       path: PATHS.appBuildPath,
-      filename: manifestEntry ?? filename,
+      filename: isScriptBuild
+        ? APPLICATION_OUTPUT_FULL_FILE_NAME
+        : (manifestEntry ?? filename),
       asyncChunks: false,
       clean: true,
     },
@@ -100,13 +105,17 @@ export const getCommonApplicationWebpackConfig = (
           test: /\.(eot|ttf|woff|woff2|png|jpg|jpeg|webp|gif)$/i,
           type: "asset/inline",
         },
-        {
-          test: MANIFEST_REG_EXP,
-          type: "asset/resource",
-          generator: {
-            filename: "[name][ext]",
-          },
-        },
+        ...(!isScriptBuild
+          ? [
+              {
+                test: MANIFEST_REG_EXP,
+                type: "asset/resource",
+                generator: {
+                  filename: "[name][ext]",
+                },
+              },
+            ]
+          : []),
         {
           test: /\.svg$/i,
           oneOf: [

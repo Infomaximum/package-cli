@@ -6,6 +6,7 @@ import {
 } from "../paths.js";
 import type { MergedApplicationBuildOptions } from "./commands/build.js";
 import type { MergedApplicationStartOptions } from "./commands/start.js";
+import { APPLICATION_OUTPUT_FULL_FILE_NAME } from "./const.js";
 
 const resolveApp = _resolveApp();
 
@@ -26,6 +27,7 @@ export function generateApplicationPaths({
       return generateIndexPath(entry);
     },
 
+    outputFile: APPLICATION_OUTPUT_FULL_FILE_NAME,
     applicationManifestJsonPath: resolveApp(applicationManifest),
     applicationBuildDirPath: resolveApp(buildDir),
   };
