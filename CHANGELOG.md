@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.31.0](https://github.com/Infomaximum/package-cli/compare/v2.30.1...v2.31.0) (2026-04-07)
+
+
+### Features
+
+* add js script building to applications ([6ae73e7](https://github.com/Infomaximum/package-cli/commit/6ae73e7173c8cb0b811941194643f9c2625cd5d6))
+
 ### [2.30.1](https://github.com/Infomaximum/package-cli/compare/v2.30.0...v2.30.1) (2026-04-02)
 
 
