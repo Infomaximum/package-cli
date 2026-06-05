@@ -4,7 +4,10 @@ import { APPLICATION_SDK_LIB_NAME } from "../../const.js";
 export const APPLICATION_INDEX_TEMPLATE = `\
 import { Root, createRoot } from "react-dom/client";
 import Content from "./Content";
-import { IApplication } from "${APPLICATION_SDK_LIB_NAME}";
+import {
+  IApplication,
+  type IApplicationProps,
+} from "${APPLICATION_SDK_LIB_NAME}";
 import packageManifest from "../package/${MANIFEST_JSON_FILE_NAME}";
 
 class Application implements IApplication {
@@ -14,11 +17,11 @@ class Application implements IApplication {
     this.root = createRoot(container);
   }
 
-  public mount(container: HTMLElement, props: Record<string, any>) {
+  public mount(container: HTMLElement, props: IApplicationProps) {
     this.render(props);
   }
 
-  public update(container: HTMLElement, props: Record<string, any>) {
+  public update(container: HTMLElement, props: IApplicationProps) {
     this.render(props);
   }
 
@@ -26,7 +29,7 @@ class Application implements IApplication {
     this.root?.unmount();
   }
 
-  private render(props: Record<string, any>) {
+  private render(props: IApplicationProps) {
     this.root?.render(<Content {...props} />);
   }
 }
