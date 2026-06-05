@@ -8,9 +8,13 @@ import {
 import { packageJson } from "../../utils.js";
 import type { Answers } from "../../package/scripts/prompts.js";
 import { APPLICATION_INDEX_TEMPLATE } from "../templates/src/applicationIndex.js";
-import { APPLICATION_CONTENT_TEMPLATE } from "../templates/src/applicationContent.js";
+import { APPLICATION_APP_TEMPLATE } from "../templates/src/applicationApp.js";
+import { APPLICATION_PLATFORM_ROUTER_TEMPLATE } from "../templates/src/applicationPlatformRouter.js";
+import { APPLICATION_HOME_PAGE_TEMPLATE } from "../templates/src/applicationHomePage.js";
+import { APPLICATION_SRC_README_TEMPLATE } from "../templates/src/applicationSrcReadme.js";
 import { APPLICATION_PACKAGE_JSON_TEMPLATE } from "../templates/applicationPackageJson.js";
 import { APPLICATION_MANIFEST_TEMPLATE } from "../templates/applicationManifest.js";
+import { APPLICATION_AGENT_MD_TEMPLATE } from "../templates/applicationAgentMd.js";
 import { APPLICATION_RC_CONFIG } from "../templates/applicationRCConfig.js";
 import { APPLICATION_CONFIG_FILE_NAME } from "../const.js";
 
@@ -31,8 +35,28 @@ const actions = ({ packageCliVersion }: ActionData) => {
     },
     {
       type: "add",
-      path: "src/Content.tsx",
-      template: APPLICATION_CONTENT_TEMPLATE,
+      path: "src/App.tsx",
+      template: APPLICATION_APP_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: "src/PlatformRouter.tsx",
+      template: APPLICATION_PLATFORM_ROUTER_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: "src/pages/HomePage.tsx",
+      template: APPLICATION_HOME_PAGE_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: "src/README.md",
+      template: APPLICATION_SRC_README_TEMPLATE,
+    },
+    {
+      type: "add",
+      path: "AGENT.md",
+      template: APPLICATION_AGENT_MD_TEMPLATE,
     },
 
     {

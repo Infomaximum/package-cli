@@ -3,12 +3,12 @@ import { APPLICATION_SDK_LIB_NAME } from "../../const.js";
 
 export const APPLICATION_INDEX_TEMPLATE = `\
 import { Root, createRoot } from "react-dom/client";
-import Content from "./Content";
 import {
-  IApplication,
+  type IApplication,
   type IApplicationProps,
 } from "${APPLICATION_SDK_LIB_NAME}";
 import packageManifest from "../package/${MANIFEST_JSON_FILE_NAME}";
+import App from "./App";
 
 class Application implements IApplication {
   public root: Root | null = null;
@@ -30,7 +30,7 @@ class Application implements IApplication {
   }
 
   private render(props: IApplicationProps) {
-    this.root?.render(<Content {...props} />);
+    this.root?.render(<App {...props} />);
   }
 }
 
