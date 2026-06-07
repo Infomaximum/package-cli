@@ -13,9 +13,10 @@ import { getZipApplicationPlugin } from "../configs/webpack/sections/plugins/zip
 import { getApplicationMinimizer } from "../configs/webpack/sections/plugins/minimizer.js";
 import { getCommonApplicationWebpackConfig } from "../configs/webpack/common.js";
 import { getModifyManifestApplicationPlugin } from "../configs/webpack/sections/plugins/modifyManifestApplication.js";
+import { getCopyApplicationPlugin } from "../configs/webpack/sections/plugins/copyApplication.js";
 
 export const runApplicationBuild = async (
-  args: MergedApplicationBuildOptions
+  args: MergedApplicationBuildOptions,
 ) => {
   const mode: Mode = "production";
 
@@ -27,13 +28,23 @@ export const runApplicationBuild = async (
     packageDir,
     packageManifest,
     type = "package",
+    applicationIcon,
   } = args;
 
   const APPLICATION_PATHS = generateApplicationPaths(args);
 
   const isScriptBuild = type === "script";
 
-  const plugins = isScriptBuild ? [] : [      
+  const plugins = isScriptBuild
+    ? []
+    : [
+        getCopyApplicationPlugin([
+          !!applicationIcon && {
+            from: applicationIcon,
+            // Имя icon обязательно, поэтому задаем явно
+            to: "icon.[ext]",
+          },
+        ]),
         getZipApplicationPlugin({
           isOnlyManifest: isBuildDevMode,
         }),
@@ -42,10 +53,11 @@ export const runApplicationBuild = async (
           host,
           port,
           APPLICATION_PATHS,
-        }),]
+        }),
+      ];
 
   const sections = {
-    plugins
+    plugins,
   } satisfies Configuration;
 
   if (isBuildDevMode) {
@@ -64,7 +76,7 @@ export const runApplicationBuild = async (
 
   const applicationArchivePath = path.resolve(
     APPLICATION_PATHS.appBuildPath,
-    APPLICATION_ARCHIVE_FULL_NAME
+    APPLICATION_ARCHIVE_FULL_NAME,
   );
 
   try {
@@ -82,7 +94,7 @@ export const runApplicationBuild = async (
           }),
           isBuildDevMode,
           entityArchivePath: applicationArchivePath,
-        })
+        }),
       );
     }
   } catch (error: any) {
