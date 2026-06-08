@@ -12,6 +12,7 @@ export type ApplicationRCConfig = {
   buildDir: string;
   port: number;
   host: string;
+  applicationIcon: string;
 };
 
 export const getApplicationConfigFromFile = () => {

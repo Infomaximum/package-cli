@@ -44,13 +44,13 @@ export const getPackageBuildConfig = async ({
 
   assertSimple(
     await isExist(PATHS.packageManifestPath),
-    `File ${PATHS.packageManifestPath} not found`
+    `File ${PATHS.packageManifestPath} not found`,
   );
 
   entityArchivePath &&
     assertSimple(
       await isExist(entityArchivePath),
-      `File ${entityArchivePath} not found`
+      `File ${entityArchivePath} not found`,
     );
 
   return {
