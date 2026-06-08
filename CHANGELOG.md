@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.33.0](https://github.com/Infomaximum/package-cli/compare/v2.32.0...v2.33.0) (2026-06-08)
+
+
+### Features
+
+* add icon in application zip ([d49941b](https://github.com/Infomaximum/package-cli/commit/d49941bc2ae741309b7abe2787b70def805d5a23))
+
+
+### Bug Fixes
+
+* fix copy application plugin ([2edc6c5](https://github.com/Infomaximum/package-cli/commit/2edc6c5240121324066ad5779e968427908af093))
+* fix icon ext check ([2c784d2](https://github.com/Infomaximum/package-cli/commit/2c784d2f4043a091d36647024e1bda0a7f5cf858))
+
 ## [2.32.0](https://github.com/Infomaximum/package-cli/compare/v2.31.0...v2.32.0) (2026-06-05)
 
 
