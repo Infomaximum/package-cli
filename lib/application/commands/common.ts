@@ -47,10 +47,10 @@ export function mergeApplicationConfigWithOptionsCommon(
   const applicationIcon = options?.applicationIcon || config?.applicationIcon;
 
   if (typeof applicationIcon === "string") {
-    const [_, ext] = path.basename(applicationIcon).split(".");
+    const ext = path.extname(applicationIcon);
 
     assertSimple(
-      ext === "svg" || ext === "png",
+      ext === ".svg" || ext === ".png",
       chalk.red("Неверный формат иконки. Должен быть .svg или .png"),
     );
   }
