@@ -38,13 +38,14 @@ export const runApplicationBuild = async (
   const plugins = isScriptBuild
     ? []
     : [
-        getCopyApplicationPlugin([
-          !!applicationIcon && {
-            from: applicationIcon,
-            // Имя icon обязательно, поэтому задаем явно
-            to: "icon[ext]",
-          },
-        ]),
+        !!applicationIcon &&
+          getCopyApplicationPlugin([
+            {
+              from: applicationIcon,
+              // Имя icon обязательно, поэтому задаем явно
+              to: "icon[ext]",
+            },
+          ]),
         getZipApplicationPlugin({
           isOnlyManifest: isBuildDevMode,
         }),
