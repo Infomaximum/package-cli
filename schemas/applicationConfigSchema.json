@@ -16,7 +16,7 @@
     },
     "applicationIcon": {
       "type": "string",
-      "description": "путь до файла манифеста приложения"
+      "description": "путь до иконки приложения"
     },
     "packageManifest": {
       "type": "string",

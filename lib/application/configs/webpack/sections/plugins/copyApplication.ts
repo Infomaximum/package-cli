@@ -5,5 +5,7 @@ export const getCopyApplicationPlugin = (
   patterns: (ObjectPattern | undefined | false)[],
 ) => {
   const filteredPatterns = patterns.filter<ObjectPattern>((x) => !!x);
-  return new CopyPlugin({ patterns: filteredPatterns });
+  return (
+    filteredPatterns.length && new CopyPlugin({ patterns: filteredPatterns })
+  );
 };

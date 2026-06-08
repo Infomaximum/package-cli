@@ -42,7 +42,7 @@ export const runApplicationBuild = async (
           !!applicationIcon && {
             from: applicationIcon,
             // Имя icon обязательно, поэтому задаем явно
-            to: "icon.[ext]",
+            to: "icon[ext]",
           },
         ]),
         getZipApplicationPlugin({
