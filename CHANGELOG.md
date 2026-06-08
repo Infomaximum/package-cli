@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.32.0](https://github.com/Infomaximum/package-cli/compare/v2.31.0...v2.32.0) (2026-06-05)
+
+
+### Features
+
+* добавлены шаблоны файлов приложений ([71afa6b](https://github.com/Infomaximum/package-cli/commit/71afa6b25419a40e58d6b989bfb0a9a3354bab2b))
+* используется интерфейсы с пропсами приложений ([09a5e0b](https://github.com/Infomaximum/package-cli/commit/09a5e0b18402661ca08aad50cdd2a3f57e31f9da))
+
 ## [2.31.0](https://github.com/Infomaximum/package-cli/compare/v2.30.1...v2.31.0) (2026-04-07)
 
 

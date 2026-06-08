@@ -14,9 +14,11 @@ export const APPLICATION_PACKAGE_JSON_TEMPLATE = `\
     "build:dev": "im-package-cli application build --dev",
     "start": "im-package-cli application start"
   },
-   "dependencies": {
+  "dependencies": {
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-router": "^6.30.0",
+    "react-router-dom": "^6.30.0"
   },
   "devDependencies": {
     "${APPLICATION_SDK_LIB_NAME}": "${APPLICATION_SDK_LIB_VERSION}",
